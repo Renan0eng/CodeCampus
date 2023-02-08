@@ -18,11 +18,11 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import emailTheme from '../public/theme';
-import Menu from '../components/Menu';
-import Layout from '../components/Layout';
-import Navigation from '../components/Navigation';
-import Mails from '../components/Mails';
-import EmailContent from '../components/EmailContent';
+import Menu from './Components/Menu';
+import Layout from './Components/Layout';
+import Navigation from './Components/Navigation';
+import Mails from './Components/Mails';
+import EmailContent from './Components/EmailContent';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();

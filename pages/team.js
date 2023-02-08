@@ -39,8 +39,8 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import teamTheme from '../public/theme';
-import Menu from '../components/Menu';
-import Layout from '../components/Layout';
+import Menu from './Components/Menu';
+import Layout from './Components/Layout';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();

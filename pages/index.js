@@ -14,7 +14,7 @@ import Typography from '@mui/joy/Typography';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import customTheme from '../public/theme';
-import GoogleIcon from '../components/GoogleIcon';
+import GoogleIcon from './Components/GoogleIcon';
 import { useRouter } from 'next/router';
 
 function ColorSchemeToggle({ onClick, ...props }) {
