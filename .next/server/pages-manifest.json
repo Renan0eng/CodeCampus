@@ -1,11 +1,8 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/blog": "pages/blog.html",
-  "/feed": "pages/feed.html",
-  "/files": "pages/files.html",
-  "/": "pages/index.html",
-  "/team": "pages/team.html",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/feed": "pages/feed.js",
+  "/team": "pages/team.js",
+  "/files": "pages/files.js"
 }
