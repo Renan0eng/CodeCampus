@@ -18,8 +18,13 @@ import { Link  } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 import FolderIcon from '@mui/icons-material/Folder';
+import { Input } from '@mui/joy';
 
 export default function FeedContent() {
+
+  const [logUser, setLogUser] = React.useState({
+    name: 'John Doe',
+  })
 
   return (
     <Sheet
@@ -46,43 +51,36 @@ export default function FeedContent() {
             srcSet="https://i.pravatar.cc/80?img=3"
             sx={{ borderRadius: 'xl' }}
           />
-          <Box sx={{ ml: 2 }}>
+          <Box sx={{ ml: 2, display: "flex", alignItems: "center" }}>
             <Typography level="body2" textColor="text.primary" mb={0.5}>
-              
-            </Typography>
-            <Typography level="body3" textColor="text.tertiary">
-              
+              {logUser.name}
             </Typography>
           </Box>
-        </Box>
-        <Box
-          sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}
-        >
-          <IconButton size="sm" variant="outlined" color="neutral"
-            onClick={() => {
-              console.log(`ArrowUpward `);
-            }}
-          >
-            <ArrowUpwardIcon />
-          </IconButton>
-          <IconButton size="sm" variant="outlined" color="neutral"
-            onClick={() => {
-              console.log(`ArrowDownward `);
-            }}
-          >
-            <ArrowDownwardIcon />
-          </IconButton>
         </Box>
       </Box>
       <Divider sx={{ mt: 2 }} />
       <Box
-        sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}
+        sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start',}}
       >
-        <Typography level="h5" textAlign='center' textColor="text.primary">
-        </Typography>
+        <Input
+          sx={{ width: '100%', outline: "none",}}
+          color="neutral"
+          disabled={false}
+          placeholder="Title"
+          size="lg"
+          variant="outlined"
+        />
       </Box>
       <Divider />
       <Typography level="body2" mt={2} mb={2}>
+        <Input
+          sx={{ width: '100%', outline: "none", height: 150 }}
+          color="neutral"
+          disabled={false}
+          placeholder="Description"
+          size="sm"
+          variant="outlined"
+        />
       </Typography>
       <Divider />
       <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
@@ -113,18 +111,26 @@ export default function FeedContent() {
               '--Card-radius': theme.vars.radius.sm,
             },
           })}
-        > 
-          <Card variant="outlined" >
-            <Link>
-              <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-                <img
-                  src
-                  srcSet
-                  alt="Yosemite National Park"
-                />
+        >  
+          <Card variant="outlined" orientation="horizontal">
+            <CardOverflow>
+              <AspectRatio ratio="1" sx={{ minWidth: 80 }}
+              onClick={() => {
+                console.log("ADD image")
+              }}
+              >
+                <Box>
+                  <FolderIcon />
+                </Box>
               </AspectRatio>
-            </Link>
-          </Card> 
+            </CardOverflow>
+            <Box sx={{ p: { xs: 1, sm: 2 } }}>
+              <Typography level="body2" color="primary">
+                videos-hike.zip
+              </Typography>
+              <Typography level="body3">100 MB</Typography>
+            </Box>
+          </Card>
         </Box>
       </Box>
     </Sheet>

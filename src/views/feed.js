@@ -55,6 +55,8 @@ function ColorSchemeToggle() {
 export default function FeedExample() {
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [unreadMenu, setUnreadMenu] = React.useState(false);
+  const [everythingMenu, setEverythingMenu] = React.useState(false);
 
   const [posts, setPosts] = React.useState([{
     authorName: 'Alex Jonnold',
@@ -101,96 +103,6 @@ export default function FeedExample() {
     }
     ]
   },
-  {
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://i.pravatar.cc/40?img=3',
-    authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-    date: '21 Oct 2022',
-    title: 'Yosemite Trip',
-    desc: 'Fale um amigo que vc acha gay',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },
-    {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-    ]
-  },
-  {
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://i.pravatar.cc/40?img=3',
-    authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-    date: '21 Oct 2022',
-    title: 'Yosemite Trip',
-    desc: 'Fale um amigo que vc acha gay',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },
-    {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-    ]
-  }
   ]);
 
   return (
@@ -284,7 +196,7 @@ export default function FeedExample() {
                   href: '/feed',
                 },
                 {
-                  label: 'New Feed',
+                  label: 'New',
                   href: '/feed/newfeed',
                 },
                 {
@@ -333,12 +245,14 @@ export default function FeedExample() {
               color="primary"
               sx={{ '--IconButton-size': '24px' }}
               onClick={() => {
-                console.log('UNREAD');
+                setUnreadMenu(!unreadMenu)
+                console.log(unreadMenu);
               }}
             >
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
+          {unreadMenu && (
           <Box sx={{ py: 10 }}>
             <Typography
               textColor="text.tertiary"
@@ -347,7 +261,7 @@ export default function FeedExample() {
             >
               You&apos;ve read all messages in your inbox.
             </Typography>
-          </Box>
+          </Box>)}
           <Box
             sx={{
               p: 2,
@@ -372,13 +286,19 @@ export default function FeedExample() {
               variant="plain"
               color="primary"
               sx={{ '--IconButton-size': '24px' }}
+              onClick={() => {
+                setEverythingMenu(!everythingMenu)
+                console.log(everythingMenu);
+              }}
             >
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
+          {everythingMenu && (
           <Mails />
+          )}
         </Layout.SidePane>
       </Layout.Root>
-    </CssVarsProvider>
+    </CssVarsProvider >
   );
 }

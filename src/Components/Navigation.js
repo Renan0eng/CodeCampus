@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
@@ -21,14 +21,14 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 export default function FeedNav() {
 
   const Menus = {
-    Browse:[
+    Browse: [
       {
         label: 'Feed',
         href: '/feed',
         icon: <InboxRoundedIcon fontSize="small" color="primary" />,
       },
       {
-        label: 'New Feed',
+        label: 'New',
         active: true,
         href: '/feed/newfeed',
         icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
@@ -44,45 +44,55 @@ export default function FeedNav() {
         icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
       }
     ],
-    Tags:[
+    Tags: [
       {
         label: 'Personal',
         href: '/personal',
+        bgcolor: 'primary.100',
       },
       {
         label: 'Work',
         href: '/work',
+        bgcolor: 'danger.300',
       },
       {
         label: 'Family',
         href: '/family',
+        bgcolor: 'success.300',
       },
       {
         label: 'Friends',
         href: '/friends',
+        bgcolor: 'warning.300',
       },
       {
         label: 'Travel',
         href: '/travel',
+        bgcolor: 'info.300',
       },
       {
         label: 'Holidays',
         href: '/holidays',
+        bgcolor: 'neutral.300',
       },
       {
         label: 'Photos',
         href: '/photos',
+        bgcolor: 'primary.300',
       },
     ]
   }
 
   const [menus, setMenus] = React.useState(Menus);
 
+  const [tagsMenu, setTagsMenu] = React.useState(true);
+  const [browseMenu, setBrowseMenu] = React.useState(true);
+
   const [listItemDecorator, setListItemDecorator] = React.useState({
-    Feed:{
+    Feed: {
       color: 'primary',
     },
-    NewPost:{
+    NewPost: {
       color: 'neutral.500',
     },
   });
@@ -100,12 +110,10 @@ export default function FeedNav() {
             sx={{ '--IconButton-size': '24px', ml: 'auto' }}
             onClick={(e) => {
               e.preventDefault();
-              if(!menus){
-                console.log('menus',menus);
-                setMenus(Menus);
-              }else{
-                console.log('menusFecha',menus);
-              setMenus(""); // This is to close the menu
+              if (!browseMenu) {
+                setBrowseMenu(true);
+              }else {
+                setBrowseMenu(false);
               }
             }}
           >
@@ -118,19 +126,19 @@ export default function FeedNav() {
             '& .JoyListItemButton-root': { p: '8px' }
           }}
         >
-          {menus ? menus.Browse.map((item) => (	
+          {browseMenu ? menus.Browse.map((item) => (
             <ListItem>
-            <ListItemButton
-              onClick={() => navigate(item.href)}
-            >
-              <ListItemDecorator sx={listItemDecorator.Feed}>
-                {item.icon}
-              </ListItemDecorator>
-              <ListItemContent>{item.label}</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          )):null}
-          
+              <ListItemButton
+                onClick={() => navigate(item.href)}
+              >
+                <ListItemDecorator sx={listItemDecorator.Feed}>
+                  {item.icon}
+                </ListItemDecorator>
+                <ListItemContent>{item.label}</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+          )) : null}
+
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>
@@ -141,11 +149,19 @@ export default function FeedNav() {
             variant="plain"
             color="primary"
             sx={{ '--IconButton-size': '24px', ml: 'auto' }}
+            onClick={(e) => {
+              e.preventDefault();
+              if (!tagsMenu) {
+                setTagsMenu(true);
+              } else {
+                setTagsMenu(false);
+              }
+            }}
           >
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
-        {/* <List
+        <List
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
@@ -153,6 +169,7 @@ export default function FeedNav() {
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
+        {tagsMenu ? menus.Tags.map((item) => (
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>
@@ -161,59 +178,15 @@ export default function FeedNav() {
                     width: '10px',
                     height: '10px',
                     borderRadius: '99px',
-                    bgcolor: 'primary.300',
+                    bgcolor: item.bgcolor,
                   }}
                 />
               </ListItemDecorator>
-              <ListItemContent>Personal</ListItemContent>
+              <ListItemContent>{item.label}</ListItemContent>
             </ListItemButton>
           </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <Box
-                  sx={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '99px',
-                    bgcolor: 'danger.300',
-                  }}
-                />
-              </ListItemDecorator>
-              <ListItemContent>Work</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <Box
-                  sx={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '99px',
-                    bgcolor: 'warning.200',
-                  }}
-                />
-              </ListItemDecorator>
-              <ListItemContent>Travels</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <Box
-                  sx={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '99px',
-                    bgcolor: 'success.300',
-                  }}
-                />
-              </ListItemDecorator>
-              <ListItemContent>Concert tickets</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-        </List> */}
+          )) : null}
+        </List>
       </ListItem>
     </List>
   );

@@ -99,7 +99,7 @@ export default function NewFeedExample() {
               <MailRoundedIcon />
             </IconButton>
             <Typography component="h1" fontWeight="xl" minWidth={100} >
-              New Feed
+              New
             </Typography>
           </Box>
           <Input
@@ -148,7 +148,7 @@ export default function NewFeedExample() {
                   href: '/feed',
                 },
                 {
-                  label: 'New Feed',
+                  label: 'New',
                   active: true,
                   href: '/feed/newfeed',
                 },
@@ -244,6 +244,6 @@ export default function NewFeedExample() {
           <Mails />
         </Layout.SidePane>
       </Layout.Root>
-    </CssVarsProvider>
+    </CssVarsProvider >
   );
 }

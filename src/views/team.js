@@ -221,7 +221,7 @@ export default function TeamExample() {
                   href: '/feed',
                 },
                 {
-                  label: 'New Feed',
+                  label: 'New',
                   href: '/feed/newfeed',
                 },
                 {

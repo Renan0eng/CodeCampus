@@ -163,7 +163,7 @@ export default function FilesExample() {
                   href: '/feed',
                 },
                 {
-                  label: 'New Feed',
+                  label: 'New',
                   href: '/feed/newfeed',
                 },
                 {
@@ -666,6 +666,6 @@ export default function FilesExample() {
           </Box>
         </Sheet>
       </Layout.Root>
-    </CssVarsProvider>
+    </CssVarsProvider >
   );
 }
