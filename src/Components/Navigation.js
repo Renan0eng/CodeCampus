@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {useNavigate} from "react-router-dom"
+
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
@@ -16,11 +18,78 @@ import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
-export default function EmailNav() {
+export default function FeedNav() {
+
+  const [menus, setMenus] = React.useState({
+  Browse:[
+    {
+      label: 'Feed',
+      href: '/feed',
+      icon: <InboxRoundedIcon fontSize="small" color="primary" />,
+    },
+    {
+      label: 'New Feed',
+      active: true,
+      href: '/feed/newfeed',
+      icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
+    },
+    // {
+    //   label: 'Team',
+    //   href: '/team',
+    //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
+    // },
+    {
+      label: 'Files',
+      href: '/files',
+      icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
+    }
+  ],
+  Tags:[
+    {
+      label: 'Personal',
+      href: '/personal',
+    },
+    {
+      label: 'Work',
+      href: '/work',
+    },
+    {
+      label: 'Family',
+      href: '/family',
+    },
+    {
+      label: 'Friends',
+      href: '/friends',
+    },
+    {
+      label: 'Travel',
+      href: '/travel',
+    },
+    {
+      label: 'Holidays',
+      href: '/holidays',
+    },
+    {
+      label: 'Photos',
+      href: '/photos',
+    },
+  ]
+});
+
+  const [listItemDecorator, setListItemDecorator] = React.useState({
+    Feed:{
+      color: 'primary',
+    },
+    NewPost:{
+      color: 'neutral.500',
+    },
+  });
+
+  const navigate = useNavigate();
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px' }}>
       <ListItem nested>
-        <ListSubheader>
+        <ListSubheader width='100%'>
           Browse
           <IconButton
             size="sm"
@@ -37,46 +106,19 @@ export default function EmailNav() {
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
-          <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
-                <InboxRoundedIcon fontSize="small" />
+          {menus.Browse.map((item) => (	
+            <ListItem>
+            <ListItemButton
+              onClick={() => navigate(item.href)}
+            >
+              <ListItemDecorator sx={listItemDecorator.Feed}>
+                {item.icon}
               </ListItemDecorator>
-              <ListItemContent>Inbox</ListItemContent>
+              <ListItemContent>{item.label}</ListItemContent>
             </ListItemButton>
           </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <OutboxRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Sent</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <DraftsRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Draft</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <AssistantPhotoRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Flagged</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <DeleteRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Trash</ListItemContent>
-            </ListItemButton>
-          </ListItem>
+          ))}
+          
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>

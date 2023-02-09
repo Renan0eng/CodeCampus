@@ -203,15 +203,6 @@ export default function TeamExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="primary"
-              component="a"
-              href="/blog/"
-            >
-              <BookRoundedIcon />
-            </IconButton>
             <Menu
               id="app-selector"
               control={
@@ -228,6 +219,10 @@ export default function TeamExample() {
                 {
                   label: 'Feed',
                   href: '/feed',
+                },
+                {
+                  label: 'New Feed',
+                  href: '/feed/newfeed',
                 },
                 {
                   label: 'Team',

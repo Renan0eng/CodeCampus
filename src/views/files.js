@@ -113,7 +113,7 @@ export default function FilesExample() {
             >
               <FindInPageRoundedIcon />
             </IconButton>
-            <Typography component="h1" fontWeight="xl">
+            <Typography component="h1" fontWeight="xl" minWidth={100}>
               Files
             </Typography>
           </Box>
@@ -145,15 +145,6 @@ export default function FilesExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="primary"
-              component="a"
-              href="/blog/"
-            >
-              <BookRoundedIcon />
-            </IconButton>
             <Menu
               id="app-selector"
               control={
@@ -170,6 +161,10 @@ export default function FilesExample() {
                 {
                   label: 'Feed',
                   href: '/feed',
+                },
+                {
+                  label: 'New Feed',
+                  href: '/feed/newfeed',
                 },
                 {
                   label: 'Team',

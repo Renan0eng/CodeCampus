@@ -52,7 +52,7 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function EmailExample() {
+export default function FeedExample() {
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
@@ -88,7 +88,7 @@ export default function EmailExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://i.pravatar.cc/40?img=3',
       authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
@@ -99,7 +99,7 @@ export default function EmailExample() {
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
     }
-  ]
+    ]
   },
   {
     authorName: 'Alex Jonnold',
@@ -133,7 +133,7 @@ export default function EmailExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://i.pravatar.cc/40?img=3',
       authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
@@ -144,7 +144,7 @@ export default function EmailExample() {
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
     }
-  ]
+    ]
   },
   {
     authorName: 'Alex Jonnold',
@@ -178,7 +178,7 @@ export default function EmailExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://i.pravatar.cc/40?img=3',
       authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
@@ -189,9 +189,9 @@ export default function EmailExample() {
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
     }
-  ]
+    ]
   }
-]);
+  ]);
 
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
@@ -233,7 +233,7 @@ export default function EmailExample() {
             >
               <MailRoundedIcon />
             </IconButton>
-            <Typography component="h1" fontWeight="xl">
+            <Typography component="h1" fontWeight="xl" minWidth={100}>
               Feed
             </Typography>
           </Box>
@@ -265,15 +265,6 @@ export default function EmailExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="primary"
-              component="a"
-              href="/blog"
-            >
-              <BookRoundedIcon />
-            </IconButton>
             <Menu
               id="app-selector"
               control={
@@ -291,6 +282,10 @@ export default function EmailExample() {
                   label: 'Feed',
                   active: true,
                   href: '/feed',
+                },
+                {
+                  label: 'New Feed',
+                  href: '/feed/newfeed',
                 },
                 {
                   label: 'Team',
