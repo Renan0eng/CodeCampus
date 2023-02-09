@@ -234,7 +234,7 @@ export default function EmailExample() {
               <MailRoundedIcon />
             </IconButton>
             <Typography component="h1" fontWeight="xl">
-              Email
+              Feed
             </Typography>
           </Box>
           <Input

@@ -1,8 +1,8 @@
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import logo from './logo.svg';
-import './App.css';
 import Login from './views/login';
 import Feed from './views/feed';
+import Team from './views/team';
+import Files from './views/files';
 
 function App() {
 
@@ -11,6 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/feed" element={<Feed/>}/>
+        <Route path="/team" element={<Team/>}/>
+        <Route path="/files" element={<Files/>}/>
       </Routes>
     </BrowserRouter>
   </>);
