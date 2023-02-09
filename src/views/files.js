@@ -33,10 +33,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
-import filesTheme from '../public/theme';
-import Menu from './Components/Menu';
-import Layout from './Components/Layout';
-import Navigation from './Components/Navigation';
+import filesTheme from '../constants/theme';
+import Menu from '../Components/Menu';
+import Layout from '../Components/Layout';
+import Navigation from '../Components/Navigation';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();

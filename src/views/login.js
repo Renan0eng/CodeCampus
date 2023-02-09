@@ -13,9 +13,9 @@ import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import customTheme from '../public/theme';
-import GoogleIcon from './Components/GoogleIcon';
-import { useRouter } from 'next/router';
+import customTheme from '../constants/theme';
+import GoogleIcon from '../Components/GoogleIcon';
+import {useNavigate} from "react-router-dom"
 
 function ColorSchemeToggle({ onClick, ...props }) {
   const { mode, setMode } = useColorScheme();
@@ -51,7 +51,7 @@ function ColorSchemeToggle({ onClick, ...props }) {
  * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
  */
 export default function JoySignInSideTemplate() {
-  const router = useRouter();
+  const navigate = useNavigate();
   return (
     <CssVarsProvider
       defaultMode="dark"
@@ -169,7 +169,7 @@ export default function JoySignInSideTemplate() {
                   persistent: formElements.persistent.checked,
                 };
                 alert(JSON.stringify(data, null, 2));
-                router.push('/feed');
+                navigate('/feed');
               }}
             >
               <FormControl required>

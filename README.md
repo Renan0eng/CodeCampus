@@ -1,7 +1,6 @@
-# CodeCampus_web
 # Fórum da Turma de Engenharia de Software
 
-Este repositório contém um fórum destinado à turma de Engenharia de Software da faculdade. Aqui, os estudantes podem discutir questões relacionadas ao curso, compartilhar conhecimento e colaborar uns com os outros.
+Este repositório contém um fórum baseado em ReactJS destinado à turma de Engenharia de Software da faculdade. Aqui, os estudantes podem discutir questões relacionadas ao curso, compartilhar conhecimento e colaborar uns com os outros.
 
 ## Recursos
 - Discussão de tópicos relacionados ao curso de Engenharia de Software
@@ -30,11 +29,8 @@ Para instalar e executar este fórum localmente em sua máquina, você precisar�
 5. Acesse o fórum em seu navegador em `http://localhost:3000`
 
 # Tecnologias usadas
-Este fórum foi construído usando as seguintes tecnologias:
-- Next.js
-- React
-- Node.js
-- Express (opcional)
+Este fórum foi construído usando a seguinte tecnologia:
+- ReactJS
 
 # Contribuição
 Contribuições são sempre bem-vindas! Se você encontrou um bug ou gostaria de adicionar uma nova funcionalidade, por favor, siga os seguintes passos:
