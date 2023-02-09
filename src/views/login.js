@@ -202,7 +202,7 @@ export default function JoySignInSideTemplate() {
               fullWidth
               startDecorator={<GoogleIcon />}
             >
-              Emtrar com o Google
+              Entrar com o Google
             </Button>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
