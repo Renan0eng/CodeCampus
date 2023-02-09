@@ -20,61 +20,63 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 
 export default function FeedNav() {
 
-  const [menus, setMenus] = React.useState({
-  Browse:[
-    {
-      label: 'Feed',
-      href: '/feed',
-      icon: <InboxRoundedIcon fontSize="small" color="primary" />,
-    },
-    {
-      label: 'New Feed',
-      active: true,
-      href: '/feed/newfeed',
-      icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
-    },
-    // {
-    //   label: 'Team',
-    //   href: '/team',
-    //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
-    // },
-    {
-      label: 'Files',
-      href: '/files',
-      icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
-    }
-  ],
-  Tags:[
-    {
-      label: 'Personal',
-      href: '/personal',
-    },
-    {
-      label: 'Work',
-      href: '/work',
-    },
-    {
-      label: 'Family',
-      href: '/family',
-    },
-    {
-      label: 'Friends',
-      href: '/friends',
-    },
-    {
-      label: 'Travel',
-      href: '/travel',
-    },
-    {
-      label: 'Holidays',
-      href: '/holidays',
-    },
-    {
-      label: 'Photos',
-      href: '/photos',
-    },
-  ]
-});
+  const Menus = {
+    Browse:[
+      {
+        label: 'Feed',
+        href: '/feed',
+        icon: <InboxRoundedIcon fontSize="small" color="primary" />,
+      },
+      {
+        label: 'New Feed',
+        active: true,
+        href: '/feed/newfeed',
+        icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
+      },
+      // {
+      //   label: 'Team',
+      //   href: '/team',
+      //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
+      // },
+      {
+        label: 'Files',
+        href: '/files',
+        icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
+      }
+    ],
+    Tags:[
+      {
+        label: 'Personal',
+        href: '/personal',
+      },
+      {
+        label: 'Work',
+        href: '/work',
+      },
+      {
+        label: 'Family',
+        href: '/family',
+      },
+      {
+        label: 'Friends',
+        href: '/friends',
+      },
+      {
+        label: 'Travel',
+        href: '/travel',
+      },
+      {
+        label: 'Holidays',
+        href: '/holidays',
+      },
+      {
+        label: 'Photos',
+        href: '/photos',
+      },
+    ]
+  }
+
+  const [menus, setMenus] = React.useState(Menus);
 
   const [listItemDecorator, setListItemDecorator] = React.useState({
     Feed:{
@@ -96,6 +98,16 @@ export default function FeedNav() {
             variant="plain"
             color="primary"
             sx={{ '--IconButton-size': '24px', ml: 'auto' }}
+            onClick={(e) => {
+              e.preventDefault();
+              if(!menus){
+                console.log('menus',menus);
+                setMenus(Menus);
+              }else{
+                console.log('menusFecha',menus);
+              setMenus(""); // This is to close the menu
+              }
+            }}
           >
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
@@ -103,10 +115,10 @@ export default function FeedNav() {
         <List
           aria-labelledby="nav-list-browse"
           sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
+            '& .JoyListItemButton-root': { p: '8px' }
           }}
         >
-          {menus.Browse.map((item) => (	
+          {menus ? menus.Browse.map((item) => (	
             <ListItem>
             <ListItemButton
               onClick={() => navigate(item.href)}
@@ -117,7 +129,7 @@ export default function FeedNav() {
               <ListItemContent>{item.label}</ListItemContent>
             </ListItemButton>
           </ListItem>
-          ))}
+          )):null}
           
         </List>
       </ListItem>
@@ -133,7 +145,7 @@ export default function FeedNav() {
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
-        <List
+        {/* <List
           aria-labelledby="nav-list-tags"
           size="sm"
           sx={{
@@ -201,7 +213,7 @@ export default function FeedNav() {
               <ListItemContent>Concert tickets</ListItemContent>
             </ListItemButton>
           </ListItem>
-        </List>
+        </List> */}
       </ListItem>
     </List>
   );
