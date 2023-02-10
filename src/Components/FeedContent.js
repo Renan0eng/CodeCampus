@@ -42,8 +42,8 @@ export default function FeedContent({posts}) {
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Avatar
-            src="https://i.pravatar.cc/40?img=3"
-            srcSet="https://i.pravatar.cc/80?img=3"
+            src={posts.authorAvatar}
+            srcSet={posts.authorAvatar}
             sx={{ borderRadius: 'xl' }}
           />
           <Box sx={{ ml: 2 }}>
@@ -165,8 +165,8 @@ export default function FeedContent({posts}) {
             })}
           >
             <Avatar
-              src='https://i.pravatar.cc/40?img=3'
-              srcSet='https://i.pravatar.cc/80?img=3'
+              src={content.authorAvatar}
+              srcSet={content.authorAvatarSet}
               sx={{ borderRadius: 'xl', width: 30, height: 30}}
             />
             <Typography level="body2" textColor="#999">
@@ -181,7 +181,7 @@ export default function FeedContent({posts}) {
               alignItems: 'start',
               gap: 2,
               width: '100%',
-              borderBottom: '1px solid  #333',
+              borderBottom: '1px solid  #999',
               '& > div': {
                 boxShadow: 'none',
                 '--Card-padding': '0px',
@@ -193,6 +193,7 @@ export default function FeedContent({posts}) {
               {content.desc}
             </Typography>
           </Box>
+          <Divider />
         </>))}
       </Box>
     </Sheet>

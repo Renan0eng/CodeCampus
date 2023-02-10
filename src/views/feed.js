@@ -60,42 +60,31 @@ export default function FeedExample() {
 
   const [posts, setPosts] = React.useState([{
     authorName: 'Alex Jonnold',
-    authorAvatar: 'https://i.pravatar.cc/40?img=3',
-    authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
+    authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
+    authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
     date: '21 Oct 2022',
-    title: 'Yosemite Trip',
-    desc: 'Fale um amigo que vc acha gay',
+    title: 'Topico principal da duvida',
+    desc: 'Topico detalhado da duvida onde ainda deve se tratar a quebrade linha e o tamanho do texto e na adição de imagens e links, o estilo da entrada e tudo mais',
     tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
+    images: [{ image: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg', imageLink: 'https://domains.google.com/registrar/' },
     { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
+    { image: 'https://matheuspivato.com/assets/img/profile-img.jpeg', imageLink: 'https://domains.google.com/registrar/' }],
     contents: [{
       authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
+      authorAvatar: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
+      authorAvatarSet: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
+      authorName: 'Renan Nardi',
+      desc: 'O comentari da duvida',
       date: '21 Oct 2022',
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },
-    {
+    },{
       authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
+      authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
+      authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
+      authorName: 'Renan Nardi',
+      desc: 'resposta do comentario',
       date: '21 Oct 2022',
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
@@ -246,7 +235,6 @@ export default function FeedExample() {
               sx={{ '--IconButton-size': '24px' }}
               onClick={() => {
                 setUnreadMenu(!unreadMenu)
-                console.log(unreadMenu);
               }}
             >
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
@@ -288,7 +276,6 @@ export default function FeedExample() {
               sx={{ '--IconButton-size': '24px' }}
               onClick={() => {
                 setEverythingMenu(!everythingMenu)
-                console.log(everythingMenu);
               }}
             >
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
