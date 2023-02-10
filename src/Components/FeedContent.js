@@ -173,7 +173,7 @@ export default function FeedContent({posts}) {
               sx={{ borderRadius: 'xl', width: 30, height: 30}}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-            <Typography level="body2" textColor="#999">
+            <Typography level="body2">
               {content.authorName}
             </Typography>
             <Typography level="body2" textColor="#999" fontSize={10} >
@@ -187,9 +187,8 @@ export default function FeedContent({posts}) {
               flexDirection: 'column',
               flexWrap: 'wrap',
               alignItems: 'start',
-              gap: 2,
+              pb: 0.5,
               width: '100%',
-              borderBottom: '1px solid  #999',
               '& > div': {
                 boxShadow: 'none',
                 '--Card-padding': '0px',
@@ -200,8 +199,8 @@ export default function FeedContent({posts}) {
             <Typography level="body2" textColor="#999" mb={0.5}>
               {content.desc}
             </Typography>
-          </Box>
           <Divider />
+          </Box>
         </>))}
       </Box>
     </Sheet>

@@ -58,7 +58,7 @@ function ColorSchemeToggle({ onClick, ...props }) {
 export default function JoySignInSideTemplate() {
   const navigate = useNavigate();
 
-  const { googleLogin, login } = React.useContext(AuthContext);
+  const { cadastro } = React.useContext(AuthContext);
 
   const auth = getAuth();
 
@@ -163,15 +163,16 @@ export default function JoySignInSideTemplate() {
           >
             <div>
               <Typography component="h2" fontSize="xl2" fontWeight="lg">
-                Bem vindo de volta!
+                Bem vindo!
               </Typography>
               <Typography level="body2" sx={{ my: 1, mb: 3 }}>
-                Vamos começar, faça login na sua conta.
+                Vamos começar, faça seu cadastro.
               </Typography>
             </div>
             <form
               onSubmit={(event) => {
-                login(event);
+                event.preventDefault();
+                  cadastro(event);
               }}
             >
               <FormControl required>
@@ -182,34 +183,10 @@ export default function JoySignInSideTemplate() {
                 <FormLabel>Senha</FormLabel>
                 <Input placeholder="•••••••" type="password" name="password" />
               </FormControl>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <Checkbox size="sm" label="Manter conectado" name="persistent" />
-                <Link fontSize="sm" href="/cadastro" fontWeight="lg">
-                  Não tenho uma conta
-                </Link>
-              </Box>
               <Button type="submit" fullWidth>
-                Entrar
+                Cadastrar
               </Button>
             </form>
-            <Button
-              variant="outlined"
-              color="neutral"
-              fullWidth
-              startDecorator={<GoogleIcon />}
-              onClick={(e) => {
-                e.preventDefault();
-                googleLogin()
-              }}
-            >
-              Entrar com o Google
-            </Button>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
             <Typography level="body3" textAlign="center">

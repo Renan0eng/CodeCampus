@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider } 
+import { getAuth, signOut, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider } 
 from "firebase/auth";
 import "../constants/firebase.js"
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,17 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const provider = new GoogleAuthProvider();
+
+  const logout = () => {
+    signOut(auth).then(() => {
+      sessionStorage.clear('user');
+      sessionStorage.clear('token');
+      setUser(null);
+      navigate('/');
+    }).catch((error) => {
+      alert(error);
+    });
+  }
 
   const login = (event) => {
     event.preventDefault();
@@ -40,20 +51,39 @@ export const AuthProvider = ({ children }) => {
         alert(errorMessage);
         console.log(errorCode);
       });
+  }
 
-    // createUserWithEmailAndPassword(auth, data.email, data.password)
-    // .then((userCredential) => {
-    //   // Signed in 
-    //   const user = userCredential.user;
-    //   navigate('/feed');
-    // })
-    // .catch((error) => {
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   // ..
-    //   alert(errorMessage);
-    //   console.log(errorCode);
-    // });
+  const cadastro = (event) => {
+    event.preventDefault();
+    const formElements = event.currentTarget.elements;
+    const data = {
+      email: formElements.email.value,
+      password: formElements.password.value
+    };
+    console.log(data);
+
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((userCredential) => {
+      const token = userCredential.user.getIdToken();
+        // Signed in 
+        const user = userCredential.user;
+        setUser(user);
+        sessionStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('token', token);
+        navigate('/feed', { user: user });
+        console.log("cccccccccc");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorCode);
+        if(errorCode == 'auth/email-already-in-use'){
+          alert('Email já cadastrado!');
+        }else{
+          alert(errorMessage);
+        }
+      });
   }
 
   const googleLogin = () => {
@@ -84,7 +114,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, googleLogin, login, signed: !!user }}>
+    <AuthContext.Provider value={{ user, googleLogin, login, cadastro, logout, signed: !!user }}>
       {children}
     </AuthContext.Provider>
   );

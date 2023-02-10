@@ -1,23 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
-import IconButton from '@mui/joy/IconButton';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 
 // Icons import
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 import FolderIcon from '@mui/icons-material/Folder';
 import { Input } from '@mui/joy';
+import { ButtonGroup } from '@mui/material';
 
 export default function FeedContent() {
 
@@ -126,12 +121,18 @@ export default function FeedContent() {
             </CardOverflow>
             <Box sx={{ p: { xs: 1, sm: 2 } }}>
               <Typography level="body2" color="primary">
-                videos-hike.zip
+                New Image
               </Typography>
-              <Typography level="body3">100 MB</Typography>
+              <Typography level="body3">max 100 MB</Typography>
             </Box>
           </Card>
         </Box>
+      </Box>
+      <Box>
+        <ButtonGroup>
+          <Button/>
+          <Button/>
+        </ButtonGroup>
       </Box>
     </Sheet>
   );

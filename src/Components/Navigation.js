@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from '../contexts/authContext';
 
 import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
@@ -18,10 +19,10 @@ import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import { getAuth, signOut } from "firebase/auth";
 
 export default function FeedNav() {
 
+  const { logout } = React.useContext(AuthContext);
   const Menus = {
     Browse: [
       {
@@ -86,7 +87,6 @@ export default function FeedNav() {
   }
 
   const [menus, setMenus] = React.useState(Menus);
-
   const [tagsMenu, setTagsMenu] = React.useState(true);
   const [browseMenu, setBrowseMenu] = React.useState(true);
   const [configMenu, setConfigMenu] = React.useState(false);
@@ -101,16 +101,6 @@ export default function FeedNav() {
   });
 
   const navigate = useNavigate();
-
-  const auth = getAuth();
-
-  function Logout(){
-    signOut(auth).then(() => {
-      navigate('/');
-    }).catch((error) => {
-      alert(error);
-    });
-  }
 
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px' }}>
@@ -233,7 +223,10 @@ export default function FeedNav() {
           {configMenu && 
           <ListItem>
             <ListItemButton
-              onClick={() => Logout()}
+              onClick={(e) => {
+                e.preventDefault();
+                logout()
+              }}
             >
               <ListItemDecorator>
                 <LogoutIcon fontSize="small" color="primary" />
