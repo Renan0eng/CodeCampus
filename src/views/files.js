@@ -31,6 +31,7 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 
 // custom
 import filesTheme from '../constants/theme';
@@ -111,7 +112,7 @@ export default function FilesExample() {
               variant="solid"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
-              <FindInPageRoundedIcon />
+              <AssistantPhotoRoundedIcon />
             </IconButton>
             <Typography component="h1" fontWeight="xl" minWidth={100}>
               Files

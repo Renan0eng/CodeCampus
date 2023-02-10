@@ -9,6 +9,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
+import ViewDayIcon from '@mui/icons-material/ViewDay';
 
 // Icons import
 import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
@@ -25,7 +26,7 @@ export default function FeedNav() {
       {
         label: 'Feed',
         href: '/feed',
-        icon: <InboxRoundedIcon fontSize="small" color="primary" />,
+        icon: <ViewDayIcon fontSize="small" color="primary" />,
       },
       {
         label: 'New',

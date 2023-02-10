@@ -15,6 +15,7 @@ import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 
 // custom
 import emailTheme from '../constants/theme';
@@ -96,7 +97,7 @@ export default function NewFeedExample() {
               variant="solid"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
-              <MailRoundedIcon />
+              <OutboxRoundedIcon />
             </IconButton>
             <Typography component="h1" fontWeight="xl" minWidth={100} >
               New
