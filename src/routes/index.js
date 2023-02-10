@@ -6,6 +6,7 @@ import { AuthContext } from "../contexts/authContext"
 export const PrivateRoute = ({}) => {
 
 const { signed } = useContext(AuthContext);
-return signed ? <Outlet/> : <Navigate to={"/"}/>;
+
+return signed ||sessionStorage.getItem('user') ? <Outlet/> : <Navigate to={"/"}/>;
 
 }

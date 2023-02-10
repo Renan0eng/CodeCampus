@@ -24,8 +24,9 @@ import Menu from '../Components/Menu';
 import Layout from '../Components/Layout';
 import Navigation from '../Components/Navigation';
 import Mails from '../Components/Mails';
-import EmailContent from '../Components/FeedContent';
+import FeedContent from '../Components/FeedContent';
 import { json } from 'react-router-dom';
+import { List } from '@mui/material';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -228,6 +229,7 @@ export default function FeedExample() {
         <Layout.Header>
           <Box
             sx={{
+              height: '100%',
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
@@ -320,7 +322,18 @@ export default function FeedExample() {
           <Navigation />
         </Layout.SideNav>
         <Layout.Main>
-          {posts.map((post) => <EmailContent posts={post} />)}
+          <List
+          sx={{
+            overflow: 'auto',
+            maxHeight: 'calc(100vh - 87px)',
+            '::-webkit-scrollbar': {
+              width: '4px',
+            },
+            p: 0,
+          }}
+          >
+            {posts.map((post) => <FeedContent posts={post} />)}
+          </List>
         </Layout.Main>
         <Layout.SidePane>
           <Box
