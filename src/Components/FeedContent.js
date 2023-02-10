@@ -65,6 +65,9 @@ export default function FeedContent({posts}) {
           >
             <ArrowUpwardIcon />
           </IconButton>
+          <Typography level="body2"  pt={0.5} textColor="text.primary" mb={0.5}>
+            {posts.relevance}
+          </Typography>
           <IconButton size="sm" variant="outlined" color="neutral"
             onClick={() => {
               console.log(`ArrowDownward ${posts.title}`);
