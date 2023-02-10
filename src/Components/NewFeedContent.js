@@ -12,7 +12,6 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
-import { Link  } from '@mui/material';
 
 // Icons import
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
@@ -21,6 +20,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import { Input } from '@mui/joy';
 
 export default function FeedContent() {
+
 
   const [logUser, setLogUser] = React.useState({
     name: 'John Doe',

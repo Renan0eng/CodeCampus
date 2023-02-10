@@ -16,8 +16,9 @@ import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import LogoutIcon from '@mui/icons-material/Logout';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import { getAuth, signOut } from "firebase/auth";
 
 export default function FeedNav() {
 
@@ -88,6 +89,7 @@ export default function FeedNav() {
 
   const [tagsMenu, setTagsMenu] = React.useState(true);
   const [browseMenu, setBrowseMenu] = React.useState(true);
+  const [configMenu, setConfigMenu] = React.useState(false);
 
   const [listItemDecorator, setListItemDecorator] = React.useState({
     Feed: {
@@ -99,6 +101,17 @@ export default function FeedNav() {
   });
 
   const navigate = useNavigate();
+
+  const auth = getAuth();
+
+  function Logout(){
+    signOut(auth).then(() => {
+      navigate('/');
+    }).catch((error) => {
+      alert(error);
+    });
+  }
+
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px' }}>
       <ListItem nested>
@@ -187,6 +200,47 @@ export default function FeedNav() {
             </ListItemButton>
           </ListItem>
           )) : null}
+        </List>
+      </ListItem>
+      <ListItem nested sx={{ mt: 2 }}>
+        <ListSubheader>
+          comfig
+          <IconButton
+            size="sm"
+            variant="plain"
+            color="primary"
+            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
+            onClick={(e) => {
+              e.preventDefault();
+              if (!configMenu) {
+                setConfigMenu(true);
+              } else {
+                setConfigMenu(false);
+              }
+            }}
+          >
+            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
+          </IconButton>
+        </ListSubheader>
+        <List
+          aria-labelledby="nav-list-tags"
+          size="sm"
+          sx={{
+            '--List-decorator-size': '32px',
+            '& .JoyListItemButton-root': { p: '8px' },
+          }}
+        >
+          {configMenu && 
+          <ListItem>
+            <ListItemButton
+              onClick={() => Logout()}
+            >
+              <ListItemDecorator>
+                <LogoutIcon fontSize="small" color="primary" />
+              </ListItemDecorator>
+              <ListItemContent>Logout</ListItemContent>
+            </ListItemButton>
+          </ListItem>}
         </List>
       </ListItem>
     </List>

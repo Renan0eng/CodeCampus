@@ -15,7 +15,12 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import customTheme from '../constants/theme';
 import GoogleIcon from '../Components/GoogleIcon';
-import {useNavigate} from "react-router-dom"
+import { json, useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
+import "../constants/firebase.js"
+import { AuthContext } from "../contexts/authContext";
+
+const provider = new GoogleAuthProvider();
 
 function ColorSchemeToggle({ onClick, ...props }) {
   const { mode, setMode } = useColorScheme();
@@ -52,6 +57,11 @@ function ColorSchemeToggle({ onClick, ...props }) {
  */
 export default function JoySignInSideTemplate() {
   const navigate = useNavigate();
+
+  const { googleLogin, login } = React.useContext(AuthContext);
+
+  const auth = getAuth();
+
   return (
     <CssVarsProvider
       defaultMode="dark"
@@ -161,15 +171,7 @@ export default function JoySignInSideTemplate() {
             </div>
             <form
               onSubmit={(event) => {
-                event.preventDefault();
-                const formElements = event.currentTarget.elements;
-                const data = {
-                  email: formElements.email.value,
-                  password: formElements.password.value,
-                  persistent: formElements.persistent.checked,
-                };
-                alert(JSON.stringify(data, null, 2));
-                navigate('/feed');
+                login(event);
               }}
             >
               <FormControl required>
@@ -201,6 +203,10 @@ export default function JoySignInSideTemplate() {
               color="neutral"
               fullWidth
               startDecorator={<GoogleIcon />}
+              onClick={(e) => {
+                e.preventDefault();
+                googleLogin()
+              }}
             >
               Entrar com o Google
             </Button>

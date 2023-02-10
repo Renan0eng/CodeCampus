@@ -6,6 +6,7 @@ export default extendTheme({
       palette: {
         background: {
           body: 'var(--joy-palette-neutral-50)',
+          surface: '#fff',
         },
       },
     },

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AuthContext } from '../contexts/authContext';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
@@ -28,6 +29,7 @@ import EmailContent from '../Components/FeedContent';
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
+
   React.useEffect(() => {
     setMounted(true);
   }, []);
@@ -54,6 +56,10 @@ function ColorSchemeToggle() {
 }
 
 export default function FeedExample() {
+
+  const { user } = React.useContext(AuthContext);
+
+  const [userData, setUserData] = React.useState(user);
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [unreadMenu, setUnreadMenu] = React.useState(false);
@@ -197,6 +203,10 @@ export default function FeedExample() {
     ]
   },
   ]);
+
+  React.useEffect(() => {
+    console.log("User:", userData);
+  }, [userData]);
 
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
