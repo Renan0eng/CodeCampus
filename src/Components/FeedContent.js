@@ -169,9 +169,14 @@ export default function FeedContent({posts}) {
               srcSet={content.authorAvatarSet}
               sx={{ borderRadius: 'xl', width: 30, height: 30}}
             />
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
             <Typography level="body2" textColor="#999">
               {content.authorName}
             </Typography>
+            <Typography level="body2" textColor="#999" fontSize={10} >
+              {content.date}
+            </Typography>
+            </Box>
           </Box>
           <Box
             sx={(theme) => ({

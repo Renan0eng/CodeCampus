@@ -85,7 +85,7 @@ export default function FeedExample() {
       authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
       authorName: 'Renan Nardi',
       desc: 'resposta do comentario',
-      date: '21 Oct 2022',
+      date: '21 Oct 2025',
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
