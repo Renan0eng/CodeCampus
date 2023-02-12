@@ -33,7 +33,7 @@ export default function FeedNav() {
       {
         label: 'New',
         active: true,
-        href: '/feed/newfeed',
+        href: '/newfeed',
         icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
       },
       // {
@@ -116,7 +116,7 @@ export default function FeedNav() {
               e.preventDefault();
               if (!browseMenu) {
                 setBrowseMenu(true);
-              }else {
+              } else {
                 setBrowseMenu(false);
               }
             }}
@@ -173,28 +173,28 @@ export default function FeedNav() {
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
-        {tagsMenu ? menus.Tags.map((item) => (
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <Box
-                  sx={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '99px',
-                    bgcolor: item.bgcolor,
-                  }}
-                />
-              </ListItemDecorator>
-              <ListItemContent>{item.label}</ListItemContent>
-            </ListItemButton>
-          </ListItem>
+          {tagsMenu ? menus.Tags.map((item) => (
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Box
+                    sx={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '99px',
+                      bgcolor: item.bgcolor,
+                    }}
+                  />
+                </ListItemDecorator>
+                <ListItemContent>{item.label}</ListItemContent>
+              </ListItemButton>
+            </ListItem>
           )) : null}
         </List>
       </ListItem>
       <ListItem nested sx={{ mt: 2 }}>
         <ListSubheader>
-          comfig
+          config
           <IconButton
             size="sm"
             variant="plain"
@@ -220,20 +220,20 @@ export default function FeedNav() {
             '& .JoyListItemButton-root': { p: '8px' },
           }}
         >
-          {configMenu && 
-          <ListItem>
-            <ListItemButton
-              onClick={(e) => {
-                e.preventDefault();
-                logout()
-              }}
-            >
-              <ListItemDecorator>
-                <LogoutIcon fontSize="small" color="primary" />
-              </ListItemDecorator>
-              <ListItemContent>Logout</ListItemContent>
-            </ListItemButton>
-          </ListItem>}
+          {configMenu &&
+            <ListItem>
+              <ListItemButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  logout()
+                }}
+              >
+                <ListItemDecorator>
+                  <LogoutIcon fontSize="small" color="primary" />
+                </ListItemDecorator>
+                <ListItemContent>Logout</ListItemContent>
+              </ListItemButton>
+            </ListItem>}
         </List>
       </ListItem>
     </List>

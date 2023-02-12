@@ -128,12 +128,6 @@ export default function FeedContent() {
           </Card>
         </Box>
       </Box>
-      <Box>
-        <ButtonGroup>
-          <Button/>
-          <Button/>
-        </ButtonGroup>
-      </Box>
     </Sheet>
   );
 }

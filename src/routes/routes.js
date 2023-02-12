@@ -4,7 +4,7 @@ import Cadastro from '../views/cadastro';
 import Feed from '../views/feed';
 import Team from '../views/team';
 import Files from '../views/files';
-import NewFeed from '../views/newFeed';
+import NewPost from '../views/newPost';
 import { AuthProvider } from "../contexts/authContext";
 import { PrivateRoute } from "./index";
 
@@ -24,8 +24,8 @@ function App() {
           <Route path="/files" element={<PrivateRoute />}>
             <Route path="/files" element={<Files/>}/>
           </Route>
-          <Route path="/feed/newfeed" element={<PrivateRoute />}>
-            <Route path="/feed/newfeed" element={<NewFeed/>}/>
+          <Route path="/newpost" element={<PrivateRoute />}>
+            <Route path="/newpost" element={<NewPost/>}/>
           </Route>
         </Routes>
       </AuthProvider>

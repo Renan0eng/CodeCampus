@@ -165,7 +165,7 @@ export default function FilesExample() {
                 },
                 {
                   label: 'New',
-                  href: '/feed/newfeed',
+                  href: '/newfeed',
                 },
                 {
                   label: 'Team',

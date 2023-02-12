@@ -24,7 +24,7 @@ import Layout from '../Components/Layout';
 import Navigation from '../Components/Navigation';
 import Mails from '../Components/Mails';
 import EmailContent from '../Components/FeedContent';
-import NewFeedContent from '../Components/NewFeedContent';
+import NewPostContent from '../Components/NewPostContent';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -54,11 +54,10 @@ function ColorSchemeToggle() {
   );
 }
 
-export default function NewFeedExample() {
-
-
+export default function NewPostExample() {
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
       <CssBaseline />
@@ -76,101 +75,12 @@ export default function NewFeedExample() {
         }}
       >
         <Layout.Header>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 1.5,
-            }}
-          >
-            <IconButton
-              variant="outlined"
-              size="sm"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              size="sm"
-              variant="solid"
-              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-            >
-              <OutboxRoundedIcon />
-            </IconButton>
-            <Typography component="h1" fontWeight="xl" minWidth={100} >
-              New
-            </Typography>
-          </Box>
-          <Input
-            size="sm"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
-                </Typography>
-              </IconButton>
-            }
-            sx={{
-              flexBasis: '500px',
-              display: {
-                xs: 'none',
-                sm: 'flex',
-              },
-            }}
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="primary"
-              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-            >
-              <SearchRoundedIcon />
-            </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="outlined"
-                  color="primary"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Feed',
-                  href: '/feed',
-                },
-                {
-                  label: 'New',
-                  active: true,
-                  href: '/feed/newfeed',
-                },
-                {
-                  label: 'Team',
-                  href: '/team',
-                },
-                {
-                  label: 'Files',
-                  href: '/files',
-                },
-              ]}
-            />
-            <ColorSchemeToggle />
-          </Box>
         </Layout.Header>
         <Layout.SideNav>
           <Navigation />
         </Layout.SideNav>
         <Layout.Main>
-          <NewFeedContent />
+          <NewPostContent />
         </Layout.Main>
         <Layout.SidePane>
           <Box

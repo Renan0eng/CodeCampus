@@ -8,5 +8,4 @@ export const PrivateRoute = ({}) => {
 const { signed } = useContext(AuthContext);
 
 return signed ||sessionStorage.getItem('user') ? <Outlet/> : <Navigate to={"/"}/>;
-
 }

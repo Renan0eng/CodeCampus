@@ -89,7 +89,7 @@ export default function FeedExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
       authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -101,7 +101,7 @@ export default function FeedExample() {
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
     }
     ]
-  },{
+  }, {
     relevance: '15',
     authorName: 'Alex Jonnold',
     authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -123,7 +123,7 @@ export default function FeedExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
       authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -135,7 +135,7 @@ export default function FeedExample() {
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
     }
     ]
-  },{
+  }, {
     relevance: '12',
     authorName: 'Alex Jonnold',
     authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -157,7 +157,7 @@ export default function FeedExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
       authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -169,7 +169,7 @@ export default function FeedExample() {
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
     }
     ]
-  },{
+  }, {
     relevance: '3',
     authorName: 'Alex Jonnold',
     authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -191,7 +191,7 @@ export default function FeedExample() {
       images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
       { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
+    }, {
       authorId: '1',
       authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
       authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
@@ -249,7 +249,7 @@ export default function FeedExample() {
               variant="solid"
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
-              <ViewDayIcon/>
+              <ViewDayIcon />
             </IconButton>
             <Typography component="h1" fontWeight="xl" minWidth={100}>
               Feed
@@ -303,7 +303,7 @@ export default function FeedExample() {
                 },
                 {
                   label: 'New',
-                  href: '/feed/newfeed',
+                  href: '/newfeed',
                 },
                 {
                   label: 'Team',
@@ -323,14 +323,14 @@ export default function FeedExample() {
         </Layout.SideNav>
         <Layout.Main>
           <List
-          sx={{
-            overflow: 'auto',
-            maxHeight: 'calc(100vh - 87px)',
-            '::-webkit-scrollbar': {
-              width: '4px',
-            },
-            p: 0,
-          }}
+            sx={{
+              overflow: 'auto',
+              maxHeight: 'calc(100vh - 87px)',
+              '::-webkit-scrollbar': {
+                width: '4px',
+              },
+              p: 0,
+            }}
           >
             {posts.map((post) => <FeedContent posts={post} />)}
           </List>
@@ -369,15 +369,15 @@ export default function FeedExample() {
             </IconButton>
           </Box>
           {unreadMenu && (
-          <Box sx={{ py: 10 }}>
-            <Typography
-              textColor="text.tertiary"
-              level="body2"
-              sx={{ textAlign: 'center' }}
-            >
-              You&apos;ve read all messages in your inbox.
-            </Typography>
-          </Box>)}
+            <Box sx={{ py: 10 }}>
+              <Typography
+                textColor="text.tertiary"
+                level="body2"
+                sx={{ textAlign: 'center' }}
+              >
+                You&apos;ve read all messages in your inbox.
+              </Typography>
+            </Box>)}
           <Box
             sx={{
               p: 2,
@@ -410,7 +410,7 @@ export default function FeedExample() {
             </IconButton>
           </Box>
           {everythingMenu && (
-          <Mails />
+            <Mails />
           )}
         </Layout.SidePane>
       </Layout.Root>
