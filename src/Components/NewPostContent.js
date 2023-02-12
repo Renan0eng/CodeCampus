@@ -4,7 +4,6 @@ import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import Button from '@mui/joy/Button';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
@@ -12,7 +11,6 @@ import Avatar from '@mui/joy/Avatar';
 // Icons import
 import FolderIcon from '@mui/icons-material/Folder';
 import { Input } from '@mui/joy';
-import { ButtonGroup } from '@mui/material';
 
 export default function FeedContent() {
 

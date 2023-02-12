@@ -303,7 +303,7 @@ export default function FeedExample() {
                 },
                 {
                   label: 'New',
-                  href: '/newfeed',
+                  href: '/newpost',
                 },
                 {
                   label: 'Team',

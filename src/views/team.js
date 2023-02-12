@@ -222,7 +222,7 @@ export default function TeamExample() {
                 },
                 {
                   label: 'New',
-                  href: '/newfeed',
+                  href: '/newpost',
                 },
                 {
                   label: 'Team',

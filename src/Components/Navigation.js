@@ -33,7 +33,7 @@ export default function FeedNav() {
       {
         label: 'New',
         active: true,
-        href: '/newfeed',
+        href: '/newpost',
         icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
       },
       // {
