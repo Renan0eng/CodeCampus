@@ -57,6 +57,8 @@ function ColorSchemeToggle() {
 export default function NewPostExample() {
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [unreadMenu, setUnreadMenu] = React.useState(false);
+  const [everythingMenu, setEverythingMenu] = React.useState(false);
   
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
@@ -198,21 +200,22 @@ export default function NewPostExample() {
               color="primary"
               sx={{ '--IconButton-size': '24px' }}
               onClick={() => {
-                console.log('UNREAD');
+                setUnreadMenu(!unreadMenu)
               }}
             >
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
-          <Box sx={{ py: 10 }}>
-            <Typography
-              textColor="text.tertiary"
-              level="body2"
-              sx={{ textAlign: 'center' }}
-            >
-              You&apos;ve read all messages in your inbox.
-            </Typography>
-          </Box>
+          {unreadMenu && (
+            <Box sx={{ py: 10 }}>
+              <Typography
+                textColor="text.tertiary"
+                level="body2"
+                sx={{ textAlign: 'center' }}
+              >
+                You&apos;ve read all messages in your inbox.
+              </Typography>
+            </Box>)}
           <Box
             sx={{
               p: 2,
@@ -237,11 +240,16 @@ export default function NewPostExample() {
               variant="plain"
               color="primary"
               sx={{ '--IconButton-size': '24px' }}
+              onClick={() => {
+                setEverythingMenu(!everythingMenu)
+              }}
             >
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
-          <Mails />
+          {everythingMenu && (
+            <Mails />
+          )}
         </Layout.SidePane>
       </Layout.Root>
     </CssVarsProvider >
