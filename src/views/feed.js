@@ -6,6 +6,7 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
+import { getPosts } from '../model/firestoreModel';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -207,8 +208,8 @@ export default function FeedExample() {
   ]);
 
   React.useEffect(() => {
-    console.log("User:", userData);
-  }, [userData]);
+    console.log("getPosts:", getPosts());
+  }, []);
 
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
