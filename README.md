@@ -31,6 +31,7 @@ Para instalar e executar este fórum localmente em sua máquina, você precisar�
 # Tecnologias usadas
 Este fórum foi construído usando a seguinte tecnologia:
 - ReactJS
+- Firebase
 
 # Contribuição
 Contribuições são sempre bem-vindas! Se você encontrou um bug ou gostaria de adicionar uma nova funcionalidade, por favor, siga os seguintes passos:
