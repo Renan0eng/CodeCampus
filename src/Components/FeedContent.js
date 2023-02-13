@@ -1,11 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
-import CardOverflow from '@mui/joy/CardOverflow';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -13,12 +10,6 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 import { Link  } from '@mui/material';
-
-// Icons import
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
-import FolderIcon from '@mui/icons-material/Folder';
-
 export default function FeedContent({posts}) {
 
   return (
@@ -28,6 +19,9 @@ export default function FeedContent({posts}) {
         borderRadius: 'sm',
         p: 2,
         mb: 3,
+      }}
+      onClick={() => {
+        console.log(`Clicked ${posts.title}`);
       }}
     >
       <Box
