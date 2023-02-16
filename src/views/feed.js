@@ -69,15 +69,10 @@ export default function FeedExample() {
   React.useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs( collection(db, "posts/") );
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getPosts();
   }, []);
-
-  React.useEffect(() => {
-    console.log('posts:', posts);
-  }, [posts]);
 
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>

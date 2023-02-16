@@ -3,6 +3,7 @@ import { getAuth, signOut, createUserWithEmailAndPassword, signInWithPopup, sign
 from "firebase/auth";
 import "../constants/firebase.js"
 import { useNavigate } from "react-router-dom";
+import { setUsuario} from "../model/firestoreModel";
 
 export const AuthContext = React.createContext({});
 

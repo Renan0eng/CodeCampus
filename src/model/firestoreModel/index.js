@@ -3,7 +3,6 @@ import { db } from "../../constants/firebase";
 
 export const getPosts = async () => {
     const data = await getDocs( collection(db, "posts/") );
-    console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     return(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 }
 
@@ -24,5 +23,22 @@ export const setPost = async (post) => {
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
+  }
+}
+
+export const setUsuario = async (User) => {
+
+  const data = await getDocs( collection(db, "users") );
+
+  if(data.docs.map((doc) => ({ ...doc.data(), uid: doc.uid })).find((doc) => doc.uid === User.uid) !== undefined) {
+    return;
+  }
+
+  try {
+    console.log("User: ", User.providerData[0]);
+    const docRef = await addDoc(collection(db, "users"), User.providerData[0]);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.log("Error adding document: ", e);
   }
 }
