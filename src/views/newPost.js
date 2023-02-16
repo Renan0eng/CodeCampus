@@ -26,6 +26,9 @@ import Mails from '../Components/Mails';
 import EmailContent from '../Components/FeedContent';
 import NewPostContent from '../Components/NewPostContent';
 
+
+import { setPost } from '../model/firestoreModel';
+
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);

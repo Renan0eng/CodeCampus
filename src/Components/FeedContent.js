@@ -99,7 +99,7 @@ export default function FeedContent({posts}) {
           },
         })}
       >
-        {posts.images.map((image, index) => (
+        {posts.images && posts.images.map((image, index) => (
           <Box
             sx={(theme) => ({
               display: 'flex',
@@ -144,7 +144,7 @@ export default function FeedContent({posts}) {
           },
         })}
       >
-        {posts.contents.map((content, index) => (<>
+        {posts.contents && posts.contents.map((content, index) => (<>
           <Box
             sx={(theme) => ({
               width: '90%',

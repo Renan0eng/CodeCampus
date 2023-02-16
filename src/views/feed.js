@@ -1,22 +1,21 @@
 import * as React from 'react';
-import { AuthContext } from '../contexts/authContext';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
-import { getPosts } from '../model/firestoreModel';
+
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../constants/firebase';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuIcon from '@mui/icons-material/Menu';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
 
 // custom
@@ -26,7 +25,6 @@ import Layout from '../Components/Layout';
 import Navigation from '../Components/Navigation';
 import Mails from '../Components/Mails';
 import FeedContent from '../Components/FeedContent';
-import { json } from 'react-router-dom';
 import { List } from '@mui/material';
 
 function ColorSchemeToggle() {
@@ -60,156 +58,26 @@ function ColorSchemeToggle() {
 
 export default function FeedExample() {
 
-  const { user } = React.useContext(AuthContext);
-
-  const [userData, setUserData] = React.useState(user);
-
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [unreadMenu, setUnreadMenu] = React.useState(false);
   const [everythingMenu, setEverythingMenu] = React.useState(false);
 
-  const [posts, setPosts] = React.useState([{
-    relevance: '146',
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    date: '21 Oct 2022',
-    title: 'Topico principal da duvida',
-    desc: 'Aqui será o tópico detalhado da dúvida, onde será possível a implementação de código, um texto complementar, vídeos incorporados do YouTube e links externos. Lembrete: Ainda existes algumas alterações pendentes no campo da novo post.',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg', imageLink: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://matheuspivato.com/assets/img/profile-img.jpeg', imageLink: 'https://matheuspivato.com/assets/img/profile-img.jpeg' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorAvatarSet: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorName: 'Matheus Pivato',
-      desc: 'O comentario da dúvida',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorName: 'Renan Nardi',
-      desc: 'resposta do comentario',
-      date: '21 Oct 2025',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-    ]
-  }, {
-    relevance: '15',
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    date: '21 Oct 2022',
-    title: 'Topico principal da duvida',
-    desc: 'Aqui será o tópico detalhado da dúvida, onde será possível a implementação de código, um texto complementar, vídeos incorporados do YouTube e links externos. Lembrete: Ainda existes algumas alterações pendentes no campo da novo post.',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg', imageLink: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://matheuspivato.com/assets/img/profile-img.jpeg', imageLink: 'https://matheuspivato.com/assets/img/profile-img.jpeg' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorAvatarSet: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorName: 'Matheus Pivato',
-      desc: 'O comentario da dúvida',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorName: 'Renan Nardi',
-      desc: 'resposta do comentario',
-      date: '21 Oct 2025',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-    ]
-  }, {
-    relevance: '12',
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    date: '21 Oct 2022',
-    title: 'Topico principal da duvida',
-    desc: 'Aqui será o tópico detalhado da dúvida, onde será possível a implementação de código, um texto complementar, vídeos incorporados do YouTube e links externos. Lembrete: Ainda existes algumas alterações pendentes no campo da novo post.',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg', imageLink: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://matheuspivato.com/assets/img/profile-img.jpeg', imageLink: 'https://matheuspivato.com/assets/img/profile-img.jpeg' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorAvatarSet: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorName: 'Matheus Pivato',
-      desc: 'O comentario da dúvida',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorName: 'Renan Nardi',
-      desc: 'resposta do comentario',
-      date: '21 Oct 2025',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-    ]
-  }, {
-    relevance: '3',
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-    date: '21 Oct 2022',
-    title: 'Topico principal da duvida',
-    desc: 'Aqui será o tópico detalhado da dúvida, onde será possível a implementação de código, um texto complementar, vídeos incorporados do YouTube e links externos. Lembrete: Ainda existes algumas alterações pendentes no campo da novo post.',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg', imageLink: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://matheuspivato.com/assets/img/profile-img.jpeg', imageLink: 'https://matheuspivato.com/assets/img/profile-img.jpeg' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorAvatarSet: 'https://matheuspivato.com/assets/img/profile-img.jpeg',
-      authorName: 'Matheus Pivato',
-      desc: 'O comentario da dúvida',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }, {
-      authorId: '1',
-      authorAvatar: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorAvatarSet: 'https://renan0eng.github.io/Site-Analise-De-Temperatura-humidade/img/Renan.jpeg',
-      authorName: 'Renan Nardi',
-      desc: 'resposta do comentario',
-      date: '21 Oct 2025',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-    ]
-  },
-  ]);
+  const [posts, setPosts] = React.useState([]);
+
+  
 
   React.useEffect(() => {
-    console.log("getPosts:", getPosts());
+    const getPosts = async () => {
+      const data = await getDocs( collection(db, "posts/") );
+      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    getPosts();
   }, []);
+
+  React.useEffect(() => {
+    console.log('posts:', posts);
+  }, [posts]);
 
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
@@ -333,7 +201,7 @@ export default function FeedExample() {
               p: 0,
             }}
           >
-            {posts.map((post) => <FeedContent posts={post} />)}
+            {posts && posts.map((post) => <FeedContent posts={post} />)}
           </List>
         </Layout.Main>
         <Layout.SidePane>
@@ -416,5 +284,6 @@ export default function FeedExample() {
         </Layout.SidePane>
       </Layout.Root>
     </CssVarsProvider >
-  );
+  )
+
 }
