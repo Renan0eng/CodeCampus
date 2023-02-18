@@ -161,7 +161,7 @@ export default function FilesExample() {
               menus={[
                 {
                   label: 'Feed',
-                  href: '/feed',
+                  href: '/',
                 },
                 {
                   label: 'New',

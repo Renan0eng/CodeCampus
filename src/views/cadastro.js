@@ -176,6 +176,10 @@ export default function JoySignInSideTemplate() {
               }}
             >
               <FormControl required>
+                <FormLabel>Nome</FormLabel>
+                <Input placeholder="Entre com seu nome" type="nome" name="nome" />
+              </FormControl>
+              <FormControl required>
                 <FormLabel>Email</FormLabel>
                 <Input placeholder="Entre com seu email" type="email" name="email" />
               </FormControl>

@@ -64,11 +64,11 @@ export default function FeedExample() {
 
   const [posts, setPosts] = React.useState([]);
 
-  
+
 
   React.useEffect(() => {
     const getPosts = async () => {
-      const data = await getDocs( collection(db, "posts/") );
+      const data = await getDocs(collection(db, "posts/"));
       setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getPosts();
@@ -163,7 +163,7 @@ export default function FeedExample() {
                 {
                   label: 'Feed',
                   active: true,
-                  href: '/feed',
+                  href: '/',
                 },
                 {
                   label: 'New',

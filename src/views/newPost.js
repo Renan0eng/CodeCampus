@@ -62,7 +62,7 @@ export default function NewPostExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [unreadMenu, setUnreadMenu] = React.useState(false);
   const [everythingMenu, setEverythingMenu] = React.useState(false);
-  
+
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
       <CssBaseline />
@@ -150,7 +150,7 @@ export default function NewPostExample() {
               menus={[
                 {
                   label: 'Feed',
-                  href: '/feed',
+                  href: '/',
                 },
                 {
                   label: 'New',

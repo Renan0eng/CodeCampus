@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       sessionStorage.clear('user');
       sessionStorage.clear('token');
       setUser(null);
-      navigate('/');
+      navigate('/login');
     }).catch((error) => {
       alert(error);
     });
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
         setUser(user);
         sessionStorage.setItem('user', JSON.stringify(user));
         sessionStorage.setItem('token', token);
-        navigate('/feed', { user: user });
+        navigate('/', { user: user });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         setUser(user);
         sessionStorage.setItem('user', JSON.stringify(user));
         sessionStorage.setItem('token', token);
-        navigate('/feed', { user: user });
+        navigate('/', { user: user });
         console.log("cccccccccc");
       })
       .catch((error) => {
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       sessionStorage.setItem('user', JSON.stringify(user));
       sessionStorage.setItem('token', token);
-      navigate('/feed');
+      navigate('/');
       // ...
     }).catch((error) => {
       // Handle Errors here.

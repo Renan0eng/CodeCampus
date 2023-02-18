@@ -56,7 +56,8 @@ function ColorSchemeToggle({ onClick, ...props }) {
  * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
  */
 export default function JoySignInSideTemplate() {
-  const navigate = useNavigate();
+
+  const navegate = useNavigate();
 
   const { googleLogin, login } = React.useContext(AuthContext);
 
@@ -209,6 +210,17 @@ export default function JoySignInSideTemplate() {
               }}
             >
               Entrar com o Google
+            </Button>
+            <Button
+              variant="outlined"
+              color="neutral"
+              fullWidth
+              onClick={(e) => {
+                e.preventDefault();
+                navegate('/')
+              }}
+            >
+              Entrar sem login
             </Button>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>

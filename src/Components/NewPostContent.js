@@ -21,11 +21,12 @@ import { db } from '../constants/firebase';
 
 export const setPost = async (post) => {
   try {
+    console.log("post", post);
     const docRef = await addDoc(collection(db, "posts"), post);
     console.log("Document written with ID: ", docRef.id);
     return docRef.id;
   } catch (e) {
-    console.error("Error adding document: ", e);
+    console.log("Error adding document: ", e);
   }
 }
 
@@ -84,16 +85,16 @@ export default function FeedContent() {
       </Box>
       <Divider sx={{ mt: 2 }} />
       <Box
-        sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start',}}
+        sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start', }}
       >
         <Input
-          sx={{ width: '100%', outline: "none",}}
+          sx={{ width: '100%', outline: "none", }}
           color="neutral"
           disabled={false}
           placeholder="Title"
           size="lg"
           variant="outlined"
-          onChange={(e) => setTitle(e.target.value) }
+          onChange={(e) => setTitle(e.target.value)}
         />
       </Box>
       <Divider />
@@ -105,14 +106,14 @@ export default function FeedContent() {
           placeholder="Description"
           size="sm"
           variant="outlined"
-          onChange={(e) => setDescription(e.target.value) }
+          onChange={(e) => setDescription(e.target.value)}
         />
       </Typography>
       <Divider />
       <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
         Images
       </Typography>
-      
+
       <Box
         sx={(theme) => ({
           display: 'flex',
@@ -137,13 +138,13 @@ export default function FeedContent() {
               '--Card-radius': theme.vars.radius.sm,
             },
           })}
-        >  
+        >
           <Card variant="outlined" orientation="horizontal">
             <CardOverflow>
               <AspectRatio ratio="1" sx={{ minWidth: 80 }}
-              onClick={() => {
-                console.log("ADD image")
-              }}
+                onClick={() => {
+                  console.log("ADD image")
+                }}
               >
                 <Box>
                   <FolderIcon />
@@ -158,27 +159,27 @@ export default function FeedContent() {
             </Box>
           </Card>
         </Box>
-        
+
       </Box>
       <Divider />
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, }}>
-        <IconButton color="primary" aria-label="New post" 
-        onClick={() => {
-          if(setPost({
-            relevance: 0,
-            authorId: user.uid,
-            authorName: user.displayName,
-            authorAvatar: user.photoURL,
-            authorAvatarSet: user.photoURL,
-            date: formattedDate,
-            title: title,
-            desc: description,
-            // tags: ,
-            // images: ,
-          })){
-            navegate('/feed')
-          }
-        }}
+        <IconButton color="primary" aria-label="New post"
+          onClick={() => {
+            if (setPost({
+              relevance: 0,
+             authorId: user.uid,
+              authorName: user.displayName ? user.displayName : "Anônimo" ,
+              authorAvatar: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b" ,
+              authorAvatarSet: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b" ,
+              date: formattedDate,
+              title: title,
+              desc: description,
+              // tags: ,
+              // images: ,
+            })) {
+              navegate('/')
+            }
+          }}
         >
           <PostAddIcon />
         </IconButton>

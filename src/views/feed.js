@@ -17,6 +17,8 @@ import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
+import LoginIcon from '@mui/icons-material/Login';
+import SearchIcon from '@mui/icons-material/Search';
 
 // custom
 import emailTheme from '../constants/theme';
@@ -26,6 +28,7 @@ import Navigation from '../Components/Navigation';
 import Mails from '../Components/Mails';
 import FeedContent from '../Components/FeedContent';
 import { List } from '@mui/material';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -58,20 +61,32 @@ function ColorSchemeToggle() {
 
 export default function FeedExample() {
 
+  const navegate = useNavigate();
+
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [unreadMenu, setUnreadMenu] = React.useState(false);
   const [everythingMenu, setEverythingMenu] = React.useState(false);
 
   const [posts, setPosts] = React.useState([]);
 
-  
+  const [admin, setAdmin] = React.useState(false);
 
   React.useEffect(() => {
     const getPosts = async () => {
-      const data = await getDocs( collection(db, "posts/") );
+      const data = await getDocs(collection(db, "posts/"));
       setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getPosts();
+
+    const getAdmin = async () => {
+      const data = await getDocs(collection(db, "admin/"));
+      const admins = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const admin = admins[0]
+      const user = JSON.parse(sessionStorage.getItem('user'))
+      if (user.uid === admin.id) setAdmin(true)
+    }
+    getAdmin()
+
   }, []);
 
   return (
@@ -125,9 +140,7 @@ export default function FeedExample() {
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
-                </Typography>
+                <SearchIcon />
               </IconButton>
             }
             sx={{
@@ -147,39 +160,52 @@ export default function FeedExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="outlined"
-                  color="primary"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Feed',
-                  active: true,
-                  href: '/feed',
-                },
-                {
-                  label: 'New',
-                  href: '/newpost',
-                },
-                {
-                  label: 'Team',
-                  href: '/team',
-                },
-                {
-                  label: 'Files',
-                  href: '/files',
-                },
-              ]}
-            />
+
+            {admin &&
+              <Menu
+                id="app-selector"
+                control={
+                  <IconButton
+                    size="sm"
+                    variant="outlined"
+                    color="primary"
+                    aria-label="Apps"
+                  >
+                    <GridViewRoundedIcon />
+                  </IconButton>
+                }
+                menus={[
+                  {
+                    label: 'Feed',
+                    active: true,
+                    href: '/',
+                  },
+                  {
+                    label: 'New',
+                    href: '/newpost',
+                  },
+                  {
+                    label: 'Team',
+                    href: '/team',
+                  },
+                  {
+                    label: 'Files',
+                    href: '/files',
+                  },
+                ]}
+              />}
             <ColorSchemeToggle />
+            {!sessionStorage.getItem('user') &&
+              <IconButton
+                size="sm"
+                variant="solid"
+                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+                onClick={() => {
+                  navegate('/login')
+                }}
+              >
+                <LoginIcon />
+              </IconButton>}
           </Box>
         </Layout.Header>
         <Layout.SideNav>

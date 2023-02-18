@@ -82,8 +82,9 @@ export default function FeedContent({posts}) {
       <Typography level="body2" mt={2} mb={2}>
         {posts.desc}
       </Typography>
+      {posts.images ? <>
       <Divider />
-      {posts.images ? <><Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
+      <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
         Images
       </Typography>
       
@@ -128,6 +129,7 @@ export default function FeedContent({posts}) {
           </Box>
         ))}
       </Box></>:null}
+      {posts.contents && posts.contents.map((content, index) => (<>
       <Divider />
       <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
         Contents
@@ -144,7 +146,6 @@ export default function FeedContent({posts}) {
           },
         })}
       >
-        {posts.contents && posts.contents.map((content, index) => (<>
           <Box
             sx={(theme) => ({
               width: '90%',
@@ -194,8 +195,8 @@ export default function FeedContent({posts}) {
             </Typography>
           <Divider />
           </Box>
-        </>))}
-      </Box>
+        </Box>
+      </>))}
     </Sheet>
   );
 }

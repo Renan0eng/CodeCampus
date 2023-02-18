@@ -13,25 +13,23 @@ function App() {
   return (<>
     <BrowserRouter>
       <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/feed" element={<PrivateRoute />}>
-              <Route path="/feed" element={<Feed />} />
-            </Route>
-            <Route path="/team" element={<PrivateRoute />}>
-              <Route path="/team" element={<Team />} />
-            </Route>
-            <Route path="/files" element={<PrivateRoute />}>
-              <Route path="/files" element={<Files />} />
-            </Route>
-            <Route path="/newpost" element={<PrivateRoute />}>
-              <Route path="/newpost" element={<NewPost />} />
-            </Route>
-            <Route path="/post" element={<PrivateRoute />}>
-              <Route path="/post" element={<Post />} />
-            </Route>
-          </Routes>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Feed />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/team" element={<PrivateRoute />}>
+            <Route path="/team" element={<Team />} />
+          </Route>
+          <Route path="/files" element={<PrivateRoute />}>
+            <Route path="/files" element={<Files />} />
+          </Route>
+          <Route path="/newpost" element={<PrivateRoute />}>
+            <Route path="/newpost" element={<NewPost />} />
+          </Route>
+          <Route path="/post" element={<PrivateRoute />}>
+            <Route path="/post" element={<Post />} />
+          </Route>
+        </Routes>
       </AuthProvider>
     </BrowserRouter>
   </>);

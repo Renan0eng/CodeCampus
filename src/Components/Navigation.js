@@ -13,9 +13,7 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
 
 // Icons import
-import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
-import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -27,14 +25,8 @@ export default function FeedNav() {
     Browse: [
       {
         label: 'Feed',
-        href: '/feed',
+        href: '/',
         icon: <ViewDayIcon fontSize="small" color="primary" />,
-      },
-      {
-        label: 'New',
-        active: true,
-        href: '/newpost',
-        icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
       },
       // {
       //   label: 'Team',
@@ -45,6 +37,12 @@ export default function FeedNav() {
         label: 'Files',
         href: '/files',
         icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
+      },
+      {
+        label: 'New',
+        active: true,
+        href: '/newpost',
+        icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
       }
     ],
     Tags: [
@@ -86,6 +84,63 @@ export default function FeedNav() {
     ]
   }
 
+  React.useEffect(() => {
+
+   if(!sessionStorage.getItem('user')){
+    setMenus({
+      Browse: [
+        {
+          label: 'Feed',
+          href: '/',
+          icon: <ViewDayIcon fontSize="small" color="primary" />,
+        },
+        // {
+        //   label: 'Team',
+        //   href: '/team',
+        //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
+        // },
+      ],
+      Tags: [
+        {
+          label: 'Personal',
+          href: '/personal',
+          bgcolor: 'primary.100',
+        },
+        {
+          label: 'Work',
+          href: '/work',
+          bgcolor: 'danger.300',
+        },
+        {
+          label: 'Family',
+          href: '/family',
+          bgcolor: 'success.300',
+        },
+        {
+          label: 'Friends',
+          href: '/friends',
+          bgcolor: 'warning.300',
+        },
+        {
+          label: 'Travel',
+          href: '/travel',
+          bgcolor: 'info.300',
+        },
+        {
+          label: 'Holidays',
+          href: '/holidays',
+          bgcolor: 'neutral.300',
+        },
+        {
+          label: 'Photos',
+          href: '/photos',
+          bgcolor: 'primary.300',
+        },
+      ]
+    })
+   }
+
+  }, []);
   const [menus, setMenus] = React.useState(Menus);
   const [tagsMenu, setTagsMenu] = React.useState(true);
   const [browseMenu, setBrowseMenu] = React.useState(true);
@@ -192,6 +247,7 @@ export default function FeedNav() {
           )) : null}
         </List>
       </ListItem>
+      {sessionStorage.getItem('user') &&
       <ListItem nested sx={{ mt: 2 }}>
         <ListSubheader>
           config
@@ -235,7 +291,7 @@ export default function FeedNav() {
               </ListItemButton>
             </ListItem>}
         </List>
-      </ListItem>
+      </ListItem>}
     </List>
   );
 }

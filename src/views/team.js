@@ -218,7 +218,7 @@ export default function TeamExample() {
               menus={[
                 {
                   label: 'Feed',
-                  href: '/feed',
+                  href: '/',
                 },
                 {
                   label: 'New',
