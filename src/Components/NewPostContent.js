@@ -8,12 +8,43 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 
+import { useNavigate } from 'react-router-dom';
+
 // Icons import
 import FolderIcon from '@mui/icons-material/Folder';
-import { Input } from '@mui/joy';
+import { IconButton, Input } from '@mui/joy';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+
+// Firebase
+import { getDocs, collection, addDoc } from 'firebase/firestore';
+import { db } from '../constants/firebase';
+
+export const setPost = async (post) => {
+  try {
+    const docRef = await addDoc(collection(db, "posts"), post);
+    console.log("Document written with ID: ", docRef.id);
+    return docRef.id;
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
 
 export default function FeedContent() {
 
+  const navegate = useNavigate();
+
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const date = new Date();
+  const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+
+  const user = JSON.parse(sessionStorage.getItem('user'));
+
+  const [title, setTitle] = React.useState('');
+  const [description, setDescription] = React.useState('');
+
+  React.useEffect(() => {
+  }, [])
 
   const [logUser, setLogUser] = React.useState({
     name: 'John Doe',
@@ -40,13 +71,13 @@ export default function FeedContent() {
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Avatar
-            src="https://i.pravatar.cc/40?img=3"
-            srcSet="https://i.pravatar.cc/80?img=3"
+            src={user.photoURL}
+            srcSet={user.photoURL}
             sx={{ borderRadius: 'xl' }}
           />
           <Box sx={{ ml: 2, display: "flex", alignItems: "center" }}>
             <Typography level="body2" textColor="text.primary" mb={0.5}>
-              {logUser.name}
+              {user.displayName}
             </Typography>
           </Box>
         </Box>
@@ -62,6 +93,7 @@ export default function FeedContent() {
           placeholder="Title"
           size="lg"
           variant="outlined"
+          onChange={(e) => setTitle(e.target.value) }
         />
       </Box>
       <Divider />
@@ -73,6 +105,7 @@ export default function FeedContent() {
           placeholder="Description"
           size="sm"
           variant="outlined"
+          onChange={(e) => setDescription(e.target.value) }
         />
       </Typography>
       <Divider />
@@ -125,6 +158,30 @@ export default function FeedContent() {
             </Box>
           </Card>
         </Box>
+        
+      </Box>
+      <Divider />
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, }}>
+        <IconButton color="primary" aria-label="New post" 
+        onClick={() => {
+          if(setPost({
+            relevance: 0,
+            authorId: user.uid,
+            authorName: user.displayName,
+            authorAvatar: user.photoURL,
+            authorAvatarSet: user.photoURL,
+            date: formattedDate,
+            title: title,
+            desc: description,
+            // tags: ,
+            // images: ,
+          })){
+            navegate('/feed')
+          }
+        }}
+        >
+          <PostAddIcon />
+        </IconButton>
       </Box>
     </Sheet>
   );

@@ -5,6 +5,7 @@ import Feed from '../views/feed';
 import Team from '../views/team';
 import Files from '../views/files';
 import NewPost from '../views/newPost';
+import Post from '../views/post';
 import { AuthProvider } from "../contexts/authContext";
 import { PrivateRoute } from "./index";
 
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/newpost" element={<PrivateRoute />}>
               <Route path="/newpost" element={<NewPost />} />
+            </Route>
+            <Route path="/post" element={<PrivateRoute />}>
+              <Route path="/post" element={<Post />} />
             </Route>
           </Routes>
       </AuthProvider>
