@@ -78,6 +78,18 @@ export default function FeedContent() {
     return <Typography color="primary" fontWeight="bold">Solte os arquivos aqui</Typography>;
   }
 
+  function limitString(str, maxLength) {
+    if (str.length <= maxLength) {
+      return str;
+    } else {
+      let subString = str.slice(0, maxLength);
+      if (subString[subString.length - 1] === ' ') {
+        subString = subString.slice(0, subString.length - 1);
+      }
+      return subString + '...';
+    }
+  }
+
   return (
     <Sheet
       variant="outlined"
@@ -259,7 +271,9 @@ export default function FeedContent() {
           > 
             
             {files.map((file) => (
-            <Card variant="outlined" >
+            <>
+            <Card variant="outlined" orientation="horizontal">
+            <CardOverflow>
               <AspectRatio ratio="1" sx={{ minWidth: 80 }}
                 onClick={() => {
                   handleOpenImage();
@@ -270,6 +284,15 @@ export default function FeedContent() {
                   srcSet={file.preview}
                 />
               </AspectRatio>
+            </CardOverflow>
+            <Box sx={{ p: { xs: 1, sm: 2 } }}>
+              <Typography level="body2" color="primary">
+                {limitString(file.name, 8)}
+              </Typography>
+              <Typography level="body3">{(file.size / (1024 * 1024)).toFixed(2)} MB</Typography>
+            </Box>
+          </Card>
+              
               <Modal
                 open={openImage}
                 onClose={handleCloseImage}
@@ -295,8 +318,16 @@ export default function FeedContent() {
                     srcSet={file.preview}
                     width="100%"
                   />
-                  <IconButton color='none' 
-                    sx={{ position: 'absolute', top: 0, right: 0, m: 2, }}
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    {file.name}
+                  </Typography>
+                  <IconButton 
+                    sx={{ 
+                      position: 'absolute', 
+                      bottom: 0,
+                      right: 0, 
+                      m: 2, 
+                    }}
                     onClick={() => {
                       const copy = files;
                       const index = copy.indexOf(file);
@@ -307,12 +338,17 @@ export default function FeedContent() {
                       handleCloseImage();
                     }}
                   >
-                    <DeleteIcon fontSize="small" />
+                    <DeleteIcon fontSize="small" sx={{
+                       color: 'grey.500',
+                       '&:hover': {
+                         color: 'primary.main',
+                       },
+                    }} />
                   </IconButton>
                 </Box>
                   
               </Modal>
-            </Card>))} 
+            </>))} 
           </Box>
         }
                 
