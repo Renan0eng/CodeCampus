@@ -7,6 +7,7 @@ import Typography from '@mui/joy/Typography';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
+import Modal from '@mui/joy/Modal';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 // Firebase
 import { getDocs, collection, addDoc } from 'firebase/firestore';
 import { db } from '../constants/firebase';
+import Dropzone from 'react-dropzone';
 
 export const setPost = async (post) => {
   try {
@@ -32,6 +34,10 @@ export const setPost = async (post) => {
 
 
 export default function FeedContent() {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const navegate = useNavigate();
 
@@ -143,7 +149,7 @@ export default function FeedContent() {
             <CardOverflow>
               <AspectRatio ratio="1" sx={{ minWidth: 80 }}
                 onClick={() => {
-                  console.log("ADD image")
+                  handleOpen();
                 }}
               >
                 <Box>
@@ -158,6 +164,71 @@ export default function FeedContent() {
               <Typography level="body3">max 100 MB</Typography>
             </Box>
           </Card>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '80%',
+              bgcolor: 'background.paper',
+              border: '2px solid #000',
+              boxShadow: 24,
+              p: 4,
+              borderRadius: 'xl',
+              }}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Upload Image
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
+                selecionar imagens
+              </Typography>
+              <Dropzone accept={"image/*"} onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
+                  <Box
+                    sx={{
+                      width: '100%',
+                      height: 200,
+                      border: '1px dashed',
+                      borderColor: 'grey.500',
+                      borderRadius: 'xl',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      flexDirection: 'column',
+                      cursor: 'pointer',
+                      '&:hover': {
+                        borderColor: 'primary.main',
+                      },
+                    }}
+                    {...getRootProps()}
+                  >
+                    <input {...getInputProps()} />
+                    {isDragActive && !isDragReject && (
+                      <Typography color="primary" fontWeight="bold">
+                        Jogue os arquivos aqui...
+                      </Typography>
+                    )}
+                    {!isDragActive && isDragReject && (
+                      <Typography color="error" fontWeight="bold">
+                        Arquivo não suportado
+                      </Typography>
+                    )}
+                    {!isDragActive && !isDragReject && (
+                      <Typography color="text.secondary">
+                        Arraste e solte os arquivos aqui, ou clique para selecionar
+                      </Typography>
+                    )}
+                  </Box>
+                )}
+              </Dropzone>
+            </Box>
+          </Modal>
         </Box>
 
       </Box>
