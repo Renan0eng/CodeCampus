@@ -140,7 +140,7 @@ export default function FeedExample() {
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
-                <SearchIcon />
+                /
               </IconButton>
             }
             sx={{
@@ -196,6 +196,18 @@ export default function FeedExample() {
               />}
             <ColorSchemeToggle />
             {!sessionStorage.getItem('user') &&
+              <IconButton
+                size="sm"
+                variant="solid"
+                color="primary"
+                sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+                onClick={() => {
+                  navegate('/login')
+                }}
+              >
+                <LoginIcon />
+              </IconButton>}
+              {!sessionStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"
