@@ -68,7 +68,7 @@ export default function FeedContent() {
   function renderDragMessage(isDragActive, isDragReject) {
 
     if (!isDragActive) {
-      return  <Typography color="primary" fontWeight="bold">Jogue os arquivos aqui...</Typography>;
+      return <Typography color="primary" fontWeight="bold">Jogue os arquivos aqui...</Typography>;
     }
 
     if (isDragReject) {
@@ -197,6 +197,87 @@ export default function FeedContent() {
               <Typography level="body3">max 100 MB</Typography>
             </Box>
           </Card>
+          {files && files.map((file) => (
+            <>
+              <Card variant="outlined" orientation="horizontal">
+                <CardOverflow>
+                  <AspectRatio ratio="1" sx={{ minWidth: 80 }}
+                    onClick={() => {
+                      handleOpenImage();
+                    }}
+                  >
+                    <img
+                      src={file.preview}
+                      srcSet={file.preview}
+                    />
+                  </AspectRatio>
+                </CardOverflow>
+                <Box sx={{ p: { xs: 1, sm: 2 } }}>
+                  <Typography level="body2" color="primary">
+                    {limitString(file.name, 8)}
+                  </Typography>
+                  <Typography level="body3">{(file.size / (1024 * 1024)).toFixed(2)} MB</Typography>
+                </Box>
+              </Card>
+
+              <Modal
+                open={openImage}
+                onClose={handleCloseImage}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '80%',
+                    bgcolor: 'background.paper',
+                    border: '2px solid',
+                    boxShadow: 24,
+                    p: 4,
+                    borderRadius: 'xl',
+                  }}
+                >
+                  <img
+                    src={file.preview}
+                    srcSet={file.preview}
+                    width="100%"
+                  />
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    {file.name}
+                  </Typography>
+                  <IconButton
+                    sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      m: 2,
+                    }}
+                    onClick={() => {
+                      const copy = files;
+                      const index = copy.indexOf(file);
+                      if (index > -1) {
+                        copy.splice(index, 1);
+                      }
+                      setFiles(copy);
+                      handleCloseImage();
+                    }}
+                  >
+                    <DeleteIcon fontSize="small" sx={{
+                      color: 'grey.500',
+                      '&:hover': {
+                        color: 'primary.main',
+                      },
+                    }} />
+                  </IconButton>
+                </Box>
+
+              </Modal>
+            </>
+          ))}
+
           <Modal
             open={open}
             onClose={handleClose}
@@ -214,7 +295,7 @@ export default function FeedContent() {
               boxShadow: 24,
               p: 4,
               borderRadius: 'xl',
-              }}>
+            }}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Upload Image
               </Typography>
@@ -254,119 +335,21 @@ export default function FeedContent() {
                   </Box>
                 )}
               </Dropzone>
-              {files && 
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 2,
-              mb: 3,
-              mt: 2,
-              '& > div': {
-                boxShadow: 'none',
-                '--Card-padding': '0px',
-                '--Card-radius': theme.vars.radius.sm,
-              },
-            })}
-          > 
-            
-            {files.map((file) => (
-            <>
-            <Card variant="outlined" orientation="horizontal">
-            <CardOverflow>
-              <AspectRatio ratio="1" sx={{ minWidth: 80 }}
-                onClick={() => {
-                  handleOpenImage();
-                }}
-              >
-                <img
-                  src={file.preview}
-                  srcSet={file.preview}
-                />
-              </AspectRatio>
-            </CardOverflow>
-            <Box sx={{ p: { xs: 1, sm: 2 } }}>
-              <Typography level="body2" color="primary">
-                {limitString(file.name, 8)}
-              </Typography>
-              <Typography level="body3">{(file.size / (1024 * 1024)).toFixed(2)} MB</Typography>
-            </Box>
-          </Card>
-              
-              <Modal
-                open={openImage}
-                onClose={handleCloseImage}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '80%',
-                    bgcolor: 'background.paper',
-                    border: '2px solid',
-                    boxShadow: 24,
-                    p: 4,
-                    borderRadius: 'xl',
-                    }}
-                >
-                  <img
-                    src={file.preview}
-                    srcSet={file.preview}
-                    width="100%"
-                  />
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                    {file.name}
-                  </Typography>
-                  <IconButton 
-                    sx={{ 
-                      position: 'absolute', 
-                      bottom: 0,
-                      right: 0, 
-                      m: 2, 
-                    }}
-                    onClick={() => {
-                      const copy = files;
-                      const index = copy.indexOf(file);
-                      if (index > -1) {
-                        copy.splice(index, 1);
-                      }
-                      setFiles(copy);
-                      handleCloseImage();
-                    }}
-                  >
-                    <DeleteIcon fontSize="small" sx={{
-                       color: 'grey.500',
-                       '&:hover': {
-                         color: 'primary.main',
-                       },
-                    }} />
-                  </IconButton>
-                </Box>
-                  
-              </Modal>
-            </>))} 
-          </Box>
-        }
-                
             </Box>
           </Modal>
         </Box>
-
       </Box>
+
       <Divider />
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, }}>
         <IconButton color="primary" aria-label="New post"
           onClick={() => {
             if (setPost({
               relevance: 0,
-             authorId: user.uid,
-              authorName: user.displayName ? user.displayName : "Anônimo" ,
-              authorAvatar: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b" ,
-              authorAvatarSet: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b" ,
+              authorId: user.uid,
+              authorName: user.displayName ? user.displayName : "Anônimo",
+              authorAvatar: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
+              authorAvatarSet: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
               date: formattedDate,
               title: title,
               desc: description,
