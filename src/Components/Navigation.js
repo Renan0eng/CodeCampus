@@ -33,11 +33,11 @@ export default function FeedNav() {
       //   href: '/team',
       //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
       // },
-      {
-        label: 'Files',
-        href: '/files',
-        icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
-      },
+      // {
+      //   label: 'Files',
+      //   href: '/files',
+      //   icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
+      // },
       {
         label: 'New',
         active: true,
