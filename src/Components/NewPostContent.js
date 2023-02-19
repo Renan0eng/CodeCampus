@@ -8,6 +8,7 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 import Modal from '@mui/joy/Modal';
+import Button from '@mui/joy/Button';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import FolderIcon from '@mui/icons-material/Folder';
 import { IconButton, Input } from '@mui/joy';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // Firebase
 import { getDocs, collection, addDoc } from 'firebase/firestore';
@@ -39,6 +41,10 @@ export default function FeedContent() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [openImage, setOpenImage] = React.useState(false);
+  const handleOpenImage = () => setOpenImage(true);
+  const handleCloseImage = () => setOpenImage(false);
+
   const navegate = useNavigate();
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -56,6 +62,21 @@ export default function FeedContent() {
   const [logUser, setLogUser] = React.useState({
     name: 'John Doe',
   })
+
+  const [files, setFiles] = React.useState([]);
+
+  function renderDragMessage(isDragActive, isDragReject) {
+
+    if (!isDragActive) {
+      return  <Typography color="primary" fontWeight="bold">Jogue os arquivos aqui...</Typography>;
+    }
+
+    if (isDragReject) {
+      return <Typography color="error" fontWeight="bold">Arquivo não suportado</Typography>;
+    }
+
+    return <Typography color="primary" fontWeight="bold">Solte os arquivos aqui</Typography>;
+  }
 
   return (
     <Sheet
@@ -177,7 +198,7 @@ export default function FeedContent() {
               transform: 'translate(-50%, -50%)',
               width: '80%',
               bgcolor: 'background.paper',
-              border: '2px solid #000',
+              border: '2px solid',
               boxShadow: 24,
               p: 4,
               borderRadius: 'xl',
@@ -188,7 +209,15 @@ export default function FeedContent() {
               <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
                 selecionar imagens
               </Typography>
-              <Dropzone accept={"image/*"} onDrop={acceptedFiles => console.log(acceptedFiles)}>
+              <Dropzone accept={"image/*"} onDrop={acceptedFiles => {
+                const copy = files;
+                const image = (acceptedFiles.map(file => Object.assign(file, {
+                  preview: URL.createObjectURL(file)
+                })));
+                copy.push(image[0]);
+                setFiles(copy);
+                handleClose();
+              }}>
                 {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
                   <Box
                     sx={{
@@ -209,24 +238,84 @@ export default function FeedContent() {
                     {...getRootProps()}
                   >
                     <input {...getInputProps()} />
-                    {isDragActive && !isDragReject && (
-                      <Typography color="primary" fontWeight="bold">
-                        Jogue os arquivos aqui...
-                      </Typography>
-                    )}
-                    {!isDragActive && isDragReject && (
-                      <Typography color="error" fontWeight="bold">
-                        Arquivo não suportado
-                      </Typography>
-                    )}
-                    {!isDragActive && !isDragReject && (
-                      <Typography color="text.secondary">
-                        Arraste e solte os arquivos aqui, ou clique para selecionar
-                      </Typography>
-                    )}
+                    {renderDragMessage(isDragActive, isDragReject)}
                   </Box>
                 )}
               </Dropzone>
+              {files && 
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 2,
+              mb: 3,
+              mt: 2,
+              '& > div': {
+                boxShadow: 'none',
+                '--Card-padding': '0px',
+                '--Card-radius': theme.vars.radius.sm,
+              },
+            })}
+          > 
+            
+            {files.map((file) => (
+            <Card variant="outlined" >
+              <AspectRatio ratio="1" sx={{ minWidth: 80 }}
+                onClick={() => {
+                  handleOpenImage();
+                }}
+              >
+                <img
+                  src={file.preview}
+                  srcSet={file.preview}
+                />
+              </AspectRatio>
+              <Modal
+                open={openImage}
+                onClose={handleCloseImage}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '80%',
+                    bgcolor: 'background.paper',
+                    border: '2px solid',
+                    boxShadow: 24,
+                    p: 4,
+                    borderRadius: 'xl',
+                    }}
+                >
+                  <img
+                    src={file.preview}
+                    srcSet={file.preview}
+                    width="100%"
+                  />
+                  <IconButton color='none' 
+                    sx={{ position: 'absolute', top: 0, right: 0, m: 2, }}
+                    onClick={() => {
+                      const copy = files;
+                      const index = copy.indexOf(file);
+                      if (index > -1) {
+                        copy.splice(index, 1);
+                      }
+                      setFiles(copy);
+                      handleCloseImage();
+                    }}
+                  >
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
+                </Box>
+                  
+              </Modal>
+            </Card>))} 
+          </Box>
+        }
+                
             </Box>
           </Modal>
         </Box>
