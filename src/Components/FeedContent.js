@@ -21,7 +21,7 @@ export default function FeedContent({posts}) {
         mb: 3,
       }}
       onClick={() => {
-        console.log(`Clicked ${posts.title}`);
+        console.log(`Clicked`,posts);
       }}
     >
       <Box
@@ -100,6 +100,8 @@ export default function FeedContent({posts}) {
           },
         })}
       >
+        
+        {console.log(posts.images)}
         {posts.images && posts.images.map((image, index) => (
           <Box
             sx={(theme) => ({
@@ -118,9 +120,12 @@ export default function FeedContent({posts}) {
             <Card variant="outlined" >
               <Link href={image.image}>
                 <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
+                  
+                
                   <img
-                    src={image.image}
-                    srcSet={image.image}
+                    style={{maxWidth: '100%', maxHeight: '100%'}}
+                    src={image}
+                    srcSet={image}
                     alt="Yosemite National Park"
                   />
                 </AspectRatio>

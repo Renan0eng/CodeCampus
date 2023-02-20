@@ -8,7 +8,6 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 import Modal from '@mui/joy/Modal';
-import Button from '@mui/joy/Button';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -18,30 +17,28 @@ import { IconButton, Input } from '@mui/joy';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+
 // Firebase
 import { getDocs, collection, addDoc } from 'firebase/firestore';
 import { db } from '../constants/firebase';
 import Dropzone from 'react-dropzone';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { async } from '@firebase/util';
 
-export const setPost = async (post) => {
-  try {
-    console.log("post", post);
-    const docRef = await addDoc(collection(db, "posts"), post);
-    console.log("Document written with ID: ", docRef.id);
-    return docRef.id;
-  } catch (e) {
-    console.log("Error adding document: ", e);
-  }
-}
+
+
 
 
 export default function FeedContent() {
+
+  const storage = getStorage();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [openImage, setOpenImage] = React.useState(false);
+  const [image, setImage] = React.useState({});
   const handleOpenImage = () => setOpenImage(true);
   const handleCloseImage = () => setOpenImage(false);
 
@@ -56,6 +53,8 @@ export default function FeedContent() {
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('');
 
+  const [imagensRef, setImagensRef] = React.useState([]);
+
   React.useEffect(() => {
   }, [])
 
@@ -68,7 +67,9 @@ export default function FeedContent() {
   function renderDragMessage(isDragActive, isDragReject) {
 
     if (!isDragActive) {
-      return <Typography color="primary" fontWeight="bold">Jogue os arquivos aqui...</Typography>;
+      return <Typography color="primary" fontWeight="bold">
+        Jogue os arquivos aqui, ou clique aqui...
+      </Typography>;
     }
 
     if (isDragReject) {
@@ -88,6 +89,75 @@ export default function FeedContent() {
       }
       return subString + '...';
     }
+  }
+
+  const setPost = async (post) => {
+
+
+    if (imagensRef.length !== files.length) {
+      if (files.length === 0 && imagensRef.length === 0) {
+        try {
+          console.log("post", post);
+          const docRef = addDoc(collection(db, "posts"), post);
+          console.log("Document written with ID: ", docRef.id);
+          navegate('/')
+          return docRef.id;
+        } catch (e) {
+          console.log("Error adding document: ", e);
+        }
+      } else {
+        files.map(async (image) => {
+          try {
+            const storageRef = ref(storage, `images/${image.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, image);
+
+            uploadTask.on('state_changed', (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log('Upload is ' + progress + '% done');
+
+              switch (snapshot.state) {
+                case 'paused':
+                  console.log('Upload is paused');
+                  break;
+                case 'running':
+                  console.log('Upload is running');
+                  break;
+              }
+            }, (error) => {
+              console.log(error);
+            }, () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                console.log('File available at', downloadURL);
+                const copy = imagensRef;
+                copy.push(downloadURL);
+                setImagensRef(copy);
+                console.log("imagensRef", imagensRef);
+                if (imagensRef.length === files.length) {
+                  console.log("entrou");
+                  post.images = imagensRef;
+                  try {
+                    console.log("post", post);
+                    const docRef = addDoc(collection(db, "posts"), post);
+                    console.log("Document written with ID: ", docRef.id);
+                    navegate('/')
+                    return docRef.id;
+                  } catch (e) {
+                    console.log("Error adding document: ", e);
+                  }
+                }
+              });
+            });
+
+            console.log("Image uploaded", storageRef);
+          } catch (e) {
+            console.log("Error adding document: ", e);
+            return false;
+          }
+        })
+      }
+    }
+
+
   }
 
   return (
@@ -192,9 +262,9 @@ export default function FeedContent() {
             </CardOverflow>
             <Box sx={{ p: { xs: 1, sm: 2 } }}>
               <Typography level="body2" color="primary">
-                New Image
+                Image
               </Typography>
-              <Typography level="body3">max 100 MB</Typography>
+              <Typography pt={0.5} level="body4" >max 100 MB</Typography>
             </Box>
           </Card>
           {files && files.map((file) => (
@@ -204,6 +274,7 @@ export default function FeedContent() {
                   <AspectRatio ratio="1" sx={{ minWidth: 80 }}
                     onClick={() => {
                       handleOpenImage();
+                      setImage(file);
                     }}
                   >
                     <img
@@ -241,12 +312,12 @@ export default function FeedContent() {
                   }}
                 >
                   <img
-                    src={file.preview}
-                    srcSet={file.preview}
+                    src={image.preview}
+                    srcSet={image.preview}
                     width="100%"
                   />
                   <Typography id="modal-modal-title" variant="h6" component="h2">
-                    {file.name}
+                    {image.name}
                   </Typography>
                   <IconButton
                     sx={{
@@ -257,7 +328,7 @@ export default function FeedContent() {
                     }}
                     onClick={() => {
                       const copy = files;
-                      const index = copy.indexOf(file);
+                      const index = copy.indexOf(image);
                       if (index > -1) {
                         copy.splice(index, 1);
                       }
@@ -309,6 +380,7 @@ export default function FeedContent() {
                 })));
                 copy.push(image[0]);
                 setFiles(copy);
+                console.log('files', files);
                 handleClose();
               }}>
                 {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
@@ -343,21 +415,20 @@ export default function FeedContent() {
       <Divider />
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, }}>
         <IconButton color="primary" aria-label="New post"
-          onClick={() => {
-            if (setPost({
+          onClick={(e) => {
+            e.preventDefault();
+            setPost({
               relevance: 0,
               authorId: user.uid,
               authorName: user.displayName ? user.displayName : "Anônimo",
-              authorAvatar: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
-              authorAvatarSet: user.photoURL ? user.photoURL : "https://firebasestorage.googleapis.com/v0/b/tech-blog-2c8e0.appspot.com/o/avatars%2Fdefault.png?alt=media&token=0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
+              authorAvatar: user.photoURL ? user.photoURL : "",
+              authorAvatarSet: user.photoURL ? user.photoURL : "",
               date: formattedDate,
               title: title,
               desc: description,
               // tags: ,
-              // images: ,
-            })) {
-              navegate('/')
-            }
+
+            })
           }}
         >
           <PostAddIcon />
