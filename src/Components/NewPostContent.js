@@ -16,6 +16,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import { IconButton, Input } from '@mui/joy';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';	
 
 
 // Firebase
@@ -67,7 +68,7 @@ export default function FeedContent() {
   function renderDragMessage(isDragActive, isDragReject) {
 
     if (!isDragActive) {
-      return <Typography color="primary" fontWeight="bold">
+      return <Typography color="#fff" fontWeight="bold">
         Jogue os arquivos aqui, ou clique aqui...
       </Typography>;
     }
@@ -367,12 +368,10 @@ export default function FeedContent() {
               p: 4,
               borderRadius: 'xl',
             }}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography sx={{color: '#1cb2c4', fontSize: 30, pb: 4 }} id="modal-modal-title" variant="h6" component="h2" >
                 Upload Image
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2, mb: 2 }}>
-                selecionar imagens
-              </Typography>
+              
               <Dropzone accept={"image/*"} onDrop={acceptedFiles => {
                 const copy = files;
                 const image = (acceptedFiles.map(file => Object.assign(file, {
@@ -403,7 +402,19 @@ export default function FeedContent() {
                     {...getRootProps()}
                   >
                     <input {...getInputProps()} />
-                    {renderDragMessage(isDragActive, isDragReject)}
+                    <Box
+                      sx={{
+                        p: 3,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                      }}
+                    >
+                      <CloudUploadIcon color='#fff' sx={{ fontSize: 40 }} />{renderDragMessage(isDragActive, isDragReject)}
+                    </Box>
+
+                    
                   </Box>
                 )}
               </Dropzone>

@@ -26,8 +26,8 @@ function App() {
           <Route path="/newpost" element={<PrivateRoute />}>
             <Route path="/newpost" element={<NewPost />} />
           </Route>
-          <Route path="/post" element={<PrivateRoute />}>
-            <Route path="/post" element={<Post />} />
+          <Route path="/post/:id" element={<PrivateRoute />}>
+            <Route path="/post/:id" element={<Post />} />
           </Route>
         </Routes>
       </AuthProvider>

@@ -21,11 +21,12 @@ import ViewDayIcon from '@mui/icons-material/ViewDay';
 // custom
 import emailTheme from '../constants/theme';
 import Menu from '../Components/Menu';
-import Layout from '../Components/Layout';
+import Layout from '../Components/LayoutPost';
 import Navigation from '../Components/Navigation';
-import Mails from '../Components/Mails';
-import FeedContent from '../Components/FeedContent';
+import PostContent from '../Components/PostContent';
 import { List } from '@mui/material';
+
+import { useParams, useLocation } from 'react-router-dom';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -58,19 +59,36 @@ function ColorSchemeToggle() {
 
 export default function FeedExample() {
 
+
+
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [unreadMenu, setUnreadMenu] = React.useState(false);
   const [everythingMenu, setEverythingMenu] = React.useState(false);
 
-  const [posts, setPosts] = React.useState([]);
 
+  const { id } = useParams();
 
+  const [post, setPost] = React.useState([]);
+  
 
   React.useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(collection(db, "posts/"));
-      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const posts = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+      const comments = await getDocs(collection(db, "comments/"));
+      const commentsData = (comments.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+      let commentsArray = [];
+
+      commentsData.find((comment) => comment.postId === id) && commentsArray.push(commentsData.find((comment) => comment.postId === id));
+
+      posts.find((post) => post.id === id) && setPost(posts.find((post) => post.id === id));
+
+      setPost((prev) => ({ ...prev, comments: commentsArray }));
+
     }
+    getPosts();
     getPosts();
   }, []);
 
@@ -196,7 +214,7 @@ export default function FeedExample() {
               p: 0,
             }}
           >
-            {posts && posts.map((post) => <FeedContent posts={post} />)}
+            <PostContent posts={post} />
           </List>
         </Layout.Main>
       </Layout.Root>

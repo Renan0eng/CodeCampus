@@ -17,6 +17,10 @@ export default function FeedContent({ posts }) {
 
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+    console.log(`FeedContent`, posts);
+  }, []);
+
   return (
     <Sheet
       variant="outlined"
@@ -24,10 +28,6 @@ export default function FeedContent({ posts }) {
         borderRadius: 'sm',
         p: 2,
         mb: 3,
-      }}
-      onClick={() => {
-        console.log(`Clicked ${posts.title}`);
-        navigate(`/post/${posts.id}`);
       }}
     >
       <Box
@@ -97,6 +97,8 @@ export default function FeedContent({ posts }) {
           sx={(theme) => ({
             display: 'flex',
             flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
             gap: 2,
             '& > div': {
               boxShadow: 'none',
@@ -105,7 +107,7 @@ export default function FeedContent({ posts }) {
             },
           })}
         >
-          {posts.images && posts.images.map((image, index) => (
+          {posts.images && posts.images.map((image) => (
             <Box
               sx={(theme) => ({
                 display: 'flex',
@@ -120,21 +122,23 @@ export default function FeedContent({ posts }) {
               })}
             >
               <Card variant="outlined" >
-                <Link href={image.image}>
-                  <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-                    <img
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
-                      src={image}
-                      srcSet={image}
-                      alt="Yosemite National Park"
-                    />
-                  </AspectRatio>
-                </Link>
+                <AspectRatio ratio="1" sx={{ minWidth: 400 }}
+                  onClick={() => {
+                    console.log(`image ${image}`);
+                  }}
+                >
+                  <img
+                    style={{ maxWidth: '100%', maxHeight: '100%' }}
+                    src={image}
+                    srcSet={image}
+                    alt="Yosemite National Park"
+                  />
+                </AspectRatio>
               </Card>
             </Box>
           ))}
         </Box></> : null}
-      {posts.contents && <>
+      {posts.contents && posts.contents.map((content, index) => (<>
         <Divider />
         <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
           Contents
@@ -167,16 +171,16 @@ export default function FeedContent({ posts }) {
             })}
           >
             <Avatar
-              src={posts.contents[0].authorAvatar}
-              srcSet={posts.contents[0].authorAvatarSet}
+              src={content.authorAvatar}
+              srcSet={content.authorAvatarSet}
               sx={{ borderRadius: 'xl', width: 30, height: 30 }}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
               <Typography level="body2">
-                {posts.contents[0].authorName}
+                {content.authorName}
               </Typography>
               <Typography level="body2" textColor="#999" fontSize={10} >
-                {posts.contents[0].date}
+                {content.date}
               </Typography>
             </Box>
           </Box>
@@ -196,11 +200,12 @@ export default function FeedContent({ posts }) {
             })}
           >
             <Typography level="body2" textColor="#999" mb={0.5}>
-              {posts.contents[0].desc}
+              {content.desc}
             </Typography>
             <Divider />
           </Box>
-        </Box></>}
-      </Sheet>
+        </Box>
+      </>))}
+    </Sheet>
   );
 }
