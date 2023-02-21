@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Feed />} />
+          <Route path="/post/:id" element={<Post />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/team" element={<PrivateRoute />}>
             <Route path="/team" element={<Team />} />
@@ -25,9 +26,6 @@ function App() {
           </Route>
           <Route path="/newpost" element={<PrivateRoute />}>
             <Route path="/newpost" element={<NewPost />} />
-          </Route>
-          <Route path="/post/:id" element={<PrivateRoute />}>
-            <Route path="/post/:id" element={<Post />} />
           </Route>
         </Routes>
       </AuthProvider>

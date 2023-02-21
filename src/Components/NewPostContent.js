@@ -16,7 +16,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import { IconButton, Input } from '@mui/joy';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';	
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 
 // Firebase
@@ -95,18 +95,19 @@ export default function FeedContent() {
   const setPost = async (post) => {
 
 
-    if (imagensRef.length !== files.length) {
-      if (files.length === 0 && imagensRef.length === 0) {
-        try {
-          console.log("post", post);
-          const docRef = addDoc(collection(db, "posts"), post);
-          console.log("Document written with ID: ", docRef.id);
-          navegate('/')
-          return docRef.id;
-        } catch (e) {
-          console.log("Error adding document: ", e);
-        }
-      } else {
+    console.log("entrou");
+    if (files.length == 0) {
+      try {
+        console.log("post", post);
+        const docRef = addDoc(collection(db, "posts"), post);
+        console.log("Document written with ID: ", docRef.id);
+        navegate('/')
+        return docRef.id;
+      } catch (e) {
+        console.log("Error adding document: ", e);
+      }
+    } else {
+      if (imagensRef.length !== files.length) {
         files.map(async (image) => {
           try {
             const storageRef = ref(storage, `images/${image.name}`);
@@ -157,6 +158,7 @@ export default function FeedContent() {
         })
       }
     }
+
 
 
   }
@@ -368,10 +370,10 @@ export default function FeedContent() {
               p: 4,
               borderRadius: 'xl',
             }}>
-              <Typography sx={{color: '#1cb2c4', fontSize: 30, pb: 4 }} id="modal-modal-title" variant="h6" component="h2" >
+              <Typography sx={{ color: '#1cb2c4', fontSize: 30, pb: 4 }} id="modal-modal-title" variant="h6" component="h2" >
                 Upload Image
               </Typography>
-              
+
               <Dropzone accept={"image/*"} onDrop={acceptedFiles => {
                 const copy = files;
                 const image = (acceptedFiles.map(file => Object.assign(file, {
@@ -414,7 +416,7 @@ export default function FeedContent() {
                       <CloudUploadIcon color='#fff' sx={{ fontSize: 40 }} />{renderDragMessage(isDragActive, isDragReject)}
                     </Box>
 
-                    
+
                   </Box>
                 )}
               </Dropzone>
