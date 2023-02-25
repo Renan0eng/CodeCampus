@@ -10,19 +10,43 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 import Modal from '@mui/joy/Modal';
+import Button from '@mui/joy/Button';
+import SendIcon from '@mui/icons-material/Send'
 
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@mui/joy';
 
 export default function FeedContent({ posts }) {
-
-  const user = JSON.parse(sessionStorage.getItem('user'));
-
-  const navigate = useNavigate();
-
+  
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const date = new Date();
   const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+
+  const user = JSON.parse(sessionStorage.getItem('user'));
+
+  const [comment, setComment] = React.useState('');
+
+  const [comments, setComments] = React.useState([{
+    comment: 'Text comet 1',
+    authorAvatar: user.photoURL,
+    authorName: user.displayName,
+    date: formattedDate,
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl.',
+    relevance: 0,
+  },
+  {
+    comment: 'Text comet 1',
+    authorAvatar: user.photoURL,
+    authorName: user.displayName,
+    date: formattedDate,
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl.',
+    relevance: 0,
+  }
+]);
+
+  const navigate = useNavigate();
+
+  
 
   const [openImage, setOpenImage] = React.useState(false);
   const [imagen, setImagen] = React.useState({});
@@ -178,6 +202,9 @@ export default function FeedContent({ posts }) {
         </Box></> : null}
       {/* add comentarios */}
       <Divider />
+      <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
+          comments
+        </Typography>
       <Box>
         <Box
           sx={{
@@ -215,24 +242,61 @@ export default function FeedContent({ posts }) {
             variant="outlined"
             color="neutral"
             fullWidth
+            multiline
+            rows={3}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
         </Box>
         {/* btn enviar */}
+        <Box 
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: 2,
+            mt: 2,
+            mb: 2,
+          }}
+        >
+          <Button
+            size="sm"
+            variant="outlined"
+            color="primary"
+            onClick={() => {
+              console.log(`Send ${posts.title}`);
+              if (comment) {
+                setComments([...comments, {
+                  id: comments.length + 1,
+                  desc: comment,
+                  authorName: user && user.displayName ? user.displayName : 'Anonimo',
+                  authorAvatar: user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png',
+                  date: formattedDate,
+                }]);
+                setComment('');
+              }
+            }}
+            sx={{ mt: 1 }}
+          >
+            <SendIcon/>
+            Send
+          </Button>
+        </Box>
+       
 
       </Box>
 
 
 
-      {posts.contents && posts.contents.map((content, index) => (<>
+      {comments && comments.map((content, index) => (<>
         <Divider />
-        <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
-          Contents
-        </Typography>
         <Box
           sx={(theme) => ({
             display: 'flex',
             flexWrap: 'wrap',
             gap: 0.5,
+            mt: 2,
             '& > div': {
               boxShadow: 'none',
               '--Card-padding': '0px',
@@ -257,7 +321,7 @@ export default function FeedContent({ posts }) {
           >
             <Avatar
               src={content.authorAvatar}
-              srcSet={content.authorAvatarSet}
+              srcSet={content.authorAvatar}
               sx={{ borderRadius: 'xl', width: 30, height: 30 }}
             />
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
@@ -287,7 +351,6 @@ export default function FeedContent({ posts }) {
             <Typography level="body2" textColor="#999" mb={0.5}>
               {content.desc}
             </Typography>
-            <Divider />
           </Box>
         </Box>
       </>))}

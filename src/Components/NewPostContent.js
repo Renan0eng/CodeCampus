@@ -217,7 +217,7 @@ export default function FeedContent() {
       </Box>
       <Box mt={2} mb={8}>
         <ReactQuill theme="snow" value={description} onChange={setDescription} 
-          style={{ height: 200, width: "100%", paddingBottom: 0, }}
+          style={{ height: 300, width: "100%" }}
         />
       </Box>
       <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>

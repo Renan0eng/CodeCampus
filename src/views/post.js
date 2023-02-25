@@ -132,10 +132,10 @@ export default function FeedExample() {
             <IconButton
               variant="outlined"
               size="sm"
-              onClick={() => setDrawerOpen(true)}
+              onClick={() => navegate("/")}
               sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
-              <MenuIcon />
+              <ViewDayIcon />
             </IconButton>
             <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }} minWidth={100}>
               <Typography component="h1" fontWeight="xl"

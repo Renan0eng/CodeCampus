@@ -37,6 +37,7 @@ export default function FeedContent({ posts }) {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: 2,
+          
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -84,7 +85,7 @@ export default function FeedContent({ posts }) {
           {posts.title}
         </Typography>
       </Box>
-      <Box
+      <Box pb={2}
         dangerouslySetInnerHTML={{ __html: posts.desc }}
       />
       {posts.images ? <>
