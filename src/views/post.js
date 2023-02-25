@@ -25,7 +25,6 @@ import Menu from '../Components/Menu';
 import Layout from '../Components/LayoutPost';
 import Navigation from '../Components/Navigation';
 import PostContent from '../Components/PostContent';
-import Header from '../Components/Header';
 import { List } from '@mui/material';
 
 import { useParams, useNavigate } from 'react-router-dom';
@@ -62,6 +61,8 @@ function ColorSchemeToggle() {
 export default function FeedExample() {
 
   const navegate = useNavigate();
+
+  const admin = true
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [unreadMenu, setUnreadMenu] = React.useState(false);
@@ -111,8 +112,134 @@ export default function FeedExample() {
         }}
       >
         <Layout.Header>
-          <Header/>
+          <Box
+            sx={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
+          >
+            <IconButton
+              variant="outlined"
+              size="sm"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ display: { sm: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <IconButton
+              variant="outlined"
+              size="sm"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.5 }} minWidth={100}>
+              <Typography component="h1" fontWeight="xl"
+                onClick={() => navegate('/')}
+              >
+                Feed 
+              </Typography>
+              <Typography component="h1" fontWeight="xl" sx={{color: '#888'}}>
+                /
+              </Typography>
+              <Typography component="h1" fontWeight="xl">
+                Post
+              </Typography>
+            </Box>
+          </Box>
+          <Input
+            size="sm"
+            placeholder="Search anything…"
+            startDecorator={<SearchRoundedIcon color="primary" />}
+            endDecorator={
+              <IconButton variant="outlined" size="sm" color="neutral">
+                /
+              </IconButton>
+            }
+            sx={{
+              flexBasis: '500px',
+              display: {
+                xs: 'none',
+                sm: 'flex',
+              },
+            }}
+          />
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
+            <IconButton
+              size="sm"
+              variant="outlined"
+              color="primary"
+              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+            >
+              <SearchRoundedIcon />
+            </IconButton>
+
+            {admin &&
+              <Menu
+                id="app-selector"
+                control={
+                  <IconButton
+                    size="sm"
+                    variant="outlined"
+                    color="primary"
+                    aria-label="Apps"
+                  >
+                    <GridViewRoundedIcon />
+                  </IconButton>
+                }
+                menus={[
+                  {
+                    label: 'Feed',
+                    active: true,
+                    href: '/',
+                  },
+                  {
+                    label: 'New',
+                    href: '/newpost',
+                  },
+                  {
+                    label: 'Team',
+                    href: '/team',
+                  },
+                  {
+                    label: 'Files',
+                    href: '/files',
+                  },
+                ]}
+              />}
+            <ColorSchemeToggle />
+            {!sessionStorage.getItem('user') &&
+              <IconButton
+                size="sm"
+                variant="solid"
+                color="primary"
+                sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+                onClick={() => {
+                  navegate('/login')
+                }}
+              >
+                <LoginIcon />
+              </IconButton>}
+              {!sessionStorage.getItem('user') &&
+              <IconButton
+                size="sm"
+                variant="solid"
+                sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+                onClick={() => {
+                  navegate('/login')
+                }}
+              >
+                <LoginIcon />
+              </IconButton>}
+          </Box>
         </Layout.Header>
+        <Layout.SideNav>
+          <Navigation />
+        </Layout.SideNav>
         <Layout.Main>
           <List
             sx={{
