@@ -9,16 +9,26 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
-import { Link } from '@mui/material';
+import { InputAdornment } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 import { useNavigate } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
+import { Input } from '@mui/joy';
 
 export default function FeedContent({ posts }) {
 
+  const user = JSON.parse(sessionStorage.getItem('user'));
+
   const navigate = useNavigate();
 
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const date = new Date();
+  const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+
+
   React.useEffect(() => {
-    console.log(`FeedContent`, posts);
+    console.log(`FeedContent`, user);
   }, []);
 
   return (
@@ -97,8 +107,6 @@ export default function FeedContent({ posts }) {
           sx={(theme) => ({
             display: 'flex',
             flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'center',
             gap: 2,
             '& > div': {
               boxShadow: 'none',
@@ -122,7 +130,7 @@ export default function FeedContent({ posts }) {
               })}
             >
               <Card variant="outlined" >
-                <AspectRatio ratio="1" sx={{ minWidth: 400 }}
+                <AspectRatio ratio="1" sx={{ minWidth: 100 }}
                   onClick={() => {
                     console.log(`image ${image}`);
                   }}
@@ -138,6 +146,53 @@ export default function FeedContent({ posts }) {
             </Box>
           ))}
         </Box></> : null}
+      {/* add comentarios */}
+      <Divider />
+      <Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: 2,
+            mt: 2,
+          }}
+        >
+
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Avatar
+              src={user.photoURL}
+              srcSet={user.photoURL}
+              sx={{ borderRadius: 'xl' }}
+            />
+            <Box sx={{ ml: 2 }}>
+              <Typography level="body2" textColor="text.primary" mb={0.5}>
+                {user.displayName}
+              </Typography>
+              <Typography level="body3" textColor="text.tertiary">
+                {formattedDate}
+              </Typography>
+            </Box>
+          </Box>
+          {/* input comentario */}
+        </Box>
+        <Box>
+          <Input
+            sx={{ mt: 1 }}
+            placeholder="Add a comment"
+            size="sm"
+            variant="outlined"
+            color="neutral"
+            fullWidth
+          />
+        </Box>
+        {/* btn enviar */}
+
+      </Box>
+
+
+
       {posts.contents && posts.contents.map((content, index) => (<>
         <Divider />
         <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>

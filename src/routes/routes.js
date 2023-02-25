@@ -8,6 +8,7 @@ import NewPost from '../views/newPost';
 import Post from '../views/post';
 import { AuthProvider } from "../contexts/authContext";
 import { PrivateRoute } from "./index";
+import Header from "../Components/Header";
 
 function App() {
   return (<>

@@ -186,7 +186,7 @@ export default function FeedContent() {
           <Avatar
             src={user.photoURL}
             srcSet={user.photoURL}
-            sx={{ borderRadius: 'xl' }}
+            sx={{ borderRadius: 'xl', width: 80, height: 80 }}
           />
           <Box sx={{ ml: 2, display: "flex", alignItems: "center" }}>
             <Typography level="body2" textColor="text.primary" mb={0.5}>
@@ -430,6 +430,12 @@ export default function FeedContent() {
         <IconButton color="primary" aria-label="New post"
           onClick={(e) => {
             e.preventDefault();
+
+            // validate all fields before submit
+            if (!title || !description ) {
+              alert("Preencha todos os campos");
+              return;
+            }
             setPost({
               relevance: 0,
               authorId: user.uid,

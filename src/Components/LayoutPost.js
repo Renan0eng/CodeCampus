@@ -11,8 +11,8 @@ function Root(props) {
           display: 'grid',
           gridTemplateColumns: {
             xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 200px) minmax(160px, 1fr) ',
+            sm: 'minmax(450px, 1fr)',
+            md: 'minmax(160px, 1fr) ',
           },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
