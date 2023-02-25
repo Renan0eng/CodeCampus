@@ -38,7 +38,8 @@ export default function FeedContent({ posts }) {
     const user = JSON.parse(sessionStorage.getItem('user'));
     const data = await getDocs(collection(db, "comments/"));
     const comment = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    const array = comment.filter((item) => item.postID === comments);
+    console.log(`comment`, comment);
+    const array = comment.filter((item) => item.postId === posts.id);
     console.log(`data`, array);
     setComments(array);
   };
@@ -65,10 +66,8 @@ export default function FeedContent({ posts }) {
   const handleCloseImage = () => setOpenImage(false);
 
   React.useEffect(() => {
-    
     getComments();
-    console.log(`FeedContent`, user);
-  }, []);
+  }, [posts]);
 
   return (
     <Sheet
@@ -282,6 +281,7 @@ export default function FeedContent({ posts }) {
               if (comment) {
                 const Comment = {
                   desc: comment,
+                  postId: posts.id,
                   authorName: user && user.displayName ? user.displayName : 'Anonimo',
                   authorAvatar: user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png',
                   date: formattedDate,
@@ -365,7 +365,7 @@ export default function FeedContent({ posts }) {
               },
             })}
           >
-            <Typography level="body2" textColor="#999" mb={0.5}>
+            <Typography level="body2" textColor="#333" mb={0.5}>
               {content.desc}
             </Typography>
           </Box>
