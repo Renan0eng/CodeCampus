@@ -162,13 +162,13 @@ export default function FeedContent({ posts }) {
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Avatar
-              src={user.photoURL}
-              srcSet={user.photoURL}
+              src={user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png' }
+              srcSet={user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png'}
               sx={{ borderRadius: 'xl' }}
             />
             <Box sx={{ ml: 2 }}>
               <Typography level="body2" textColor="text.primary" mb={0.5}>
-                {user.displayName}
+                {user && user.displayName ? user.displayName : 'Anonimo'}
               </Typography>
               <Typography level="body3" textColor="text.tertiary">
                 {formattedDate}
