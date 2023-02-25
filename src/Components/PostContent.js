@@ -13,11 +13,36 @@ import Modal from '@mui/joy/Modal';
 import Button from '@mui/joy/Button';
 import SendIcon from '@mui/icons-material/Send'
 
+//firebase
+import { getDocs, collection, addDoc } from 'firebase/firestore';
+import { db } from '../constants/firebase';
+
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@mui/joy';
 
+
+
+const setCommentData = async (comment) => {
+  try{
+  const docRef = addDoc(collection(db, "comments"), comment);
+  console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+
 export default function FeedContent({ posts }) {
-  
+
+  const getComments = async (comments) => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    const data = await getDocs(collection(db, "comments/"));
+    const comment = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const array = comment.filter((item) => item.postID === comments);
+    console.log(`data`, array);
+    setComments(array);
+  };
+
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const date = new Date();
   const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
@@ -26,27 +51,13 @@ export default function FeedContent({ posts }) {
 
   const [comment, setComment] = React.useState('');
 
-  const [comments, setComments] = React.useState([{
-    comment: 'Text comet 1',
-    authorAvatar: user.photoURL,
-    authorName: user.displayName,
-    date: formattedDate,
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl.',
-    relevance: 0,
-  },
-  {
-    comment: 'Text comet 1',
-    authorAvatar: user.photoURL,
-    authorName: user.displayName,
-    date: formattedDate,
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam massa, eget aliquam nunc nisl sit amet nisl.',
-    relevance: 0,
-  }
-]);
+  const [comments, setComments] = React.useState([]);
 
   const navigate = useNavigate();
 
-  
+  const [openComment, setOpenComment] = React.useState(false);
+  const handleOpenComment = () => setOpenComment(true);
+  const handleCloseComment = () => setOpenComment(false);
 
   const [openImage, setOpenImage] = React.useState(false);
   const [imagen, setImagen] = React.useState({});
@@ -54,6 +65,8 @@ export default function FeedContent({ posts }) {
   const handleCloseImage = () => setOpenImage(false);
 
   React.useEffect(() => {
+    
+    getComments();
     console.log(`FeedContent`, user);
   }, []);
 
@@ -267,13 +280,14 @@ export default function FeedContent({ posts }) {
             onClick={() => {
               console.log(`Send ${posts.title}`);
               if (comment) {
-                setComments([...comments, {
-                  id: comments.length + 1,
+                const Comment = {
                   desc: comment,
                   authorName: user && user.displayName ? user.displayName : 'Anonimo',
                   authorAvatar: user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png',
                   date: formattedDate,
-                }]);
+                }
+                setCommentData(Comment)
+                getComments();
                 setComment('');
               }
             }}
@@ -288,8 +302,11 @@ export default function FeedContent({ posts }) {
       </Box>
 
 
+      {/* comentarios */}
 
-      {comments && comments.map((content, index) => (<>
+      {
+        
+      comments && comments.map((content, index) => (<>
         <Divider />
         <Box
           sx={(theme) => ({
