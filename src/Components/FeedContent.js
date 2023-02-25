@@ -84,10 +84,9 @@ export default function FeedContent({ posts }) {
           {posts.title}
         </Typography>
       </Box>
-      <Divider />
-      <Typography level="body2" mt={2} mb={2}>
-        {posts.desc}
-      </Typography>
+      <Box
+        dangerouslySetInnerHTML={{ __html: posts.desc }}
+      />
       {posts.images ? <>
         <Divider />
         <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
@@ -120,16 +119,14 @@ export default function FeedContent({ posts }) {
               })}
             >
               <Card variant="outlined" >
-                <Link href={image.image}>
-                  <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-                    <img
-                      style={{ maxWidth: '100%', maxHeight: '100%' }}
-                      src={image}
-                      srcSet={image}
-                      alt="Yosemite National Park"
-                    />
-                  </AspectRatio>
-                </Link>
+                <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
+                  <img
+                    style={{ maxWidth: '100%', maxHeight: '100%' }}
+                    src={image}
+                    srcSet={image}
+                    alt="Yosemite National Park"
+                  />
+                </AspectRatio>
               </Card>
             </Box>
           ))}
@@ -201,6 +198,6 @@ export default function FeedContent({ posts }) {
             <Divider />
           </Box>
         </Box></>}
-      </Sheet>
+    </Sheet>
   );
 }

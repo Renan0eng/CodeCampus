@@ -9,6 +9,9 @@ import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
 import Modal from '@mui/joy/Modal';
 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 import { useNavigate } from 'react-router-dom';
 
 // Icons import
@@ -163,6 +166,10 @@ export default function FeedContent() {
 
   }
 
+  React.useEffect(() => {
+    console.log("Description", description);
+  }, [description])
+
   return (
     <Sheet
       variant="outlined"
@@ -179,14 +186,14 @@ export default function FeedContent() {
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
-          gap: 2,
+          gap: 4,
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Avatar
             src={user.photoURL}
             srcSet={user.photoURL}
-            sx={{ borderRadius: 'xl', width: 80, height: 80 }}
+            sx={{ borderRadius: 50, width: 50, height: 50 }}
           />
           <Box sx={{ ml: 2, display: "flex", alignItems: "center" }}>
             <Typography level="body2" textColor="text.primary" mb={0.5}>
@@ -195,7 +202,6 @@ export default function FeedContent() {
           </Box>
         </Box>
       </Box>
-      <Divider sx={{ mt: 2 }} />
       <Box
         sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start', }}
       >
@@ -209,19 +215,11 @@ export default function FeedContent() {
           onChange={(e) => setTitle(e.target.value)}
         />
       </Box>
-      <Divider />
-      <Typography level="body2" mt={2} mb={2}>
-        <Input
-          sx={{ width: '100%', outline: "none", height: 150 }}
-          color="neutral"
-          disabled={false}
-          placeholder="Description"
-          size="sm"
-          variant="outlined"
-          onChange={(e) => setDescription(e.target.value)}
+      <Box mt={2} mb={8}>
+        <ReactQuill theme="snow" value={description} onChange={setDescription} 
+          style={{ height: 200, width: "100%", paddingBottom: 0, }}
         />
-      </Typography>
-      <Divider />
+      </Box>
       <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
         Images
       </Typography>

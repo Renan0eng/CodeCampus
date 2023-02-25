@@ -9,11 +9,9 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
-import { InputAdornment } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+import Modal from '@mui/joy/Modal';
 
 import { useNavigate } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import { Input } from '@mui/joy';
 
 export default function FeedContent({ posts }) {
@@ -26,6 +24,10 @@ export default function FeedContent({ posts }) {
   const date = new Date();
   const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 
+  const [openImage, setOpenImage] = React.useState(false);
+  const [imagen, setImagen] = React.useState({});
+  const handleOpenImage = () => setOpenImage(true);
+  const handleCloseImage = () => setOpenImage(false);
 
   React.useEffect(() => {
     console.log(`FeedContent`, user);
@@ -94,10 +96,7 @@ export default function FeedContent({ posts }) {
           {posts.title}
         </Typography>
       </Box>
-      <Divider />
-      <Typography level="body2" mt={2} mb={2}>
-        {posts.desc}
-      </Typography>
+      <Box p={2} dangerouslySetInnerHTML={{ __html: posts.desc }} />
       {posts.images ? <>
         <Divider />
         <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
@@ -108,6 +107,7 @@ export default function FeedContent({ posts }) {
             display: 'flex',
             flexWrap: 'wrap',
             gap: 2,
+            mb: 3,
             '& > div': {
               boxShadow: 'none',
               '--Card-padding': '0px',
@@ -115,13 +115,12 @@ export default function FeedContent({ posts }) {
             },
           })}
         >
-          {posts.images && posts.images.map((image) => (
+          {posts.images && posts.images.map((image) => (<>
             <Box
               sx={(theme) => ({
                 display: 'flex',
                 flexWrap: 'wrap',
                 gap: 2,
-                mb: 3,
                 '& > div': {
                   boxShadow: 'none',
                   '--Card-padding': '0px',
@@ -131,8 +130,11 @@ export default function FeedContent({ posts }) {
             >
               <Card variant="outlined" >
                 <AspectRatio ratio="1" sx={{ minWidth: 100 }}
-                  onClick={() => {
-                    console.log(`image ${image}`);
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleOpenImage();
+                    setImagen(image);
+                    console.log(`image`, image);
                   }}
                 >
                   <img
@@ -144,7 +146,35 @@ export default function FeedContent({ posts }) {
                 </AspectRatio>
               </Card>
             </Box>
-          ))}
+
+            <Modal
+              open={openImage}
+              onClose={handleCloseImage}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: '80%',
+                  bgcolor: 'background.paper',
+                  border: '2px solid',
+                  boxShadow: 24,
+                  p: 4,
+                  borderRadius: 'xl',
+                }}
+              >
+                <img
+                  src={imagen}
+                  srcSet={imagen}
+                  width="100%"
+                />
+              </Box>
+            </Modal>
+          </>))}
         </Box></> : null}
       {/* add comentarios */}
       <Divider />
@@ -162,7 +192,7 @@ export default function FeedContent({ posts }) {
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Avatar
-              src={user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png' }
+              src={user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png'}
               srcSet={user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png'}
               sx={{ borderRadius: 'xl' }}
             />
