@@ -365,7 +365,7 @@ export default function FeedContent({ posts }) {
               },
             })}
           >
-            <Typography level="body2" textColor="#333" mb={0.5}>
+            <Typography level="body2" mb={0.5}>
               {content.desc}
             </Typography>
           </Box>
