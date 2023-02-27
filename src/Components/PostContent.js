@@ -14,7 +14,7 @@ import Button from '@mui/joy/Button';
 import SendIcon from '@mui/icons-material/Send'
 
 //firebase
-import { getDocs, collection, addDoc, query, where } from 'firebase/firestore';
+import { getDocs, collection, addDoc, query, where, orderBy  } from 'firebase/firestore';
 import { db } from '../constants/firebase';
 
 import { useNavigate } from 'react-router-dom';
@@ -41,17 +41,21 @@ export default function FeedContent({ posts }) {
 
     const comment = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     // ordene os comentários por data e hora crescente
-    const array = comment.sort(function(a, b) {
-      return a.data.getTime() - b.data.getTime();
+    const array = comment.sort((a, b) => {
+      console.log(a.date.split("/").reverse().join("-"));
+      const dataA = new Date(a.date.split("/").reverse().join("-"));
+      const dataB = new Date(b.date.split("/").reverse().join("-"));
+      console.log(dataA - dataB);
+      return dataB - dataA;
     });
-    console.log(array);
+    setComments(array);
+
 
     setComments(comment);
   };
 
   
   const date = new Date();
-  console.log(date);
   const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`;
 
   const user = JSON.parse(sessionStorage.getItem('user'));
@@ -263,9 +267,18 @@ export default function FeedContent({ posts }) {
           </Box>
           {/* input comentario */}
         </Box>
-        <Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+          }}
+        >
+        <Box
+          width="80%"
+        >
           <Input
-            sx={{ mt: 1 }}
             placeholder="Add a comment"
             size="sm"
             variant="outlined"
@@ -275,6 +288,10 @@ export default function FeedContent({ posts }) {
             rows={3}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
+            sx={{
+              mt: 2,
+              mb: 2,
+            }}
           />
         </Box>
         {/* btn enviar */}
@@ -284,7 +301,8 @@ export default function FeedContent({ posts }) {
             justifyContent: 'flex-end',
             alignItems: 'center',
             flexWrap: 'wrap',
-            gap: 2,
+            width: '20%',
+            minWidth: '80px',
             mt: 2,
             mb: 2,
           }}
@@ -308,13 +326,12 @@ export default function FeedContent({ posts }) {
                 setComment('');
               }
             }}
-            sx={{ mt: 1 }}
           >
             <SendIcon/>
             Send
           </Button>
         </Box>
-       
+        </Box>
 
       </Box>
 
@@ -382,7 +399,7 @@ export default function FeedContent({ posts }) {
               },
             })}
           >
-            <Typography level="body2" mb={0.5}>
+            <Typography level="body2"  mb={0.5}>
               {content.desc}
             </Typography>
           </Box>
