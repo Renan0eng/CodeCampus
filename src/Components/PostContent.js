@@ -14,7 +14,7 @@ import Button from '@mui/joy/Button';
 import SendIcon from '@mui/icons-material/Send'
 
 //firebase
-import { getDocs, collection, addDoc } from 'firebase/firestore';
+import { getDocs, collection, addDoc, query, where } from 'firebase/firestore';
 import { db } from '../constants/firebase';
 
 import { useNavigate } from 'react-router-dom';
@@ -36,17 +36,23 @@ export default function FeedContent({ posts }) {
 
   const getComments = async (comments) => {
     const user = JSON.parse(sessionStorage.getItem('user'));
-    const data = await getDocs(collection(db, "comments/"));
+    // const data = await getDocs(collection(db, "comments/"));
+    const data = await getDocs(query(collection(db, "comments/"), where("postId", "==", posts.id)));
+
     const comment = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    console.log(`comment`, comment);
-    const array = comment.filter((item) => item.postId === posts.id);
-    console.log(`data`, array);
-    setComments(array);
+    // ordene os comentários por data e hora crescente
+    const array = comment.sort(function(a, b) {
+      return a.data.getTime() - b.data.getTime();
+    });
+    console.log(array);
+
+    setComments(comment);
   };
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  
   const date = new Date();
-  const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+  console.log(date);
+  const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`;
 
   const user = JSON.parse(sessionStorage.getItem('user'));
 
@@ -64,6 +70,16 @@ export default function FeedContent({ posts }) {
   const [imagen, setImagen] = React.useState({});
   const handleOpenImage = () => setOpenImage(true);
   const handleCloseImage = () => setOpenImage(false);
+
+  // formata a data de 26/1/2023 20:13:45 para 26 Feb 2023 at 20:10 (dd mmm yyyy at hh:mm) 
+  const formatDate = (date) => {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dateArray = date.split(' ');
+    const dateArray2 = dateArray[0].split('/');
+    const dateArray3 = dateArray[1].split(':');
+    const newDate = `${dateArray2[0]} ${months[parseInt(dateArray2[1]) - 1]} ${dateArray2[2]} at ${dateArray3[0]}:${dateArray3[1]}`;
+    return newDate;
+  }
 
   React.useEffect(() => {
     getComments();
@@ -201,6 +217,7 @@ export default function FeedContent({ posts }) {
                   boxShadow: 24,
                   p: 4,
                   borderRadius: 'xl',
+                  m: 2,
                 }}
               >
                 <img
@@ -240,7 +257,7 @@ export default function FeedContent({ posts }) {
                 {user && user.displayName ? user.displayName : 'Anonimo'}
               </Typography>
               <Typography level="body3" textColor="text.tertiary">
-                {formattedDate}
+                {formatDate(formattedDate)}
               </Typography>
             </Box>
           </Box>
@@ -346,7 +363,7 @@ export default function FeedContent({ posts }) {
                 {content.authorName}
               </Typography>
               <Typography level="body2" textColor="#999" fontSize={10} >
-                {content.date}
+                {formatDate(content.date)}
               </Typography>
             </Box>
           </Box>
