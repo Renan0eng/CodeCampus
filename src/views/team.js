@@ -35,7 +35,6 @@ import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRound
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import teamTheme from '../constants/theme';
@@ -131,6 +130,101 @@ function TeamNav() {
 
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+  const [grupos, setGrupos] = React.useState([
+    {
+      id: 1,
+      nome: 'Grupo 1',
+      desc: 'Feito por alunos para alunos',
+      avatar: 'https://i.pravatar.cc/150?img=1',
+      membros: [
+        {
+          id: 1,
+          nome: 'João',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'João@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=2',
+        },
+        {
+          id: 2,
+          nome: 'Maria',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'Maria@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=3',
+        },
+      ],
+      requerimentos: [
+        {
+          ocupação: 'Designer',
+
+        },
+      ],
+    },
+    {
+      id: 1,
+      nome: 'Grupo 2',
+      desc: 'Feito para alunos por alunos',
+      avatar: 'https://i.pravatar.cc/150?img=1',
+      membros: [
+        {
+          id: 1,
+          nome: 'João',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'João@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=2',
+        },
+        {
+          id: 2,
+          nome: 'Maria',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'Maria@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=3',
+        },
+      ],
+      requerimentos: [
+        {
+          ocupação: 'Designer',
+
+        },
+      ],
+    },
+    {
+      id: 1,
+      nome: 'Grupo 3',
+      desc: 'Feito por alunos para alunos',
+      avatar: 'https://i.pravatar.cc/150?img=1',
+      membros: [
+        {
+          id: 1,
+          nome: 'João',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'João@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=2',
+        },
+        {
+          id: 2,
+          nome: 'Maria',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'Maria@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=3',
+        },
+      ],
+      requerimentos: [
+        {
+          ocupação: 'Designer',
+
+        },
+      ],
+    }
+  ])
+
+
   return (
     <CssVarsProvider disableTransitionOnChange theme={teamTheme}>
       <CssBaseline />
@@ -441,7 +535,7 @@ export default function TeamExample() {
               gap: 2,
             }}
           >
-            {[...Array(3)].map((_, index) => (
+            {grupos.map((grupo, index) => (
               <Sheet
                 key={index}
                 component="li"
@@ -454,12 +548,20 @@ export default function TeamExample() {
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar
-                    src="https://i.pravatar.cc/40?img=6"
-                    srcSet="https://i.pravatar.cc/80?img=6 2x"
+                    src={grupo.avatar}
+                    srcSet={grupo.avatar}
                     sx={{ borderRadius: 'sm' }}
                   />
                   <Box>
-                    <Typography>Andrew Smith</Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: 'row'
+                      }}
+                    >
+                      <Typography>{grupo.nome}</Typography>
+                    </Box>
+
                     <Typography level="body3">UI Designer</Typography>
                   </Box>
                 </Box>
