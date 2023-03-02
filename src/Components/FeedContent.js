@@ -9,11 +9,12 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import Avatar from '@mui/joy/Avatar';
-import { Link } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
 
 export default function FeedContent({ posts }) {
+
+  console.log(posts);
 
   const navigate = useNavigate();
 
