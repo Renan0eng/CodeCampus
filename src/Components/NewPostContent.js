@@ -97,13 +97,14 @@ export default function FeedContent() {
 
   const setPost = async (post) => {
 
+    if (post.desc.length > 400) {
+      alert("A descrição deve ter no máximo 400 caracteres");
+      return false;
+    }
 
-    console.log("entrou");
     if (files.length == 0) {
       try {
-        console.log("post", post);
         const docRef = addDoc(collection(db, "posts"), post);
-        console.log("Document written with ID: ", docRef.id);
         navegate('/')
         return docRef.id;
       } catch (e) {
@@ -132,18 +133,13 @@ export default function FeedContent() {
               console.log(error);
             }, () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                console.log('File available at', downloadURL);
                 const copy = imagensRef;
                 copy.push(downloadURL);
                 setImagensRef(copy);
-                console.log("imagensRef", imagensRef);
                 if (imagensRef.length === files.length) {
-                  console.log("entrou");
                   post.images = imagensRef;
                   try {
-                    console.log("post", post);
                     const docRef = addDoc(collection(db, "posts"), post);
-                    console.log("Document written with ID: ", docRef.id);
                     navegate('/')
                     return docRef.id;
                   } catch (e) {
@@ -152,8 +148,6 @@ export default function FeedContent() {
                 }
               });
             });
-
-            console.log("Image uploaded", storageRef);
           } catch (e) {
             console.log("Error adding document: ", e);
             return false;
@@ -167,7 +161,6 @@ export default function FeedContent() {
   }
 
   React.useEffect(() => {
-    console.log("Description", description);
   }, [description])
 
   return (
@@ -217,8 +210,8 @@ export default function FeedContent() {
       </Box>
       <Box mt={2} mb={8}>
         <ReactQuill theme="snow" value={description} onChange={setDescription}
-          style={{ 
-            height: 300, 
+          style={{
+            height: 300,
             width: "100%",
           }}
         />
@@ -382,7 +375,6 @@ export default function FeedContent() {
                 })));
                 copy.push(image[0]);
                 setFiles(copy);
-                console.log('files', files);
                 handleClose();
               }}>
                 {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
@@ -433,7 +425,7 @@ export default function FeedContent() {
             e.preventDefault();
 
             // validate all fields before submit
-            if (!title || !description ) {
+            if (!title || !description) {
               alert("Preencha todos os campos");
               return;
             }

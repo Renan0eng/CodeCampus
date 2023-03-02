@@ -61,7 +61,6 @@ export const AuthProvider = ({ children }) => {
       email: formElements.email.value,
       password: formElements.password.value
     };
-    console.log(data);
 
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
@@ -72,7 +71,6 @@ export const AuthProvider = ({ children }) => {
         sessionStorage.setItem('user', JSON.stringify(user));
         sessionStorage.setItem('token', token);
         navigate('/', { user: user });
-        console.log("cccccccccc");
       })
       .catch((error) => {
         const errorCode = error.code;

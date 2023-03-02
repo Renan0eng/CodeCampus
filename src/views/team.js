@@ -39,7 +39,7 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 // custom
 import teamTheme from '../constants/theme';
 import Menu from '../Components/Menu';
-import Layout from '../Components/Layout';
+import Layout from '../Components/LayoutTeam';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -70,6 +70,8 @@ function ColorSchemeToggle() {
 }
 
 function TeamNav() {
+  const [drawerBrowseOpen, setDrawerBrowseOpen] = React.useState(false);
+
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
       <ListItem nested>
@@ -80,11 +82,12 @@ function TeamNav() {
             variant="plain"
             color="primary"
             sx={{ '--IconButton-size': '24px', ml: 'auto' }}
+            onClick={() => { setDrawerBrowseOpen(!drawerBrowseOpen) }}
           >
             <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
           </IconButton>
         </ListSubheader>
-        <List
+        {drawerBrowseOpen && <List
           aria-labelledby="nav-list-browse"
           sx={{
             '& .JoyListItemButton-root': { p: '8px' },
@@ -122,13 +125,20 @@ function TeamNav() {
               </Chip>
             </ListItemButton>
           </ListItem>
-        </List>
+        </List>}
       </ListItem>
     </List>
   );
 }
 
 export default function TeamExample() {
+  // formata a data para o formato de 2023-02-24 para 24 Feb 2023
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return newDate.toLocaleDateString('pt-BR', options);
+    
+  }
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
   const [grupos, setGrupos] = React.useState([
@@ -145,20 +155,33 @@ export default function TeamExample() {
           ocupação: 'Desenvolvedor',
           email: 'João@gmail.com',
           avatar: 'https://i.pravatar.cc/150?img=2',
+          dataEntrada: '2021-01-01',
         },
         {
           id: 2,
           nome: 'Maria',
           sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
+          ocupação: 'designer',
           email: 'Maria@gmail.com',
           avatar: 'https://i.pravatar.cc/150?img=3',
+          dataEntrada: '2021-01-01',
+        },
+        {
+          id: 3,
+          nome: 'Pedro',
+          sobrenome: 'Silva',
+          ocupação: 'Desenvolvedor',
+          email: 'prdro@gmail.com',
+          avatar: 'https://i.pravatar.cc/150?img=4',
+          dataEntrada: '2021-01-01',
         },
       ],
       requerimentos: [
         {
           ocupação: 'Designer',
-
+        },
+        {
+          ocupação: 'Desenvolvedor',
         },
       ],
     },
@@ -172,9 +195,10 @@ export default function TeamExample() {
           id: 1,
           nome: 'João',
           sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
+          ocupação: 'designer',
           email: 'João@gmail.com',
           avatar: 'https://i.pravatar.cc/150?img=2',
+          dataEntrada: '2021-01-01',
         },
         {
           id: 2,
@@ -183,6 +207,7 @@ export default function TeamExample() {
           ocupação: 'Desenvolvedor',
           email: 'Maria@gmail.com',
           avatar: 'https://i.pravatar.cc/150?img=3',
+          dataEntrada: '2021-01-01',
         },
       ],
       requerimentos: [
@@ -205,14 +230,16 @@ export default function TeamExample() {
           ocupação: 'Desenvolvedor',
           email: 'João@gmail.com',
           avatar: 'https://i.pravatar.cc/150?img=2',
+          dataEntrada: '2021-01-01',
         },
         {
           id: 2,
           nome: 'Maria',
           sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
+          ocupação: 'designer',
           email: 'Maria@gmail.com',
           avatar: 'https://i.pravatar.cc/150?img=3',
+          dataEntrada: '2021-01-01',
         },
       ],
       requerimentos: [
@@ -335,198 +362,6 @@ export default function TeamExample() {
         <Layout.SideNav>
           <TeamNav />
         </Layout.SideNav>
-        <Layout.SidePane>
-          <Box
-            sx={{
-              p: 2,
-              pb: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography
-              fontSize="xs2"
-              textColor="text.tertiary"
-              textTransform="uppercase"
-              letterSpacing="md"
-              fontWeight="lg"
-            >
-              Filter by
-            </Typography>
-            <Button size="sm" variant="plain" sx={{ fontSize: 'xs', px: 1 }}>
-              Clear filters
-            </Button>
-          </Box>
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body2" textColor="text.primary">
-                By keywords
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Autocomplete
-                placeholder="Position, skills, etc…"
-                options={[
-                  {
-                    category: 'Position',
-                    title: 'Frontend engineer',
-                  },
-                  {
-                    category: 'Position',
-                    title: 'Backend engineer',
-                  },
-                  {
-                    category: 'Position',
-                    title: 'Product manager',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'JavaScript',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'TypeScript',
-                  },
-                  {
-                    category: 'Skill',
-                    title: 'Project management',
-                  },
-                ]}
-                groupBy={(option) => option.category}
-                getOptionLabel={(option) => option.title}
-              />
-              <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
-                <Chip
-                  variant="soft"
-                  size="sm"
-                  endDecorator={<ChipDelete variant="soft" />}
-                  sx={{ '--Chip-radius': (theme) => theme.vars.radius.sm }}
-                >
-                  UI designer
-                </Chip>
-              </Box>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body2" textColor="text.primary">
-                Location
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <Autocomplete
-                placeholder="Position, skills, etc…"
-                options={[
-                  // some of Thailand provinces
-                  'Bangkok',
-                  'Amnat Charoen',
-                  'Ang Thong',
-                  'Bueng Kan',
-                  'Buriram',
-                  'Chachoengsao',
-                  'Chai Nat',
-                  'Chaiyaphum',
-                  'Chanthaburi',
-                  'Chiang Mai',
-                  'Chiang Rai',
-                  'Chonburi',
-                ]}
-              />
-              <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
-                <Slider
-                  valueLabelFormat={(value) => `${value} km`}
-                  defaultValue={6}
-                  step={1}
-                  min={0}
-                  max={20}
-                  valueLabelDisplay="on"
-                />
-              </Box>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body2" textColor="text.primary">
-                Education
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-            <Box sx={{ mt: 2 }}>
-              <RadioGroup name="education" defaultValue="any">
-                <Radio label="Any" value="any" size="sm" />
-                <Radio label="High School" value="high-school" size="sm" />
-                <Radio label="College" value="college" size="sm" />
-                <Radio label="Post-graduate" value="post-graduate" size="sm" />
-              </RadioGroup>
-            </Box>
-          </Box>
-          <Divider />
-          <Box sx={{ p: 2 }}>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Typography level="body2" textColor="text.primary">
-                Previous experience
-              </Typography>
-              <IconButton
-                size="sm"
-                variant="plain"
-                color="primary"
-                sx={{ '--IconButton-size': '24px' }}
-              >
-                <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-              </IconButton>
-            </Box>
-          </Box>
-        </Layout.SidePane>
         <Layout.Main>
           <List
             sx={{
@@ -562,49 +397,37 @@ export default function TeamExample() {
                       <Typography>{grupo.nome}</Typography>
                     </Box>
 
-                    <Typography level="body3">UI Designer</Typography>
+                    <Typography level="body3">{grupo.desc}</Typography>
                   </Box>
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
                 <List sx={{ '--List-decorator-size': '48px' }}>
-                  <ListItem sx={{ alignItems: 'flex-start' }}>
-                    <ListItemDecorator
-                      sx={{
-                        '&:before': {
-                          content: '""',
-                          position: 'absolute',
-                          height: '100%',
-                          width: '2px',
-                          bgcolor: 'divider',
-                          left: 'calc(var(--List-item-paddingLeft) + 15px)',
-                          top: '50%',
-                        },
-                      }}
-                    >
-                      <Avatar
-                        size="sm"
-                        src="https://seeklogo.com/images/D/dribbble-logo-143FF96D65-seeklogo.com.png"
-                      />
-                    </ListItemDecorator>
-                    <ListItemContent>
-                      <Typography fontSize="sm">Senior designer</Typography>
-                      <Typography level="body3">Dribbble</Typography>
-                    </ListItemContent>
-                    <Typography level="body2">2015-now</Typography>
-                  </ListItem>
-                  <ListItem sx={{ alignItems: 'flex-start' }}>
-                    <ListItemDecorator>
-                      <Avatar
-                        size="sm"
-                        src="https://seeklogo.com/images/P/pinterest-logo-CA98998DCB-seeklogo.com.png"
-                      />
-                    </ListItemDecorator>
-                    <ListItemContent>
-                      <Typography fontSize="sm">Designer</Typography>
-                      <Typography level="body3">Pinterest</Typography>
-                    </ListItemContent>
-                    <Typography level="body2">2012-2015</Typography>
-                  </ListItem>
+                  {grupo.membros && grupo.membros.map((membro, index) => (
+                    <ListItem sx={{ alignItems: 'flex-start' }}>
+                      <ListItemDecorator
+                        sx={{
+                          '&:before': {
+                            content: '""',
+                            position: 'absolute',
+                            height: '100%',
+                            width: '2px',
+                            bgcolor: 'divider',
+                            left: 'calc(var(--List-item-paddingLeft) + 15px)',
+                            top: '50%',
+                          },
+                        }}
+                      >
+                        <Avatar
+                          size="sm"
+                          src={membro.avatar}
+                        />
+                      </ListItemDecorator>
+                      <ListItemContent>
+                        <Typography fontSize="sm">{membro.nome}</Typography>
+                        <Typography level="body3">{membro.ocupação}</Typography>
+                      </ListItemContent>
+                      <Typography level="body2">{formatDate(membro.dataEntrada)}</Typography>
+                    </ListItem>))}
                 </List>
                 <Button
                   size="sm"
@@ -615,24 +438,17 @@ export default function TeamExample() {
                   Expand
                 </Button>
                 <Divider component="div" sx={{ my: 2 }} />
-                <Typography fontSize="sm">Skills tags:</Typography>
+                <Typography fontSize="sm">Requerimentos:</Typography>
                 <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
-                  <Chip
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    sx={{ borderRadius: 'sm' }}
-                  >
-                    UI design
-                  </Chip>
-                  <Chip
-                    variant="outlined"
-                    color="neutral"
-                    size="sm"
-                    sx={{ borderRadius: 'sm' }}
-                  >
-                    Illustration
-                  </Chip>
+                  {grupo.requerimentos && grupo.requerimentos.map((requerimento, index) => (
+                    <Chip
+                      variant="outlined"
+                      color="neutral"
+                      size="sm"
+                      sx={{ borderRadius: 'sm' }}
+                    >
+                      {requerimento.ocupação}
+                    </Chip>))}
                 </Box>
               </Sheet>
             ))}

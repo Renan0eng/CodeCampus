@@ -14,8 +14,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function FeedContent({ posts }) {
 
-  console.log(posts);
-
   const navigate = useNavigate();
 
   return (
@@ -27,7 +25,6 @@ export default function FeedContent({ posts }) {
         mb: 3,
       }}
       onClick={() => {
-        console.log(`Clicked ${posts.title}`);
         navigate(`/post/${posts.id}`);
       }}
     >
@@ -55,27 +52,6 @@ export default function FeedContent({ posts }) {
               {posts.date}
             </Typography>
           </Box>
-        </Box>
-        <Box
-          sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}
-        >
-          <IconButton size="sm" variant="outlined" color="neutral"
-            onClick={() => {
-              console.log(`ArrowUpward ${posts.title}`);
-            }}
-          >
-            <ArrowUpwardIcon />
-          </IconButton>
-          <Typography level="body2" pt={0.5} textColor="text.primary" mb={0.5}>
-            {posts.relevance}
-          </Typography>
-          <IconButton size="sm" variant="outlined" color="neutral"
-            onClick={() => {
-              console.log(`ArrowDownward ${posts.title}`);
-            }}
-          >
-            <ArrowDownwardIcon />
-          </IconButton>
         </Box>
       </Box>
       <Divider sx={{ mt: 2 }} />

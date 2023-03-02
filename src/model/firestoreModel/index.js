@@ -20,7 +20,6 @@ export const setPost = async (post) => {
         tags: post.tags,
         images: post.images,
     });
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -35,9 +34,7 @@ export const setUsuario = async (User) => {
   }
 
   try {
-    console.log("User: ", User.providerData[0]);
     const docRef = await addDoc(collection(db, "users"), User.providerData[0]);
-    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.log("Error adding document: ", e);
   }

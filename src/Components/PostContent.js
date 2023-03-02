@@ -25,7 +25,6 @@ import { Input } from '@mui/joy';
 const setCommentData = async (comment) => {
   try{
   const docRef = addDoc(collection(db, "comments"), comment);
-  console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -42,10 +41,8 @@ export default function FeedContent({ posts }) {
     const comment = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     // ordene os comentários por data e hora crescente
     const array = comment.sort((a, b) => {
-      console.log(a.date.split("/").reverse().join("-"));
       const dataA = new Date(a.date.split("/").reverse().join("-"));
       const dataB = new Date(b.date.split("/").reverse().join("-"));
-      console.log(dataA - dataB);
       return dataB - dataA;
     });
     setComments(array);
@@ -190,7 +187,6 @@ export default function FeedContent({ posts }) {
                     e.preventDefault();
                     handleOpenImage();
                     setImagen(image);
-                    console.log(`image`, image);
                   }}
                 >
                   <img
@@ -312,7 +308,6 @@ export default function FeedContent({ posts }) {
             variant="outlined"
             color="primary"
             onClick={() => {
-              console.log(`Send ${posts.title}`);
               if (comment) {
                 const Comment = {
                   desc: comment,
