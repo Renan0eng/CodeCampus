@@ -530,7 +530,7 @@ export default function TeamExample() {
                 <Divider component="div" sx={{ my: 2 }} />
                 <Typography fontSize="sm">Requerimentos:</Typography>
                 <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
-                  {grupo.requerimentos && grupo.requerimentos.map((requerimento, index) => (
+                  {grupo.requerimentos && grupo.requerimentos.map((requerimento) => (
                     <Chip
                       variant="outlined"
                       color="neutral"
