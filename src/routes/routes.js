@@ -7,16 +7,18 @@ import Files from '../views/files';
 import NewPost from '../views/newPost';
 import Post from '../views/post';
 import { AuthProvider } from "../contexts/authContext";
-import { PrivateRoute } from "./index";
-import Header from "../Components/Header";
+import { PrivateRoute, AdminRoute } from "./index";
+import { Navigate } from "react-router-dom";
 
 function App() {
   return (<>
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Feed />} />
+          <Route path="*" element={<Navigate to="/" />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/team" element={<PrivateRoute />}>

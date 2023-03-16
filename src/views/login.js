@@ -90,10 +90,10 @@ export default function JoySignInSideTemplate() {
           zIndex: 1,
           display: 'flex',
           justifyContent: 'flex-end',
-          backdropFilter: 'blur(4px)',
-          backgroundColor: 'rgba(255 255 255 / 0.6)',
+          backdropFilter: 'blur(20px)',
+          backgroundColor: 'rgba(255 255 255 / 0.2)',
           [theme.getColorSchemeSelector('dark')]: {
-            backgroundColor: 'rgba(19 19 24 / 0.4)',
+            backgroundColor: 'rgba(19 19 24 / 0.6)',
           },
         })}
       >
@@ -246,10 +246,10 @@ export default function JoySignInSideTemplate() {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundImage:
-            'url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8)',
+            'url(https://cdn.discordapp.com/attachments/1048010244795678771/1085747189181067294/Desprogramados_Banner.png)',
           [theme.getColorSchemeSelector('dark')]: {
             backgroundImage:
-              'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831)',
+              'url(https://cdn.discordapp.com/attachments/1048010244795678771/1085747189181067294/Desprogramados_Banner.png)',
           },
         })}
       />

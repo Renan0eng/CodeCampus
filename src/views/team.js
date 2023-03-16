@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Autocomplete from '@mui/joy/Autocomplete';
@@ -35,11 +36,45 @@ import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRound
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 
 // custom
 import teamTheme from '../constants/theme';
 import Menu from '../Components/Menu';
 import Layout from '../Components/LayoutTeam';
+
+// firebase 
+import { getDocs, collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../constants/firebase';
+
+const getGrups = async () => {
+  const data = await getDocs(collection(db, "grupos/"));
+  const grupus = (data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  return grupus
+}
+
+const setGrups = (grupo) => {
+  const docRef = addDoc(collection(db, "grupos"), grupo);
+  console.log("Document written with ID: ", docRef.id);
+}
+
+const getAdmin = async () => {
+  const data = await getDocs(collection(db, "admin/"));
+  const admins = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  const admin = admins[0]
+  const user = JSON.parse(sessionStorage.getItem('user'))
+  if (user.uid === admin.id) return true
+}
+
+const deleteGrups = async (id) => {
+  try {
+    await deleteDoc(doc(db, "grupos", id));
+    console.log("Document successfully deleted!");
+  } catch (e) {
+    console.error("Error removing document: ", e);
+  }
+}
+
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -69,8 +104,11 @@ function ColorSchemeToggle() {
   );
 }
 
-function TeamNav() {
-  const [drawerBrowseOpen, setDrawerBrowseOpen] = React.useState(false);
+function TeamNav({ admin }) {
+
+  const navegate = useNavigate();
+
+  const [drawerBrowseOpen, setDrawerBrowseOpen] = React.useState(true);
 
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px', '--List-gap': '4px' }}>
@@ -98,33 +136,163 @@ function TeamNav() {
               <ListItemDecorator sx={{ color: 'inherit' }}>
                 <PeopleRoundedIcon fontSize="small" />
               </ListItemDecorator>
-              <ListItemContent>People</ListItemContent>
+              <ListItemContent>Grupos</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton>
+            <ListItemButton
+              onClick={() => {
+                navegate('/meus-grupos')
+              }}
+            >
               <ListItemDecorator sx={{ color: 'neutral.500' }}>
                 <AssignmentIndRoundedIcon fontSize="small" />
               </ListItemDecorator>
-              <ListItemContent>Managing accounts</ListItemContent>
+              <ListItemContent>Meus Grupo</ListItemContent>
             </ListItemButton>
           </ListItem>
           <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+            <ListItemButton
+              onClick={() => {
+                navegate('/regras')
+              }}
+            >
+              <ListItemDecorator sx={{ color: 'warning' }}>
                 <ArticleRoundedIcon fontSize="small" />
               </ListItemDecorator>
-              <ListItemContent>Policies</ListItemContent>
-              <Chip
-                variant="soft"
-                color="info"
-                size="sm"
-                sx={{ borderRadius: 'sm' }}
-              >
-                Beta
-              </Chip>
+              <ListItemContent>
+                Régras
+              </ListItemContent>
             </ListItemButton>
           </ListItem>
+          {admin && <ListItem>
+            <ListItemButton
+              onClick={() => {
+
+                const _grupos = [
+                  {
+                    id: 1,
+                    nome: 'Grupo 1',
+                    desc: 'Feito por alunos para alunos',
+                    avatar: 'https://i.pravatar.cc/150?img=1',
+                    membros: [
+                      {
+                        id: 1,
+                        nome: 'João',
+                        sobrenome: 'Silva',
+                        ocupação: 'Desenvolvedor',
+                        email: 'João@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=2',
+                        dataEntrada: '2021-01-01',
+                      },
+                      {
+                        id: 2,
+                        nome: 'Maria',
+                        sobrenome: 'Silva',
+                        ocupação: 'designer',
+                        email: 'Maria@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=3',
+                        dataEntrada: '2021-01-01',
+                      },
+                      {
+                        id: 3,
+                        nome: 'Pedro',
+                        sobrenome: 'Silva',
+                        ocupação: 'Desenvolvedor',
+                        email: 'prdro@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=4',
+                        dataEntrada: '2021-01-01',
+                      },
+                    ],
+                    requerimentos: [
+                      {
+                        ocupação: 'Designer',
+                      },
+                      {
+                        ocupação: 'Desenvolvedor',
+                      },
+                    ],
+                  },
+                  {
+                    id: 1,
+                    nome: 'Grupo 2',
+                    desc: 'Feito para alunos por alunos',
+                    avatar: 'https://i.pravatar.cc/150?img=1',
+                    membros: [
+                      {
+                        id: 1,
+                        nome: 'João',
+                        sobrenome: 'Silva',
+                        ocupação: 'designer',
+                        email: 'João@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=2',
+                        dataEntrada: '2021-01-01',
+                      },
+                      {
+                        id: 2,
+                        nome: 'Maria',
+                        sobrenome: 'Silva',
+                        ocupação: 'Desenvolvedor',
+                        email: 'Maria@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=3',
+                        dataEntrada: '2021-01-01',
+                      },
+                    ],
+                    requerimentos: [
+                      {
+                        ocupação: 'Designer',
+
+                      },
+                    ],
+                  },
+                  {
+                    id: 1,
+                    nome: 'Grupo 3',
+                    desc: 'Feito por alunos para alunos',
+                    avatar: 'https://i.pravatar.cc/150?img=1',
+                    membros: [
+                      {
+                        id: 1,
+                        nome: 'João',
+                        sobrenome: 'Silva',
+                        ocupação: 'Desenvolvedor',
+                        email: 'João@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=2',
+                        dataEntrada: '2021-01-01',
+                      },
+                      {
+                        id: 2,
+                        nome: 'Maria',
+                        sobrenome: 'Silva',
+                        ocupação: 'designer',
+                        email: 'Maria@gmail.com',
+                        avatar: 'https://i.pravatar.cc/150?img=3',
+                        dataEntrada: '2021-01-01',
+                      },
+                    ],
+                    requerimentos: [
+                      {
+                        ocupação: 'Designer',
+
+                      },
+                    ],
+                  }
+                ]
+
+                for (const grupo of _grupos) {
+                  setGrups(grupo)
+                }
+
+              }}
+            >
+              <ListItemDecorator sx={{ color: 'warning' }}>
+                <ArticleRoundedIcon fontSize="small" />
+              </ListItemDecorator>
+              <ListItemContent>
+                Novo Grupo
+              </ListItemContent>
+            </ListItemButton>
+          </ListItem>}
         </List>}
       </ListItem>
     </List>
@@ -132,124 +300,23 @@ function TeamNav() {
 }
 
 export default function TeamExample() {
+
+  const [admin, setAdmin] = React.useState(false)
   // formata a data para o formato de 2023-02-24 para 24 Feb 2023
   const formatDate = (date) => {
     const newDate = new Date(date);
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return newDate.toLocaleDateString('pt-BR', options);
-    
+
   }
   const [drawerOpen, setDrawerOpen] = React.useState(false);
 
-  const [grupos, setGrupos] = React.useState([
-    {
-      id: 1,
-      nome: 'Grupo 1',
-      desc: 'Feito por alunos para alunos',
-      avatar: 'https://i.pravatar.cc/150?img=1',
-      membros: [
-        {
-          id: 1,
-          nome: 'João',
-          sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
-          email: 'João@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=2',
-          dataEntrada: '2021-01-01',
-        },
-        {
-          id: 2,
-          nome: 'Maria',
-          sobrenome: 'Silva',
-          ocupação: 'designer',
-          email: 'Maria@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=3',
-          dataEntrada: '2021-01-01',
-        },
-        {
-          id: 3,
-          nome: 'Pedro',
-          sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
-          email: 'prdro@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=4',
-          dataEntrada: '2021-01-01',
-        },
-      ],
-      requerimentos: [
-        {
-          ocupação: 'Designer',
-        },
-        {
-          ocupação: 'Desenvolvedor',
-        },
-      ],
-    },
-    {
-      id: 1,
-      nome: 'Grupo 2',
-      desc: 'Feito para alunos por alunos',
-      avatar: 'https://i.pravatar.cc/150?img=1',
-      membros: [
-        {
-          id: 1,
-          nome: 'João',
-          sobrenome: 'Silva',
-          ocupação: 'designer',
-          email: 'João@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=2',
-          dataEntrada: '2021-01-01',
-        },
-        {
-          id: 2,
-          nome: 'Maria',
-          sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
-          email: 'Maria@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=3',
-          dataEntrada: '2021-01-01',
-        },
-      ],
-      requerimentos: [
-        {
-          ocupação: 'Designer',
+  React.useEffect(() => {
+    getGrups().then((data) => setGrupos(data))
+    getAdmin().then((data) => setAdmin(data))
+  }, []);
 
-        },
-      ],
-    },
-    {
-      id: 1,
-      nome: 'Grupo 3',
-      desc: 'Feito por alunos para alunos',
-      avatar: 'https://i.pravatar.cc/150?img=1',
-      membros: [
-        {
-          id: 1,
-          nome: 'João',
-          sobrenome: 'Silva',
-          ocupação: 'Desenvolvedor',
-          email: 'João@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=2',
-          dataEntrada: '2021-01-01',
-        },
-        {
-          id: 2,
-          nome: 'Maria',
-          sobrenome: 'Silva',
-          ocupação: 'designer',
-          email: 'Maria@gmail.com',
-          avatar: 'https://i.pravatar.cc/150?img=3',
-          dataEntrada: '2021-01-01',
-        },
-      ],
-      requerimentos: [
-        {
-          ocupação: 'Designer',
-
-        },
-      ],
-    }
-  ])
+  const [grupos, setGrupos] = React.useState([])
 
 
   return (
@@ -257,7 +324,7 @@ export default function TeamExample() {
       <CssBaseline />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
-          <TeamNav />
+          <TeamNav admin={admin} />
         </Layout.SideDrawer>
       )}
       <Layout.Root
@@ -324,7 +391,7 @@ export default function TeamExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <Menu
+            {admin && <Menu
               id="app-selector"
               control={
                 <IconButton
@@ -355,7 +422,7 @@ export default function TeamExample() {
                   href: '/files',
                 },
               ]}
-            />
+            />}
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>
@@ -399,6 +466,29 @@ export default function TeamExample() {
 
                     <Typography level="body3">{grupo.desc}</Typography>
                   </Box>
+                  {admin && <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: 'row',
+                      justifyContent: 'flex-end',
+                      alignItems: 'center',
+                      gap: 1,
+                      flex: 1,
+                    }}
+                  >
+                    <IconButton
+                      size="sm"
+                      variant="outlined"
+                      color="primary"
+                      aria-label="Apps"
+                      onClick={() => {
+                        deleteGrups(grupo.id)
+                        getGrups().then((data) => setGrupos(data))
+                      }}
+                    >
+                      <DeleteOutlineRoundedIcon />
+                    </IconButton>
+                  </Box>}
                 </Box>
                 <Divider component="div" sx={{ my: 2 }} />
                 <List sx={{ '--List-decorator-size': '48px' }}>
