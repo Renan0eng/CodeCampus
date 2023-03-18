@@ -295,6 +295,37 @@ export default function FeedExample() {
                 })}>
                   Olá e bem-vindo ao site da atlética Desprogramados!
                 </Typography>
+                <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary })}>
+                  Nos siga nas redes sociais!
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      pl: 2,
+                      pr: 2,
+                    }}
+                    onClick={() => {
+                      window.open('https://www.instagram.com/desprogramados_/', '_blank');
+                    }}
+                  >
+                    <InstagramIcon color="primary" />
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
+                      Instagram
+                    </Typography>
+                  </Box>
+                </Box>
                 <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
                   Aqui você pode encontrar informações sobre a atlética, como nossos projetos, eventos e muito mais.
                 </Typography>
@@ -302,11 +333,40 @@ export default function FeedExample() {
                   Nós somos um grupo de alunos da faculdade UniFatecie, organizados pelos estudantes de engenharia de software, e estamos muito animados por você estar aqui.
                 </Typography>
                 <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
-                  Se você é um aluno da faculdade, pode se cadastrar no site e participar de nossos projetos, ganhar nossos produtos, participar de nossos eventos e muito mais.
+                  Se você é um aluno da faculdade, professor, empresa ou qualquer outra pessoa interessada em nos ajudar, entre em contato conosco!
                 </Typography>
                 <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
-                  Se você é um professor e tem interesse em nossos projetos, pode entrar em contato conosco e nós podemos conversar sobre como podemos ajudar.
-                </Typography></>}
+                  Se você se interessou por algum projeto, entre em contato conosco!
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      pl: 2,
+                      pr: 2,
+                    }}
+                    onClick={() => {
+                      window.open('https://www.instagram.com/desprogramados_/', '_blank');
+                    }}
+                  >
+                    <InstagramIcon color="primary" />
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
+                      Instagram
+                    </Typography>
+                  </Box>
+                </Box>
+              </>}
               {pagina == 1 && <>
                 <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
                   mt: 2,
@@ -327,7 +387,7 @@ export default function FeedExample() {
                   Projetos
                 </Typography>
                 <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
-                  Nós temos vários projetos que você pode participar, como o Desprogramados Jr, o Desprogramados Games e o Desprogramados Dev.
+                  Nós temos vários projetos que você pode participar, como o Desprogramados Dev Jr, o Desprogramados Games e o Desprogramados Dev.
                 </Typography>
               </>}
               {pagina == 2 && <>
@@ -338,7 +398,7 @@ export default function FeedExample() {
                   fontSize: '35px',
                   display: { xs: 'none', sm: 'inline-flex' }
                 })}>
-                  Desprogramados Jr
+                  Desprogramados Dev Jr
                 </Typography>
                 <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
                   mt: 2,
@@ -347,36 +407,13 @@ export default function FeedExample() {
                   fontSize: '25px',
                   display: { sm: 'none' }
                 })}>
-                  Desprogramados Jr
+                  Desprogramados Dev Jr
                 </Typography>
                 <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
                   O Desprogramados Jr é um projeto de extensão que nossos assinantes terão acesso exclusivo, onde você pode aprender sobre desenvolvimento de software, e terá a oportunidade de participar de eventos e warkshops.
                 </Typography>
               </>}
               {pagina == 3 && <>
-                <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  mb: 2,
-                  fontSize: '35px',
-                  display: { xs: 'none', sm: 'inline-flex' }
-                })}>
-                  Desprogramados Games
-                </Typography>
-                <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  mb: 2,
-                  fontSize: '25px',
-                  display: { sm: 'none' }
-                })}>
-                  Desprogramados Games
-                </Typography>
-                <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
-                  O Desprogramados Games é um projeto de extensão que nossos assinantes terão acesso exclusivo, onde será organizado um campeonato de jogos online, onde você poderá participar e ganhar prêmios.
-                </Typography>
-              </>}
-              {pagina == 4 && <>
                 <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
                   mt: 2,
                   color: theme.palette.text.primary,
@@ -397,6 +434,29 @@ export default function FeedExample() {
                 </Typography>
                 <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
                   O Desprogramados Dev é um projeto de extensão da , que tem como objetivo ajudar os alunos a produzir um produto de software para o mercado.
+                </Typography>
+              </>}
+              {pagina == 4 && <>
+                <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  mb: 2,
+                  fontSize: '35px',
+                  display: { xs: 'none', sm: 'inline-flex' }
+                })}>
+                  Desprogramados Games
+                </Typography>
+                <Typography variant="h1" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  mb: 2,
+                  fontSize: '25px',
+                  display: { sm: 'none' }
+                })}>
+                  Desprogramados Games
+                </Typography>
+                <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
+                  O Desprogramados Games é um projeto de extensão que nossos assinantes terão acesso exclusivo, onde será organizado um campeonato de jogos online, onde você poderá participar e ganhar prêmios.
                 </Typography>
               </>}
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -426,6 +486,21 @@ export default function FeedExample() {
                   <ArrowForwardOutlinedIcon />
                 </IconButton>
               </Box>
+            </Box>
+            {/* footer */}
+            <Box sx={(theme) => ({
+              bottom: 0,
+              width: '100vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: theme.palette.text.primary,
+              py: 3,
+              mt: 2,
+            })}>
+              <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
+                Desprogramados © 2021
+              </Typography>
             </Box>
           </Box>
         </Layout.Main>
