@@ -7,7 +7,7 @@ import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
@@ -15,14 +15,10 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import customTheme from '../constants/theme';
 import GoogleIcon from '../Components/GoogleIcon';
-import { json, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider } from "firebase/auth";
-import "../constants/firebase.js"
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
-
-const provider = new GoogleAuthProvider();
-
 function ColorSchemeToggle({ onClick, ...props }) {
+
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -59,9 +55,10 @@ export default function JoySignInSideTemplate() {
 
   const navegate = useNavigate();
 
-  const { googleLogin, login } = React.useContext(AuthContext);
-
-  const auth = getAuth();
+  const {
+    googleLogin,
+    login,
+  } = React.useContext(AuthContext);
 
   return (
     <CssVarsProvider

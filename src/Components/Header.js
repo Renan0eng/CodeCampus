@@ -84,7 +84,7 @@ function Components() {
 
   return (
     <>
-      
+
       <Box
         sx={{
           height: '100%',
@@ -157,7 +157,7 @@ function Components() {
               {
                 label: 'Feed',
                 active: true,
-                href: '/',
+                href: '/feed',
               },
               {
                 label: 'New',

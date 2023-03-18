@@ -8,12 +8,10 @@ function Root(props) {
       {...props}
       sx={[
         {
+          backgroundImage: 'url(https://cdn.discordapp.com/attachments/1048010244795678771/1085747189181067294/Desprogramados_Banner.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           display: 'grid',
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 300px) minmax(500px, 1fr) minmax(160px, 300px)',
-          },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
         },
@@ -106,6 +104,7 @@ function Main(props) {
         p: 2,
       }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]}
     />
+
   );
 }
 

@@ -406,7 +406,7 @@ export default function TeamExample() {
               menus={[
                 {
                   label: 'Feed',
-                  href: '/',
+                  href: '/feed',
                 },
                 {
                   label: 'New',

@@ -11,12 +11,14 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
+import HomeIcon from '@mui/icons-material/Home';
 
 // Icons import
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import theme from '../constants/theme';
 
 export default function FeedNav() {
 
@@ -24,8 +26,13 @@ export default function FeedNav() {
   const Menus = {
     Browse: [
       {
-        label: 'Feed',
+        label: 'Home',
         href: '/',
+        icon: <HomeIcon fontSize="small" color="primary" />,
+      },
+      {
+        label: 'Feed',
+        href: '/feed',
         icon: <ViewDayIcon fontSize="small" color="primary" />,
       },
       // {
@@ -86,59 +93,60 @@ export default function FeedNav() {
 
   React.useEffect(() => {
 
-   if(!sessionStorage.getItem('user')){
-    setMenus({
-      Browse: [
-        {
-          label: 'Feed',
-          href: '/',
-          icon: <ViewDayIcon fontSize="small" color="primary" />,
-        },
-        // {
-        //   label: 'Team',
-        //   href: '/team',
-        //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
-        // },
-      ],
-      Tags: [
-        {
-          label: 'Personal',
-          href: '/personal',
-          bgcolor: 'primary.100',
-        },
-        {
-          label: 'Work',
-          href: '/work',
-          bgcolor: 'danger.300',
-        },
-        {
-          label: 'Family',
-          href: '/family',
-          bgcolor: 'success.300',
-        },
-        {
-          label: 'Friends',
-          href: '/friends',
-          bgcolor: 'warning.300',
-        },
-        {
-          label: 'Travel',
-          href: '/travel',
-          bgcolor: 'info.300',
-        },
-        {
-          label: 'Holidays',
-          href: '/holidays',
-          bgcolor: 'neutral.300',
-        },
-        {
-          label: 'Photos',
-          href: '/photos',
-          bgcolor: 'primary.300',
-        },
-      ]
-    })
-   }
+    if (!sessionStorage.getItem('user')) {
+      setMenus({
+        Browse: [
+          {
+            label: 'Home',
+            href: '/',
+            active: true,
+            icon: <HomeIcon fontSize="small" color="primary" />,
+          },
+          {
+            label: 'Feed',
+            href: '/feed',
+            icon: <ViewDayIcon fontSize="small" color="primary" />,
+          },
+        ],
+        Tags: [
+          {
+            label: 'Personal',
+            href: '/personal',
+            bgcolor: 'primary.100',
+          },
+          {
+            label: 'Work',
+            href: '/work',
+            bgcolor: 'danger.300',
+          },
+          {
+            label: 'Family',
+            href: '/family',
+            bgcolor: 'success.300',
+          },
+          {
+            label: 'Friends',
+            href: '/friends',
+            bgcolor: 'warning.300',
+          },
+          {
+            label: 'Travel',
+            href: '/travel',
+            bgcolor: 'info.300',
+          },
+          {
+            label: 'Holidays',
+            href: '/holidays',
+            bgcolor: 'neutral.300',
+          },
+          {
+            label: 'Photos',
+            href: '/photos',
+            bgcolor: 'primary.300',
+          },
+        ]
+      })
+    }
 
   }, []);
   const [menus, setMenus] = React.useState(Menus);
@@ -248,50 +256,50 @@ export default function FeedNav() {
         </List>
       </ListItem>
       {sessionStorage.getItem('user') &&
-      <ListItem nested sx={{ mt: 2 }}>
-        <ListSubheader>
-          config
-          <IconButton
+        <ListItem nested sx={{ mt: 2 }}>
+          <ListSubheader>
+            config
+            <IconButton
+              size="sm"
+              variant="plain"
+              color="primary"
+              sx={{ '--IconButton-size': '24px', ml: 'auto' }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (!configMenu) {
+                  setConfigMenu(true);
+                } else {
+                  setConfigMenu(false);
+                }
+              }}
+            >
+              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
+            </IconButton>
+          </ListSubheader>
+          <List
+            aria-labelledby="nav-list-tags"
             size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px', ml: 'auto' }}
-            onClick={(e) => {
-              e.preventDefault();
-              if (!configMenu) {
-                setConfigMenu(true);
-              } else {
-                setConfigMenu(false);
-              }
+            sx={{
+              '--List-decorator-size': '32px',
+              '& .JoyListItemButton-root': { p: '8px' },
             }}
           >
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </ListSubheader>
-        <List
-          aria-labelledby="nav-list-tags"
-          size="sm"
-          sx={{
-            '--List-decorator-size': '32px',
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
-          {configMenu &&
-            <ListItem>
-              <ListItemButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  logout()
-                }}
-              >
-                <ListItemDecorator>
-                  <LogoutIcon fontSize="small" color="primary" />
-                </ListItemDecorator>
-                <ListItemContent>Logout</ListItemContent>
-              </ListItemButton>
-            </ListItem>}
-        </List>
-      </ListItem>}
+            {configMenu &&
+              <ListItem>
+                <ListItemButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    logout()
+                  }}
+                >
+                  <ListItemDecorator>
+                    <LogoutIcon fontSize="small" color="primary" />
+                  </ListItemDecorator>
+                  <ListItemContent>Logout</ListItemContent>
+                </ListItemButton>
+              </ListItem>}
+          </List>
+        </ListItem>}
     </List>
   );
 }

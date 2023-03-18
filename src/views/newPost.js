@@ -150,7 +150,7 @@ export default function NewPostExample() {
               menus={[
                 {
                   label: 'Feed',
-                  href: '/',
+                  href: '/feed',
                 },
                 {
                   label: 'New',

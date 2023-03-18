@@ -178,7 +178,7 @@ export default function FeedExample() {
                   {
                     label: 'Feed',
                     active: true,
-                    href: '/',
+                    href: '/feed',
                   },
                   {
                     label: 'New',
@@ -207,7 +207,7 @@ export default function FeedExample() {
               >
                 <LoginIcon />
               </IconButton>}
-              {!sessionStorage.getItem('user') &&
+            {!sessionStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"

@@ -72,7 +72,7 @@ export default function FeedExample() {
   const { id } = useParams();
 
   const [post, setPost] = React.useState([]);
-  
+
 
   React.useEffect(() => {
     const getPosts = async () => {
@@ -141,9 +141,9 @@ export default function FeedExample() {
               <Typography component="h1" fontWeight="xl"
                 onClick={() => navegate('/')}
               >
-                Feed 
+                Feed
               </Typography>
-              <Typography component="h1" fontWeight="xl" sx={{color: '#888'}}>
+              <Typography component="h1" fontWeight="xl" sx={{ color: '#888' }}>
                 /
               </Typography>
               <Typography component="h1" fontWeight="xl">
@@ -195,7 +195,7 @@ export default function FeedExample() {
                   {
                     label: 'Feed',
                     active: true,
-                    href: '/',
+                    href: '/feed',
                   },
                   {
                     label: 'New',
@@ -224,7 +224,7 @@ export default function FeedExample() {
               >
                 <LoginIcon />
               </IconButton>}
-              {!sessionStorage.getItem('user') &&
+            {!sessionStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"
@@ -251,7 +251,7 @@ export default function FeedExample() {
               p: 0,
             }}
           >
-            <PostContent posts={post}/>
+            <PostContent posts={post} />
           </List>
         </Layout.Main>
       </Layout.Root>
