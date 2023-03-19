@@ -235,7 +235,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -270,7 +270,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -293,7 +293,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
@@ -324,7 +324,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -359,7 +359,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -382,7 +382,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
@@ -413,7 +413,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -448,7 +448,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -471,7 +471,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
@@ -502,7 +502,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -537,7 +537,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -560,7 +560,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
@@ -591,7 +591,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -626,7 +626,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -649,7 +649,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
@@ -680,7 +680,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -715,7 +715,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -738,7 +738,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
@@ -769,7 +769,7 @@ export default function FeedExample() {
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
                     transform: 'scale(1.8)',
-                    transition: 'all 0.3s ease-in-out',
+                    transition: 'all 0.5s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
@@ -804,7 +804,7 @@ export default function FeedExample() {
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
                       transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
+                      transition: 'all 0.5s ease-in-out',
                       paddingTop: '0px',
                       zIndex: 2,
                     },
@@ -827,7 +827,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                 })}>
-                  Aqui vai uma breve descrição do produto que está sendo vendido
+                  Aqui vai uma descrição do produto
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
