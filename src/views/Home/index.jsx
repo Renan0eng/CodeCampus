@@ -190,7 +190,7 @@ export default function FeedExample() {
                 return ({
                   display: 'flex',
                   flexDirection: 'column',
-                  width: '70%',
+                  width: { xs: '90%', md: '70%', },
                   alignSelf: 'center',
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -200,6 +200,8 @@ export default function FeedExample() {
                   backgroundColor: theme.palette.background.backdrop,
                   padding: '20px',
                   marginTop: '60px',
+                  minWidth: '350px',
+                  textAlign: 'center',
                 })
               }}
             >
@@ -299,29 +301,52 @@ export default function FeedExample() {
                   Nos siga nas redes sociais!
                 </Typography>
                 <Box
-                  sx={{
+                  sx={(theme) => ({
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    width: '100%',
-                  }}
+                    borderRadius: '10px',
+                    '&:hover': {
+                      backgroundColor: theme.palette.background.backdrop,
+                    },
+                    ml: 2,
+                    mr: 2,
+                    mt: 2,
+                  })}
                 >
                   <Box
-                    sx={{
+                    sx={(theme) => ({
                       display: 'flex',
                       flexDirection: 'row',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      pl: 2,
-                      pr: 2,
-                    }}
+                      p: 0.5,
+                      cursor: 'pointer',
+                      borderRadius: '10px',
+                      border: `2px solid ${theme.palette.background.backdrop}`,
+                      '&:hover': {
+                        backgroundImage: 'linear-gradient(to right,#00ffff,#ff00ff,#00ffff, #ff00ff)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundSize: '300%',
+                        animation: 'move-gradiente 2s linear infinite',
+                        '@keyframes move-gradiente': {
+                          '0%': {
+                            backgroundPosition: '0',
+                          },
+                          '100%': {
+                            backgroundPosition: '100%',
+                          }
+                        }
+                      },
+                    })}
                     onClick={() => {
                       window.open('https://www.instagram.com/desprogramados_/', '_blank');
                     }}
                   >
                     <InstagramIcon color="primary" />
-                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2, ml: 0.5 })}>
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ color: theme.palette.text.primary, ml: 0.5 })}>
                       Instagram
                     </Typography>
                   </Box>
@@ -339,29 +364,52 @@ export default function FeedExample() {
                   Se você se interessou por algum projeto, entre em contato conosco!
                 </Typography>
                 <Box
-                  sx={{
+                  sx={(theme) => ({
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    width: '100%',
-                  }}
+                    borderRadius: '10px',
+                    '&:hover': {
+                      backgroundColor: theme.palette.background.backdrop,
+                    },
+                  })}
                 >
                   <Box
-                    sx={{
+                    sx={(theme) => ({
                       display: 'flex',
                       flexDirection: 'row',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      pl: 2,
-                      pr: 2,
-                    }}
+                      p: 0.5,
+                      cursor: 'pointer',
+                      borderRadius: '10px',
+                      border: `2px solid ${theme.palette.background.backdrop}`,
+                      '&:hover': {
+                        backgroundImage: 'linear-gradient(to right,#00ffff,#ff00ff,#00ffff, #ff00ff)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundSize: '300%',
+                        animation: 'move-gradiente 2s linear infinite',
+                        '@keyframes move-gradiente': {
+                          '0%': {
+                            backgroundPosition: '0',
+                          },
+                          '100%': {
+                            backgroundPosition: '100%',
+                          }
+                        }
+                      },
+                    })}
                     onClick={() => {
                       navegate('/produtos')
                     }}
                   >
                     <AddShoppingCartOutlinedIcon color="primary" />
-                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2, ml: 0.5 })}>
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({
+                      ml: 0.5,
+                      color: theme.palette.text.primary,
+                    })}>
                       Veja nossos produtos
                     </Typography>
                   </Box>

@@ -66,6 +66,44 @@ export default function FeedExample() {
 
   const [pagina, setPagina] = React.useState(0);
 
+  const [produtos, setProdutos] = React.useState([
+    {
+      id: 1,
+      nome: 'Camiseta',
+      preco: 50,
+      descricao: 'Camiseta branca com estampa de gatinho preto e branco e frase "Eu sou um gatinho"',
+      imagem: 'https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png',
+    },
+    {
+      id: 2,
+      nome: 'Calça',
+      preco: 100,
+      descricao: 'Calça jeans com estampa de gatinho preto e branco e frase "Eu sou um gatinho"',
+      imagem: 'https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png',
+    },
+    {
+      id: 3,
+      nome: 'Caneca',
+      preco: 30,
+      descricao: 'Caneca branca com estampa de gatinho preto e branco e frase "Eu sou um gatinho"',
+      imagem: 'https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png',
+    },
+    {
+      id: 4,
+      nome: 'Adesivo',
+      preco: 10,
+      descricao: 'Adesivo de gatinho preto e branco e frase "Eu sou um gatinho" 10cm x 10cm',
+      imagem: 'https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png',
+    },
+    {
+      id: 5,
+      nome: 'Renan',
+      preco: 1000,
+      descricao: 'Aqui vai uma descrição do produto que é muito grande e vai ocupar várias linhas, dados do produto, etc.',
+      imagem: 'https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png',
+    },
+  ]);
+
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
       <CssBaseline />
@@ -268,552 +306,99 @@ export default function FeedExample() {
               alignItems: 'center',
             }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
+            {produtos.map((produto) => (
               <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: { xs: '30vw', sm: '15vw', md: '125px' },
-                  height: { xs: '30vw', sm: '15vw', md: '125px' },
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
-                  },
-                  position: 'absolute',
-                  zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                })}
-              >
-
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
-                    borderRadius: '20px 0px 20px 0px',
-                    border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
-                    height: { xs: '80vw', sm: '40vw', md: '360px' },
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
-                    },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
-                    justifyContent: 'space-between',
-                  })
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  padding: '20px',
+                  alignItems: 'center',
+                  textAlign: 'center',
                 }}
               >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  Renan
-                </Typography>
-
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: { xs: '30vw', sm: '15vw', md: '125px' },
-                  height: { xs: '30vw', sm: '15vw', md: '125px' },
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
-                  },
-                  position: 'absolute',
-                  zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                })}
-              >
-
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
+                <Box
+                  sx={(theme) => ({
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
-                    height: { xs: '80vw', sm: '40vw', md: '360px' },
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    backgroundColor: theme.palette.background.surface,
+                    width: { xs: '30vw', sm: '15vw', md: '125px' },
+                    height: { xs: '30vw', sm: '15vw', md: '125px' },
+                    boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
+                      boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.8)',
                       transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
                     },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
-                    justifyContent: 'space-between',
-                  })
-                }}
-              >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  Renan
-                </Typography>
+                    position: 'absolute',
+                    zIndex: 1,
+                    backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  })}
+                >
+                </Box>
+                <Box
+                  sx={(theme) => {
+                    console.log(theme)
+                    return ({
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignSelf: 'flex-end',
+                      alignItems: 'center',
+                      backdropFilter: 'blur(3px)',
+                      borderRadius: '20px 0px 20px 0px',
+                      border: `5px solid ${theme.palette.background.surface}`,
+                      backgroundColor: theme.palette.background.backdrop,
+                      width: { xs: '60vw', sm: '30vw', md: '250px' },
+                      height: { xs: '80vw', sm: '40vw', md: '360px' },
+                      boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                      '&:active': {
+                        boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                        transform: 'scale(1.6)',
+                        transition: 'all 0.3s ease-in-out',
+                        paddingTop: '0px',
+                        zIndex: 2,
+                      },
+                      margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                      marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                      paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                      padding: "15px",
+                      justifyContent: 'space-between',
+                    })
+                  }}
+                >
+                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                    mt: 2,
+                    color: theme.palette.text.primary,
+                    fontSize: '20px',
+                  })}>
+                    {produto.nome}
+                  </Typography>
 
 
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: { xs: '30vw', sm: '15vw', md: '125px' },
-                  height: { xs: '30vw', sm: '15vw', md: '125px' },
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
-                  },
-                  position: 'absolute',
-                  zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                })}
-              >
-
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
-                    borderRadius: '20px 0px 20px 0px',
-                    border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
-                    height: { xs: '80vw', sm: '40vw', md: '360px' },
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
+                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                    color: theme.palette.text.primary,
+                    fontSize: '15px',
+                    maxHeight: '50%',
+                    maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                    overflow: 'auto',
+                    '::-webkit-scrollbar': {
+                      width: '0.4em',
                     },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
-                    justifyContent: 'space-between',
-                  })
-                }}
-              >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  Renan
-                </Typography>
 
+                  })}>
+                    {produto.descricao}
+                  </Typography>
 
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
+                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                    color: theme.palette.text.primary,
+                    fontSize: '20px',
+                  })}>
+                    R$ {produto.preco.toFixed(2)}
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: { xs: '30vw', sm: '15vw', md: '125px' },
-                  height: { xs: '30vw', sm: '15vw', md: '125px' },
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
-                  },
-                  position: 'absolute',
-                  zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                })}
-              >
-
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
-                    borderRadius: '20px 0px 20px 0px',
-                    border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
-                    height: { xs: '80vw', sm: '40vw', md: '360px' },
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
-                    },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
-                    justifyContent: 'space-between',
-                  })
-                }}
-              >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  Renan
-                </Typography>
-
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: { xs: '30vw', sm: '15vw', md: '125px' },
-                  height: { xs: '30vw', sm: '15vw', md: '125px' },
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
-                  },
-                  position: 'absolute',
-                  zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                })}
-              >
-
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
-                    borderRadius: '20px 0px 20px 0px',
-                    border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
-                    height: { xs: '80vw', sm: '40vw', md: '360px' },
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
-                    },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
-                    justifyContent: 'space-between',
-                  })
-                }}
-              >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  Renan
-                </Typography>
-
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: { xs: '30vw', sm: '15vw', md: '125px' },
-                  height: { xs: '30vw', sm: '15vw', md: '125px' },
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
-                  },
-                  position: 'absolute',
-                  zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                })}
-              >
-
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
-                    borderRadius: '20px 0px 20px 0px',
-                    border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
-                    height: { xs: '80vw', sm: '40vw', md: '360px' },
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
-                    },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
-                    justifyContent: 'space-between',
-                  })
-                }}
-              >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  Renan
-                </Typography>
-
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
-              </Box>
-            </Box>
+            ))}
           </Box>
           <Box sx={(theme) => ({
             bottom: 0,
