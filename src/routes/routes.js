@@ -7,6 +7,7 @@ import Files from '../views/files';
 import NewPost from '../views/newPost';
 import Post from '../views/post';
 import Home from '../views/Home';
+import Produtos from "../views/Produtos";
 import { AuthProvider } from "../contexts/authContext";
 import { PrivateRoute, AdminRoute } from "./index";
 import { Navigate } from "react-router-dom";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/produtos" element={<Produtos />} />
           <Route path="/team" element={<PrivateRoute />}>
             <Route path="/team" element={<Team />} />
           </Route>

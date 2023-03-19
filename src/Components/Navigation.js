@@ -12,6 +12,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
 import HomeIcon from '@mui/icons-material/Home';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 // Icons import
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
@@ -35,16 +36,11 @@ export default function FeedNav() {
         href: '/feed',
         icon: <ViewDayIcon fontSize="small" color="primary" />,
       },
-      // {
-      //   label: 'Team',
-      //   href: '/team',
-      //   icon: <DraftsRoundedIcon fontSize="small" color="primary" />,
-      // },
-      // {
-      //   label: 'Files',
-      //   href: '/files',
-      //   icon: <AssistantPhotoRoundedIcon fontSize="small" color="primary" />,
-      // },
+      {
+        label: 'Produtos',
+        href: '/produtos',
+        icon: <AddShoppingCartOutlinedIcon fontSize="small" color="primary" />,
+      },
       {
         label: 'New',
         active: true,
@@ -106,6 +102,11 @@ export default function FeedNav() {
             label: 'Feed',
             href: '/feed',
             icon: <ViewDayIcon fontSize="small" color="primary" />,
+          },
+          {
+            label: 'Produtos',
+            href: '/produtos',
+            icon: <AddShoppingCartOutlinedIcon fontSize="small" color="primary" />,
           },
         ],
         Tags: [

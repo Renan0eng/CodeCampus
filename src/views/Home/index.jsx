@@ -15,6 +15,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 // custom
 import emailTheme from '../../constants/theme';
@@ -198,6 +199,7 @@ export default function FeedExample() {
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.backdrop,
                   padding: '20px',
+                  marginTop: '60px',
                 })
               }}
             >
@@ -319,7 +321,7 @@ export default function FeedExample() {
                     }}
                   >
                     <InstagramIcon color="primary" />
-                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2, ml: 0.5 })}>
                       Instagram
                     </Typography>
                   </Box>
@@ -355,12 +357,12 @@ export default function FeedExample() {
                       pr: 2,
                     }}
                     onClick={() => {
-                      window.open('https://www.instagram.com/desprogramados_/', '_blank');
+                      navegate('/produtos')
                     }}
                   >
-                    <InstagramIcon color="primary" />
-                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
-                      Instagram
+                    <AddShoppingCartOutlinedIcon color="primary" />
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2, ml: 0.5 })}>
+                      Veja nossos produtos
                     </Typography>
                   </Box>
                 </Box>
@@ -489,14 +491,42 @@ export default function FeedExample() {
             <Box sx={(theme) => ({
               bottom: 0,
               display: 'flex',
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
               color: theme.palette.text.primary,
               py: 3,
               mt: 2,
             })}>
-              <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 2 })}>
+              <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ mt: 2, color: theme.palette.text.primary, mb: 0.5 })}>
                 Desprogramados © 2021
+              </Typography>
+              <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ color: theme.palette.text.primary, mb: 2, ml: 1 })}>
+                Feito com amor por
+                <Link
+                  style={{
+                    paddingLeft: '5px',
+                    paddingRight: '5px',
+                    background: 'linear-gradient(to right, #f12711, #f5af19, #f12711, #f5af19)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundSize: '300%',
+                    animation: 'move-gradiente 2s linear infinite',
+                    '@keyframes move-gradiente': {
+                      '0%': {
+                        backgroundPosition: '0',
+                      },
+                      '100%': {
+                        backgroundPosition: '100%',
+                      }
+                    }
+                  }}
+                  target="_blank"
+                  href="https://www.instagram.com/renan_nardii/"
+                >
+                  Renan Nardi
+                </Link>
+                e equipe Desprogramados
               </Typography>
             </Box>
           </Box>
