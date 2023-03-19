@@ -181,7 +181,6 @@ export default function FeedExample() {
               justifyContent: 'center',
               alignItems: 'center',
               width: '100%',
-              margin: '10px',
             }}
           >
             <Typography variant="h2" fontWeight="xl" sx={(theme) => {
