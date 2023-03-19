@@ -190,7 +190,6 @@ export default function FeedExample() {
                   display: 'flex',
                   flexDirection: 'column',
                   width: '70%',
-                  minWidth: '300px',
                   alignSelf: 'center',
                   justifyContent: 'center',
                   alignItems: 'center',
@@ -199,7 +198,6 @@ export default function FeedExample() {
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.backdrop,
                   padding: '20px',
-
                 })
               }}
             >
@@ -490,7 +488,6 @@ export default function FeedExample() {
             {/* footer */}
             <Box sx={(theme) => ({
               bottom: 0,
-              width: '100vh',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',

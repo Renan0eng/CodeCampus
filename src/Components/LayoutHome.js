@@ -98,10 +98,9 @@ function Main(props) {
     <Box
       component="main"
       className="Main"
-
       {...props}
       sx={[{
-        p: 2,
+        display: 'grid',
       }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]}
     />
 

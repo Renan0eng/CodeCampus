@@ -27,11 +27,6 @@ import { getDocs, collection, addDoc } from 'firebase/firestore';
 import { db } from '../constants/firebase';
 import Dropzone from 'react-dropzone';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { async } from '@firebase/util';
-
-
-
-
 
 export default function FeedContent() {
 
