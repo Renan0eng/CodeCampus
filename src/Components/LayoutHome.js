@@ -9,9 +9,10 @@ function Root(props) {
       sx={[
         {
           backgroundImage: 'url(https://cdn.discordapp.com/attachments/1048010244795678771/1085747189181067294/Desprogramados_Banner.png)',
+          backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
           backgroundPosition: 'center',
-          display: 'grid',
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
         },

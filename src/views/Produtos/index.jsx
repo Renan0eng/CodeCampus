@@ -174,34 +174,87 @@ export default function FeedExample() {
         </Layout.Header>
         <Layout.Main>
           <Box
-            sx={{
+            sx={(theme) => ({
               display: 'flex',
-              flexDirection: 'column',
-              alignSelf: 'center',
-              justifyContent: 'center',
               alignItems: 'center',
-              width: '100%',
-            }}
+              justifyContent: 'center',
+              margin: 'auto',
+              width: '90%',
+              borderRadius: '20px 0px 20px 0px',
+              border: `5px solid ${theme.palette.background.surface}`,
+              backgroundColor: theme.palette.background.backdrop,
+              marginTop: '20px',
+            })}
           >
-            <Typography variant="h2" fontWeight="xl" sx={(theme) => {
-              console.log(theme.palette.mode);
-              return ({
-                mt: 2,
-                color: theme.palette.text.primary,
-                mb: 2,
-                fontSize: '60px',
-                display: { xs: 'none', sm: 'inline-flex' }
-              })
+            <Typography variant="h1" fontWeight="xl" sx={{
+              mt: 2,
+              mb: 2,
+              fontSize: '85px',
+              display: {
+                xs: 'none',
+                sm: 'none',
+                md: 'inline-flex',
+              },
+              background: 'linear-gradient(to right,#00ffff,#ff00ff,#00ffff, #ff00ff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundSize: '300%',
+              animation: 'move-gradiente 2s linear infinite',
+              '@keyframes move-gradiente': {
+                '0%': {
+                  backgroundPosition: '0',
+                },
+                '100%': {
+                  backgroundPosition: '100%',
+                }
+              }
             }}>
               Produtos
             </Typography>
-            <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+            <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
-              color: theme.palette.text.primary,
               mb: 2,
-              fontSize: '50px',
-              display: { sm: 'none' }
-            })}>
+              fontSize: '65px',
+              display: {
+                xs: 'none',
+                sm: 'inline-flex',
+                md: 'none',
+              },
+              background: 'linear-gradient(to right,#00ffff,#ff00ff,#00ffff, #ff00ff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundSize: '300%',
+              animation: 'move-gradiente 2s linear infinite',
+              '@keyframes move-gradiente': {
+                '0%': {
+                  backgroundPosition: '0',
+                },
+                '100%': {
+                  backgroundPosition: '100%',
+                }
+              }
+            }}>
+              Produtos
+            </Typography>
+            <Typography variant="h1" fontWeight="xl" sx={{
+              mt: 2,
+              mb: 2,
+              fontSize: '55px',
+              display: { sm: 'none' },
+              background: 'linear-gradient(to right,#00ffff,#ff00ff,#00ffff, #ff00ff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundSize: '300%',
+              animation: 'move-gradiente 2s linear infinite',
+              '@keyframes move-gradiente': {
+                '0%': {
+                  backgroundPosition: '0',
+                },
+                '100%': {
+                  backgroundPosition: '100%',
+                }
+              }
+            }}>
               Produtos
             </Typography>
           </Box>
@@ -228,8 +281,8 @@ export default function FeedExample() {
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
@@ -238,18 +291,12 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 })}
               >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
+
               </Box>
               <Box
                 sx={(theme) => {
@@ -263,8 +310,8 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
@@ -273,9 +320,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
                   })
                 }}
               >
@@ -287,16 +336,22 @@ export default function FeedExample() {
                   Renan
                 </Typography>
 
+
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+
                 })}>
-                  Aqui vai uma descrição do produto
+                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '20px',
                 })}>
@@ -317,8 +372,8 @@ export default function FeedExample() {
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
@@ -327,18 +382,12 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 })}
               >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
+
               </Box>
               <Box
                 sx={(theme) => {
@@ -352,8 +401,8 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
@@ -362,9 +411,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
                   })
                 }}
               >
@@ -376,16 +427,22 @@ export default function FeedExample() {
                   Renan
                 </Typography>
 
+
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+
                 })}>
-                  Aqui vai uma descrição do produto
+                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '20px',
                 })}>
@@ -406,8 +463,8 @@ export default function FeedExample() {
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
@@ -416,18 +473,12 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 })}
               >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
+
               </Box>
               <Box
                 sx={(theme) => {
@@ -441,8 +492,8 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
@@ -451,9 +502,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
                   })
                 }}
               >
@@ -465,16 +518,22 @@ export default function FeedExample() {
                   Renan
                 </Typography>
 
+
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+
                 })}>
-                  Aqui vai uma descrição do produto
+                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '20px',
                 })}>
@@ -495,8 +554,8 @@ export default function FeedExample() {
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
@@ -505,18 +564,12 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 })}
               >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
+
               </Box>
               <Box
                 sx={(theme) => {
@@ -530,8 +583,8 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
@@ -540,9 +593,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
                   })
                 }}
               >
@@ -554,16 +609,22 @@ export default function FeedExample() {
                   Renan
                 </Typography>
 
+
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+
                 })}>
-                  Aqui vai uma descrição do produto
+                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '20px',
                 })}>
@@ -584,8 +645,8 @@ export default function FeedExample() {
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
@@ -594,18 +655,12 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 })}
               >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
+
               </Box>
               <Box
                 sx={(theme) => {
@@ -619,8 +674,8 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
@@ -629,9 +684,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
                   })
                 }}
               >
@@ -643,16 +700,22 @@ export default function FeedExample() {
                   Renan
                 </Typography>
 
+
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+
                 })}>
-                  Aqui vai uma descrição do produto
+                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '20px',
                 })}>
@@ -673,8 +736,8 @@ export default function FeedExample() {
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
@@ -683,18 +746,12 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 })}
               >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
+
               </Box>
               <Box
                 sx={(theme) => {
@@ -708,8 +765,8 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
@@ -718,9 +775,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
                   })
                 }}
               >
@@ -732,105 +791,22 @@ export default function FeedExample() {
                   Renan
                 </Typography>
 
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                })}>
-                  Aqui vai uma descrição do produto
-                </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ 100,00
-                </Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '20px',
-                alignItems: 'center',
-              }}
-            >
-              <Box
-                sx={(theme) => ({
-                  borderRadius: '20px 0px 20px 0px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.surface,
-                  width: '110px',
-                  height: '110px',
-                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.8)',
-                    transition: 'all 0.5s ease-in-out',
+                  fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
                   },
-                  position: 'absolute',
-                  zIndex: 1,
 
-                })}
-              >
-                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '20px 0px 20px 0px',
-                    display: 'flex',
-                    alignSelf: 'center',
-                  }}
-                />
-              </Box>
-              <Box
-                sx={(theme) => {
-                  console.log(theme)
-                  return ({
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignSelf: 'flex-end',
-                    alignItems: 'center',
-                    backdropFilter: 'blur(3px)',
-                    borderRadius: '20px 0px 20px 0px',
-                    border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.backdrop,
-                    width: '200px',
-                    height: '260px',
-                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.5s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
-                    },
-                    margin: '20px',
-                    marginTop: '50px',
-                    padding: '40px 10px 10px 10px',
-                  })
-                }}
-              >
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
                 })}>
-                  Renan
+                  Aqui vai uma descrição do produto Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos id quidem modi error cum voluptatum atque voluptatem tenetur minus. Quibusdam totam enim esse modi in nihil, fugit natus autem hic?
                 </Typography>
 
                 <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                })}>
-                  Aqui vai uma descrição do produto
-                </Typography>
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  mt: 2,
                   color: theme.palette.text.primary,
                   fontSize: '20px',
                 })}>
@@ -854,7 +830,7 @@ export default function FeedExample() {
             </Typography>
             <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ color: theme.palette.text.primary, mb: 2, ml: 1 })}>
               Feito com amor por
-              <Link
+              <Typography
                 style={{
                   paddingLeft: '5px',
                   paddingRight: '5px',
@@ -870,13 +846,13 @@ export default function FeedExample() {
                     '100%': {
                       backgroundPosition: '100%',
                     }
-                  }
+                  },
+                  cursor: 'pointer',
                 }}
-                target="_blank"
-                href="https://www.instagram.com/renan_nardii/"
+                onClick={() => window.open('https://www.instagram.com/renan_nardii/', '_blank')}
               >
                 Renan Nardi
-              </Link>
+              </Typography>
               e equipe Desprogramados
             </Typography>
           </Box>

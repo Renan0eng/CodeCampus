@@ -503,7 +503,7 @@ export default function FeedExample() {
               </Typography>
               <Typography variant="h3" fontWeight="xl" sx={(theme) => ({ color: theme.palette.text.primary, mb: 2, ml: 1 })}>
                 Feito com amor por
-                <Link
+                <Typography
                   style={{
                     paddingLeft: '5px',
                     paddingRight: '5px',
@@ -519,13 +519,13 @@ export default function FeedExample() {
                       '100%': {
                         backgroundPosition: '100%',
                       }
-                    }
+                    },
+                    cursor: 'pointer',
                   }}
-                  target="_blank"
-                  href="https://www.instagram.com/renan_nardii/"
+                  onClick={() => window.open('https://www.instagram.com/renan_nardii/', '_blank')}
                 >
                   Renan Nardi
-                </Link>
+                </Typography>
                 e equipe Desprogramados
               </Typography>
             </Box>
