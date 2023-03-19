@@ -23,6 +23,7 @@ import Menu from '../../Components/Menu';
 import Layout from '../../Components/LayoutHome';
 import Navigation from '../../Components/Navigation';
 import { useNavigate, Link } from 'react-router-dom';
+import { Card } from '@mui/joy';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -218,598 +219,396 @@ export default function FeedExample() {
             }}
           >
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
             <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
               }}
             >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
+              <Card
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
+                  backgroundColor: theme.palette.background.surface,
+                  width: '100px',
+                  height: '100px',
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.1)',
                     transition: 'all 0.3s ease-in-out',
                   },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
-            </Box>
-            <Box
-              sx={(theme) => {
-                console.log(theme)
-                return ({
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backdropFilter: 'blur(3px)',
-                  borderRadius: '10px',
-                  border: `5px solid ${theme.palette.background.surface}`,
-                  backgroundColor: theme.palette.background.backdrop,
-                  padding: '20px',
-                  width: '200px',
-                  height: '260px',
-                  boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                  '&:hover': {
-                    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.05)',
-                    transition: 'all 0.3s ease-in-out',
-                  },
-                  margin: '20px',
-                })
-              }}
-            >
+                  position: 'absolute',
+                  zIndex: 1,
+                })}
+              >
+
+              </Card>
+              <Box
+                sx={(theme) => {
+                  console.log(theme)
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    padding: '20px',
+                    width: '200px',
+                    height: '260px',
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:hover': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.3s ease-in-out',
+                    },
+                    margin: '20px',
+                    marginTop: '50px',
+                  })
+                }}
+              >
+              </Box>
             </Box>
           </Box>
           <Box sx={(theme) => ({
