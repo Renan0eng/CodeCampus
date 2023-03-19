@@ -211,8 +211,6 @@ export default function FeedExample() {
               display: 'flex',
               flexDirection: 'row',
               flexWrap: 'wrap',
-              overflow: 'auto',
-              width: '100%',
               alignSelf: 'center',
               justifyContent: 'center',
               alignItems: 'center',
@@ -226,25 +224,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -252,26 +259,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
             <Box
@@ -282,25 +313,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -308,26 +348,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
             <Box
@@ -338,25 +402,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -364,26 +437,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
             <Box
@@ -394,25 +491,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -420,26 +526,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
             <Box
@@ -450,25 +580,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -476,26 +615,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
             <Box
@@ -506,25 +669,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -532,26 +704,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
             <Box
@@ -562,25 +758,34 @@ export default function FeedExample() {
                 alignItems: 'center',
               }}
             >
-              <Card
+              <Box
                 sx={(theme) => ({
                   borderRadius: '20px 0px 20px 0px',
                   border: `5px solid ${theme.palette.background.surface}`,
                   backgroundColor: theme.palette.background.surface,
-                  width: '100px',
-                  height: '100px',
+                  width: '110px',
+                  height: '110px',
                   boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
                   '&:hover': {
                     boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.8)',
                     transition: 'all 0.3s ease-in-out',
                   },
                   position: 'absolute',
                   zIndex: 1,
+
                 })}
               >
-
-              </Card>
+                <img src="https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png" alt="Minha imagem"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    borderRadius: '20px 0px 20px 0px',
+                    display: 'flex',
+                    alignSelf: 'center',
+                  }}
+                />
+              </Box>
               <Box
                 sx={(theme) => {
                   console.log(theme)
@@ -588,26 +793,50 @@ export default function FeedExample() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignSelf: 'flex-end',
-                    justifyContent: 'center',
                     alignItems: 'center',
                     backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    padding: '20px',
                     width: '200px',
                     height: '260px',
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:hover': {
                       boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.05)',
+                      transform: 'scale(1.6)',
                       transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
                     },
                     margin: '20px',
                     marginTop: '50px',
+                    padding: '40px 10px 10px 10px',
                   })
                 }}
               >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  Renan
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                })}>
+                  Aqui vai uma breve descrição do produto que está sendo vendido
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ 100,00
+                </Typography>
               </Box>
             </Box>
           </Box>
