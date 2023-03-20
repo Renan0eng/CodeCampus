@@ -47,7 +47,7 @@ export default function FeedContent() {
   const date = new Date();
   const formattedDate = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('');

@@ -187,7 +187,15 @@ export default function JoySignInSideTemplate() {
                   alignItems: 'center',
                 }}
               >
-                <Checkbox size="sm" label="Manter conectado" name="persistent" />
+                <Checkbox size="sm" label="Manter conectado" name="persistent"
+                  onChange={(event) => {
+                    if (event.target.checked) {
+                      localStorage.setItem('persistent', 'true')
+                    } else {
+                      localStorage.removeItem('persistent')
+                    }
+                  }}
+                />
                 <Link fontSize="sm" href="/cadastro" fontWeight="lg">
                   Não tenho uma conta
                 </Link>

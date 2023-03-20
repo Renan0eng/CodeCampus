@@ -84,7 +84,7 @@ export default function FeedExample() {
         preco: preco,
         descricao: descricao,
         imagem: imagem,
-        user: sessionStorage.getItem('user'),
+        user: localStorage.getItem('user'),
       });
       navegate('/produtos')
       return docRef.id;
@@ -177,7 +177,7 @@ export default function FeedExample() {
                 ]}
               />}
             <ColorSchemeToggle />
-            {!sessionStorage.getItem('user') &&
+            {!localStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"
@@ -189,7 +189,7 @@ export default function FeedExample() {
               >
                 <LoginIcon />
               </IconButton>}
-            {!sessionStorage.getItem('user') &&
+            {!localStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"

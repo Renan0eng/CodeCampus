@@ -90,7 +90,7 @@ export default function FeedExample() {
       const data = await getDocs(collection(db, "admin/"));
       const admins = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
       const admin = admins[0]
-      const user = JSON.parse(sessionStorage.getItem('user'))
+      const user = JSON.parse(localStorage.getItem('user'))
       if (user.uid === admin.id) setAdmin(true)
     }
     getAdmin()
@@ -181,7 +181,7 @@ export default function FeedExample() {
                 ]}
               />}
             <ColorSchemeToggle />
-            {!sessionStorage.getItem('user') &&
+            {!localStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"
@@ -193,7 +193,7 @@ export default function FeedExample() {
               >
                 <LoginIcon />
               </IconButton>}
-            {!sessionStorage.getItem('user') &&
+            {!localStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"

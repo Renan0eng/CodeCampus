@@ -215,7 +215,7 @@ export default function FeedExample() {
                 ]}
               />}
             <ColorSchemeToggle />
-            {!sessionStorage.getItem('user') &&
+            {!localStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"
@@ -227,7 +227,7 @@ export default function FeedExample() {
               >
                 <LoginIcon />
               </IconButton>}
-            {!sessionStorage.getItem('user') &&
+            {!localStorage.getItem('user') &&
               <IconButton
                 size="sm"
                 variant="solid"

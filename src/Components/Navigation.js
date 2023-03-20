@@ -89,7 +89,7 @@ export default function FeedNav() {
 
   React.useEffect(() => {
 
-    if (!sessionStorage.getItem('user')) {
+    if (!localStorage.getItem('user')) {
       setMenus({
         Browse: [
           {
@@ -256,7 +256,7 @@ export default function FeedNav() {
           )) : null}
         </List>
       </ListItem>
-      {sessionStorage.getItem('user') &&
+      {localStorage.getItem('user') &&
         <ListItem nested sx={{ mt: 2 }}>
           <ListSubheader>
             config

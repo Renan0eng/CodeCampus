@@ -34,7 +34,7 @@ const setCommentData = async (comment) => {
 export default function FeedContent({ posts }) {
 
   const getComments = async (comments) => {
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     // const data = await getDocs(collection(db, "comments/"));
     const data = await getDocs(query(collection(db, "comments/"), where("postId", "==", posts.id)));
 
@@ -55,7 +55,7 @@ export default function FeedContent({ posts }) {
   const date = new Date();
   const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`;
 
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [comment, setComment] = React.useState('');
 

@@ -62,7 +62,7 @@ const getAdmin = async () => {
   const data = await getDocs(collection(db, "admin/"));
   const admins = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   const admin = admins[0]
-  const user = JSON.parse(sessionStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user'))
   if (user.uid === admin.id) return true
 }
 
