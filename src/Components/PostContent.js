@@ -14,7 +14,7 @@ import Button from '@mui/joy/Button';
 import SendIcon from '@mui/icons-material/Send'
 
 //firebase
-import { getDocs, collection, addDoc, query, where, orderBy  } from 'firebase/firestore';
+import { getDocs, collection, addDoc, query, where, orderBy } from 'firebase/firestore';
 import { db } from '../constants/firebase';
 
 import { useNavigate } from 'react-router-dom';
@@ -23,8 +23,8 @@ import { Input } from '@mui/joy';
 
 
 const setCommentData = async (comment) => {
-  try{
-  const docRef = addDoc(collection(db, "comments"), comment);
+  try {
+    const docRef = addDoc(collection(db, "comments"), comment);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -51,7 +51,7 @@ export default function FeedContent({ posts }) {
     setComments(comment);
   };
 
-  
+
   const date = new Date();
   const formattedDate = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}:${(date.getSeconds() < 10 ? '0' : '') + date.getSeconds()}`;
 
@@ -124,7 +124,6 @@ export default function FeedContent({ posts }) {
         >
           <IconButton size="sm" variant="outlined" color="neutral"
             onClick={() => {
-              console.log(`ArrowUpward ${posts.title}`);
             }}
           >
             <ArrowUpwardIcon />
@@ -134,7 +133,6 @@ export default function FeedContent({ posts }) {
           </Typography>
           <IconButton size="sm" variant="outlined" color="neutral"
             onClick={() => {
-              console.log(`ArrowDownward ${posts.title}`);
             }}
           >
             <ArrowDownwardIcon />
@@ -204,7 +202,7 @@ export default function FeedContent({ posts }) {
               onClose={handleCloseImage}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
-              >
+            >
               <Box
                 sx={{
                   position: 'absolute',
@@ -232,8 +230,8 @@ export default function FeedContent({ posts }) {
       {/* add comentarios */}
       <Divider />
       <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
-          comments
-        </Typography>
+        comments
+      </Typography>
       <Box>
         <Box
           sx={{
@@ -271,61 +269,61 @@ export default function FeedContent({ posts }) {
             alignItems: 'center',
           }}
         >
-        <Box
-          width="80%"
-        >
-          <Input
-            placeholder="Add a comment"
-            size="sm"
-            variant="outlined"
-            color="neutral"
-            fullWidth
-            multiline
-            rows={3}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+          <Box
+            width="80%"
+          >
+            <Input
+              placeholder="Add a comment"
+              size="sm"
+              variant="outlined"
+              color="neutral"
+              fullWidth
+              multiline
+              rows={3}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              sx={{
+                mt: 2,
+                mb: 2,
+              }}
+            />
+          </Box>
+          {/* btn enviar */}
+          <Box
             sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              width: '20%',
+              minWidth: '80px',
               mt: 2,
               mb: 2,
             }}
-          />
-        </Box>
-        {/* btn enviar */}
-        <Box 
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            width: '20%',
-            minWidth: '80px',
-            mt: 2,
-            mb: 2,
-          }}
-        >
-          <Button
-            size="sm"
-            variant="outlined"
-            color="primary"
-            onClick={() => {
-              if (comment) {
-                const Comment = {
-                  desc: comment,
-                  postId: posts.id,
-                  authorName: user && user.displayName ? user.displayName : 'Anonimo',
-                  authorAvatar: user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png',
-                  date: formattedDate,
-                }
-                setCommentData(Comment)
-                getComments();
-                setComment('');
-              }
-            }}
           >
-            <SendIcon/>
-            Send
-          </Button>
-        </Box>
+            <Button
+              size="sm"
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                if (comment) {
+                  const Comment = {
+                    desc: comment,
+                    postId: posts.id,
+                    authorName: user && user.displayName ? user.displayName : 'Anonimo',
+                    authorAvatar: user && user.photoURL ? user.photoURL : 'https://www.w3schools.com/howto/img_avatar.png',
+                    date: formattedDate,
+                  }
+                  setCommentData(Comment)
+                  getComments();
+                  setComment('');
+                }
+              }}
+            >
+              <SendIcon />
+              Send
+            </Button>
+          </Box>
         </Box>
 
       </Box>
@@ -334,30 +332,15 @@ export default function FeedContent({ posts }) {
       {/* comentarios */}
 
       {
-        
-      comments && comments.map((content, index) => (<>
-        <Divider />
-        <Box
-          sx={(theme) => ({
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 0.5,
-            mt: 2,
-            '& > div': {
-              boxShadow: 'none',
-              '--Card-padding': '0px',
-              '--Card-radius': theme.vars.radius.sm,
-            },
-          })}
-        >
+
+        comments && comments.map((content, index) => (<>
+          <Divider />
           <Box
             sx={(theme) => ({
-              width: '90%',
               display: 'flex',
-              flexDirection: 'row',
               flexWrap: 'wrap',
-              alignItems: 'center',
-              gap: 2,
+              gap: 0.5,
+              mt: 2,
               '& > div': {
                 boxShadow: 'none',
                 '--Card-padding': '0px',
@@ -365,41 +348,56 @@ export default function FeedContent({ posts }) {
               },
             })}
           >
-            <Avatar
-              src={content.authorAvatar}
-              srcSet={content.authorAvatar}
-              sx={{ borderRadius: 'xl', width: 30, height: 30 }}
-            />
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-              <Typography level="body2">
-                {content.authorName}
-              </Typography>
-              <Typography level="body2" textColor="#999" fontSize={10} >
-                {formatDate(content.date)}
+            <Box
+              sx={(theme) => ({
+                width: '90%',
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: 2,
+                '& > div': {
+                  boxShadow: 'none',
+                  '--Card-padding': '0px',
+                  '--Card-radius': theme.vars.radius.sm,
+                },
+              })}
+            >
+              <Avatar
+                src={content.authorAvatar}
+                srcSet={content.authorAvatar}
+                sx={{ borderRadius: 'xl', width: 30, height: 30 }}
+              />
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
+                <Typography level="body2">
+                  {content.authorName}
+                </Typography>
+                <Typography level="body2" textColor="#999" fontSize={10} >
+                  {formatDate(content.date)}
+                </Typography>
+              </Box>
+            </Box>
+            <Box
+              sx={(theme) => ({
+                display: 'flex',
+                flexDirection: 'column',
+                flexWrap: 'wrap',
+                alignItems: 'start',
+                pb: 0.5,
+                width: '100%',
+                '& > div': {
+                  boxShadow: 'none',
+                  '--Card-padding': '0px',
+                  '--Card-radius': theme.vars.radius.sm,
+                },
+              })}
+            >
+              <Typography level="body2" mb={0.5}>
+                {content.desc}
               </Typography>
             </Box>
           </Box>
-          <Box
-            sx={(theme) => ({
-              display: 'flex',
-              flexDirection: 'column',
-              flexWrap: 'wrap',
-              alignItems: 'start',
-              pb: 0.5,
-              width: '100%',
-              '& > div': {
-                boxShadow: 'none',
-                '--Card-padding': '0px',
-                '--Card-radius': theme.vars.radius.sm,
-              },
-            })}
-          >
-            <Typography level="body2"  mb={0.5}>
-              {content.desc}
-            </Typography>
-          </Box>
-        </Box>
-      </>))}
+        </>))}
     </Sheet>
   );
 }

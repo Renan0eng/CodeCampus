@@ -130,6 +130,9 @@ export default function FeedExample() {
                     label: 'Feed',
                     active: true,
                     href: '/feed',
+                  }, {
+                    label: 'New Produto',
+                    href: '/novosprodutos',
                   },
                   {
                     label: 'New',
@@ -186,7 +189,6 @@ export default function FeedExample() {
           >
             <Box
               sx={(theme) => {
-                console.log(theme)
                 return ({
                   display: 'flex',
                   flexDirection: 'column',

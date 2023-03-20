@@ -92,8 +92,8 @@ export default function FeedContent() {
 
   const setPost = async (post) => {
 
-    if (post.desc.length > 400) {
-      alert("A descrição deve ter no máximo 400 caracteres");
+    if (post.desc.length > 2000) {
+      alert("A descrição deve ter no máximo 2000 caracteres");
       return false;
     }
 

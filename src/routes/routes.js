@@ -8,8 +8,9 @@ import NewPost from '../views/newPost';
 import Post from '../views/post';
 import Home from '../views/Home';
 import Produtos from "../views/Produtos";
+import NovosProdutos from "../views/Produtos/NovosProdutos";
 import { AuthProvider } from "../contexts/authContext";
-import { PrivateRoute, AdminRoute } from "./index";
+import { PrivateRoute } from "./index";
 import { Navigate } from "react-router-dom";
 
 function App() {
@@ -17,7 +18,6 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Navigate to="/" />} />
@@ -27,6 +27,9 @@ function App() {
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/team" element={<PrivateRoute />}>
             <Route path="/team" element={<Team />} />
+          </Route>
+          <Route path="/novosprodutos" element={<PrivateRoute />}>
+            <Route path="/novosprodutos" element={<NovosProdutos />} />
           </Route>
           <Route path="/files" element={<PrivateRoute />}>
             <Route path="/files" element={<Files />} />

@@ -12,18 +12,20 @@ import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import LoginIcon from '@mui/icons-material/Login';
-import DeleteIcon from '@mui/icons-material/Delete';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 // custom
-import emailTheme from '../../constants/theme';
-import Menu from '../../Components/Menu';
-import Layout from '../../Components/LayoutHome';
-import Navigation from '../../Components/Navigation';
+import emailTheme from '../../../constants/theme';
+import Menu from '../../../Components/Menu';
+import Layout from '../../../Components/LayoutHome';
+import Navigation from '../../../Components/Navigation';
 import { useNavigate } from 'react-router-dom';
+import { Input, Textarea } from '@mui/joy';
 
-// Firebase
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
-import { db } from '../../constants/firebase';
+// firebase
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../../constants/firebase';
+import { ShoppingCart } from '@mui/icons-material';
 
 function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -59,43 +61,37 @@ export default function FeedExample() {
   const navegate = useNavigate();
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [unreadMenu, setUnreadMenu] = React.useState(false);
-  const [everythingMenu, setEverythingMenu] = React.useState(false);
 
   const [admin, setAdmin] = React.useState(false);
 
-  const [pagina, setPagina] = React.useState(0);
+  const [preco, setPreco] = React.useState('');
 
-  const [produtos, setProdutos] = React.useState([]);
+  const [nome, setNome] = React.useState('');
 
-  const deleteProduto = async (id) => {
-    try {
-      await deleteDoc(doc(db, "produtos", id));
-      const data = await getDocs(collection(db, "/produtos"));
-      setProdutos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  const [descricao, setDescricao] = React.useState('');
+
+  const [imagem, setImagem] = React.useState('https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png');
+
+  const setProduto = () => {
+    if (!nome || !preco || !descricao || !imagem) {
+      alert('Preencha todos os campos')
+      return
     }
-    catch (e) {
-      console.error("Error removing document: ", e);
+
+    try {
+      const docRef = addDoc(collection(db, "produtos"), {
+        nome: nome,
+        preco: preco,
+        descricao: descricao,
+        imagem: imagem,
+        user: sessionStorage.getItem('user'),
+      });
+      navegate('/produtos')
+      return docRef.id;
+    } catch (e) {
+      console.log("Error adding document: ", e);
     }
   }
-
-  React.useEffect(() => {
-    const getProdutos = async () => {
-      const data = await getDocs(collection(db, "/produtos"));
-      setProdutos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    getProdutos();
-
-    const getAdmin = async () => {
-      const data = await getDocs(collection(db, "admin/"));
-      const admins = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      const admin = admins[0]
-      const user = JSON.parse(sessionStorage.getItem('user'))
-      if (user.uid === admin.id) setAdmin(true)
-    }
-    getAdmin()
-
-  }, []);
 
   return (
     <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
@@ -218,6 +214,7 @@ export default function FeedExample() {
               border: `5px solid ${theme.palette.background.surface}`,
               backgroundColor: theme.palette.background.backdrop,
               marginTop: '20px',
+              minWidth: '450px',
             })}
           >
             <Typography variant="h1" fontWeight="xl" sx={{
@@ -243,7 +240,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Produtos
+              Novo Produto
             </Typography>
             <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
@@ -268,7 +265,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Produtos
+              Novo Produto
             </Typography>
             <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
@@ -289,7 +286,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Produtos
+              Novo Produto
             </Typography>
           </Box>
           <Box
@@ -302,116 +299,230 @@ export default function FeedExample() {
               alignItems: 'center',
             }}
           >
-            {produtos.map((produto) => (
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
+                textAlign: 'center',
+              }}
+            >
               <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  padding: '20px',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                }}
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  position: 'absolute',
+                  zIndex: 1,
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                })}
               >
-                <Box
-                  sx={(theme) => ({
+              </Box>
+              <Box
+                sx={(theme) => {
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
-                    backgroundColor: theme.palette.background.surface,
-                    width: { xs: '30vw', sm: '15vw', md: '125px' },
-                    height: { xs: '30vw', sm: '15vw', md: '125px' },
-                    boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
-                    '&:hover': {
-                      boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.8)',
-                      transition: 'all 0.5s ease-in-out',
-                    },
-                    position: 'absolute',
-                    zIndex: 1,
-                    backgroundImage: 'url(' + produto.imagem + ')',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  })}
-                >
-                </Box>
-                <Box
-                  sx={(theme) => {
-                    return ({
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignSelf: 'flex-end',
-                      alignItems: 'center',
-                      backdropFilter: 'blur(3px)',
-                      borderRadius: '20px 0px 20px 0px',
-                      border: `5px solid ${theme.palette.background.surface}`,
-                      backgroundColor: theme.palette.background.backdrop,
-                      width: { xs: '60vw', sm: '30vw', md: '250px' },
-                      height: { xs: '80vw', sm: '40vw', md: '360px' },
-                      boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                      '&:active': {
-                        boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                        transform: 'scale(1.6)',
-                        transition: 'all 0.3s ease-in-out',
-                        paddingTop: '0px',
-                        zIndex: 2,
-                      },
-                      margin: { xs: '15vw', sm: '8vw', md: '30px' },
-                      marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
-                      paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                      padding: "15px",
-                      justifyContent: 'space-between',
-                    })
+                    backgroundColor: theme.palette.background.backdrop,
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
+                  })
+                }}
+              >
+                <Input
+                  sx={{
+                    fontSize: '16px',
+                    width: '90%',
+                    textAlign: 'center',
                   }}
-                >
-                  {admin &&
-                    <IconButton
-                      sx={{
-                        position: 'absolute',
-                        zIndex: 2,
-                        top: '0px',
-                        right: '0px',
-                        alignSelf: 'flex-end',
-                        '&:hover': {
-                          backgroundColor: 'transparent',
-                        },
-                      }}
-                      onClick={() => {
-                        deleteProduto(produto.id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>}
-                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                    mt: 2,
-                    color: theme.palette.text.primary,
-                    fontSize: '20px',
-                  })}>
-                    {produto.nome}
-                  </Typography>
+                  type="text"
+                  placeholder="Nome"
+                  value={nome}
+                  onChange={(e) => {
+                    e.preventDefault()
+                    setNome(e.target.value)
+                  }}
+                />
 
+                <Textarea
+                  sx={{
+                    fontSize: "16px",
+                    height: "50%",
+                    width: "90%",
+                    wordWrap: "break-word",
+                  }}
+                  type="text"
+                  placeholder="Descrição"
+                  value={descricao}
+                  onChange={(e) => {
+                    e.preventDefault()
+                    setDescricao(e.target.value)
+                  }}
+                />
 
-                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                    color: theme.palette.text.primary,
-                    fontSize: '15px',
-                    maxHeight: '50%',
-                    maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
-                    overflow: 'auto',
-                    '::-webkit-scrollbar': {
-                      width: '0.4em',
-                    },
-
-                  })}>
-                    {produto.descricao}
-                  </Typography>
-
-                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                    color: theme.palette.text.primary,
-                    fontSize: '20px',
-                  })}>
-                    R$ {(produto.preco ? parseFloat(produto.preco) : 0).toFixed(2)}
-                  </Typography>
-                </Box>
+                <Input
+                  sx={{
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '10vw', sm: '5vw', md: '50px' },
+                    fontSize: '16px',
+                    width: '50%',
+                  }}
+                  type="number"
+                  placeholder="Preço"
+                  value={preco}
+                  onChange={(e) => {
+                    e.preventDefault()
+                    if (e.target.value >= 0) {
+                      setPreco(e.target.value)
+                    }
+                  }}
+                />
               </Box>
-            ))}
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '20px',
+                alignItems: 'center',
+                textAlign: 'center',
+              }}
+            >
+              <Box
+                sx={(theme) => ({
+                  borderRadius: '20px 0px 20px 0px',
+                  border: `5px solid ${theme.palette.background.surface}`,
+                  backgroundColor: theme.palette.background.surface,
+                  width: { xs: '30vw', sm: '15vw', md: '125px' },
+                  height: { xs: '30vw', sm: '15vw', md: '125px' },
+                  boxShadow: '8px 8px 10px 0px rgba(0,0,0,0.75)',
+                  '&:hover': {
+                    boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                    transform: 'scale(1.8)',
+                    transition: 'all 0.5s ease-in-out',
+                  },
+                  position: 'absolute',
+                  zIndex: 1,
+                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                })}
+              >
+              </Box>
+              <Box
+                sx={(theme) => {
+                  return ({
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignSelf: 'flex-end',
+                    alignItems: 'center',
+                    backdropFilter: 'blur(3px)',
+                    borderRadius: '20px 0px 20px 0px',
+                    border: `5px solid ${theme.palette.background.surface}`,
+                    backgroundColor: theme.palette.background.backdrop,
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '80vw', sm: '40vw', md: '360px' },
+                    boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
+                    '&:active': {
+                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.6)',
+                      transition: 'all 0.3s ease-in-out',
+                      paddingTop: '0px',
+                      zIndex: 2,
+                    },
+                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                    marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
+                    paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
+                    padding: "15px",
+                    justifyContent: 'space-between',
+                  })
+                }}
+              >
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  mt: 2,
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  {nome}
+                </Typography>
+
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  color: theme.palette.text.primary,
+                  fontSize: '15px',
+                  maxHeight: '50%',
+                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  overflow: 'auto',
+                  '::-webkit-scrollbar': {
+                    width: '0.4em',
+                  },
+
+                })}>
+                  {descricao}
+                </Typography>
+
+                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                  color: theme.palette.text.primary,
+                  fontSize: '20px',
+                })}>
+                  R$ {(preco ? parseFloat(preco) : 0).toFixed(2)}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              width: '100%',
+            }}
+          >
+            <IconButton
+              onClick={(e) => {
+                e.preventDefault()
+                setProduto()
+              }}
+              sx={{
+                height: { xs: '20vw', sm: '10vw', md: '80px' },
+                pl: 4,
+                pr: 4,
+              }}
+            >
+              <AddShoppingCartIcon color='primary'
+                sx={{
+                  width: { xs: '10vw', sm: '5vw', md: '40px' },
+                  height: { xs: '10vw', sm: '5vw', md: '40px' },
+                }}
+              />
+              <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                color: theme.palette.text.primary,
+                fontSize: '20px',
+              })}>
+                Adicionar
+              </Typography>
+            </IconButton>
           </Box>
           <Box sx={(theme) => ({
             bottom: 0,

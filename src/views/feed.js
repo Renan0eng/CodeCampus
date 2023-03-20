@@ -179,6 +179,9 @@ export default function FeedExample() {
                     label: 'Feed',
                     active: true,
                     href: '/feed',
+                  }, {
+                    label: 'New Produto',
+                    href: '/novosprodutos',
                   },
                   {
                     label: 'New',
