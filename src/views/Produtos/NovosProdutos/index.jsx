@@ -70,7 +70,7 @@ export default function FeedExample() {
 
   const [descricao, setDescricao] = React.useState('');
 
-  const [imagem, setImagem] = React.useState('https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png');
+  const [imagem, setImagem] = React.useState('');
 
   const setProduto = () => {
     if (!nome || !preco || !descricao || !imagem) {
@@ -324,6 +324,34 @@ export default function FeedExample() {
                   backgroundPosition: 'center',
                 })}
               >
+                <Box
+                  sx={(theme) => ({
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '15px 0px 15px 0px',
+                    backdropFilter: 'blur(3px)',
+                    backgroundColor: theme.palette.background.backdrop,
+                  })}
+                >
+                  <Textarea
+                    sx={{
+                      fontSize: '16px',
+                      width: '100%',
+                      textAlign: 'center',
+                      height: '100%',
+                      wordWrap: 'break-word',
+                      backgroundColor: 'transparent',
+                      borderRadius: '15px 0px 15px 0px',
+                    }}
+                    type="text"
+                    placeholder="Imagem URL"
+                    value={imagem}
+                    onChange={(e) => {
+                      e.preventDefault()
+                      setImagem(e.target.value)
+                    }}
+                  />
+                </Box>
               </Box>
               <Box
                 sx={(theme) => {
@@ -422,7 +450,7 @@ export default function FeedExample() {
                   },
                   position: 'absolute',
                   zIndex: 1,
-                  backgroundImage: 'url(https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png)',
+                  backgroundImage: `url(${imagem ? imagem : 'https://cdn.discordapp.com/attachments/966491148640211034/1086831999999815750/renan__owl_in_the_style_of_lisa_frank_blacklight_238d8933-ceef-4c9c-910a-a78231527f85.png'})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 })}
