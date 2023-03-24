@@ -66,6 +66,8 @@ export default function FeedExample() {
 
   const [preco, setPreco] = React.useState('');
 
+  const [inscricao, setInscricao] = React.useState('');
+
   const [nome, setNome] = React.useState('');
 
   const [descricao, setDescricao] = React.useState('');
@@ -73,7 +75,7 @@ export default function FeedExample() {
   const [imagem, setImagem] = React.useState('');
 
   const setProduto = () => {
-    if (!nome || !preco || !descricao || !imagem) {
+    if (!nome || !preco || !descricao || !imagem || !inscricao) {
       alert('Preencha todos os campos')
       return
     }
@@ -82,6 +84,7 @@ export default function FeedExample() {
       const docRef = addDoc(collection(db, "assinaturas"), {
         nome: nome,
         preco: preco,
+        inscricao: inscricao,
         descricao: descricao,
         imagem: imagem,
         user: localStorage.getItem('user'),
@@ -406,7 +409,23 @@ export default function FeedExample() {
                     setDescricao(e.target.value)
                   }}
                 />
-
+                <Input
+                  sx={{
+                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    height: { xs: '10vw', sm: '5vw', md: '50px' },
+                    fontSize: '16px',
+                    width: '50%',
+                  }}
+                  type="number"
+                  placeholder="Inscrição"
+                  value={inscricao}
+                  onChange={(e) => {
+                    e.preventDefault()
+                    if (e.target.value >= 0) {
+                      setInscricao(e.target.value)
+                    }
+                  }}
+                />
                 <Input
                   sx={{
                     width: { xs: '60vw', sm: '30vw', md: '250px' },
@@ -500,7 +519,7 @@ export default function FeedExample() {
                   color: theme.palette.text.primary,
                   fontSize: '15px',
                   maxHeight: '50%',
-                  maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                  width: '90%',
                   overflow: 'auto',
                   '::-webkit-scrollbar': {
                     width: '0.4em',
@@ -510,12 +529,22 @@ export default function FeedExample() {
                   {descricao}
                 </Typography>
 
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '20px',
-                })}>
-                  R$ {(preco ? parseFloat(preco) : 0).toFixed(2)}
-                </Typography>
+                <Box>
+                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                    color: theme.palette.text.primary,
+                    fontSize: '20px',
+                    mt: 0.5,
+                  })}>
+                    Inscrição: R$ {(inscricao ? parseFloat(inscricao) : 0).toFixed(2)}
+                  </Typography>
+
+                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                    color: theme.palette.text.primary,
+                    fontSize: '20px',
+                  })}>
+                    Mensalidade: R$ {(preco ? parseFloat(preco) : 0).toFixed(2)}
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Box>

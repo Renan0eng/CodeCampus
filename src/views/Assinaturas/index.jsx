@@ -404,12 +404,22 @@ export default function FeedExample() {
                     {produto.descricao}
                   </Typography>
 
-                  <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                    color: theme.palette.text.primary,
-                    fontSize: '20px',
-                  })}>
-                    R$ {(produto.preco ? parseFloat(produto.preco) : 0).toFixed(2)}
-                  </Typography>
+                  <Box>
+                    <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                      color: theme.palette.text.primary,
+                      fontSize: '20px',
+                      mt: 0.5,
+                    })}>
+                      Inscrição: R$ {(produto.inscricao ? parseFloat(produto.inscricao) : 0).toFixed(2)}
+                    </Typography>
+
+                    <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                      color: theme.palette.text.primary,
+                      fontSize: '20px',
+                    })}>
+                      Mensalidade: R$ {(produto.preco ? parseFloat(produto.preco) : 0).toFixed(2)}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             ))}

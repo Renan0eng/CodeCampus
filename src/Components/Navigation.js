@@ -15,6 +15,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 
 // Icons import
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
@@ -50,6 +51,11 @@ export default function FeedNav() {
         label: 'Produtos',
         href: '/produtos',
         icon: <AddShoppingCartOutlinedIcon fontSize="small" color="primary" />,
+      },
+      {
+        label: 'Assinaturas',
+        href: '/assinaturas',
+        icon: <AssignmentOutlinedIcon fontSize="small" color="primary" />,
       },
       {
         label: 'New',
@@ -166,6 +172,11 @@ export default function FeedNav() {
               label: 'Produtos',
               href: '/produtos',
               icon: <AddShoppingCartOutlinedIcon fontSize="small" color="primary" />,
+            },
+            {
+              label: 'Assinaturas',
+              href: '/assinaturas',
+              icon: <AssignmentOutlinedIcon fontSize="small" color="primary" />,
             },
             {
               label: 'New',
