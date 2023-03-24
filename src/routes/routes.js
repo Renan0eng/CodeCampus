@@ -9,6 +9,8 @@ import Post from '../views/post';
 import Home from '../views/Home';
 import Produtos from "../views/Produtos";
 import NovosProdutos from "../views/Produtos/NovosProdutos";
+import Assinaturas from "../views/Assinaturas";
+import NovasAssinaturas from "../views/Assinaturas/NovasAssinaturas";
 import { AuthProvider } from "../contexts/authContext";
 import { PrivateRoute } from "./index";
 import { Navigate } from "react-router-dom";
@@ -25,11 +27,15 @@ function App() {
           <Route path="/post/:id" element={<Post />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/produtos" element={<Produtos />} />
+          <Route path="/assinaturas" element={<Assinaturas />} />
           <Route path="/team" element={<PrivateRoute />}>
             <Route path="/team" element={<Team />} />
           </Route>
           <Route path="/novosprodutos" element={<PrivateRoute />}>
             <Route path="/novosprodutos" element={<NovosProdutos />} />
+          </Route>
+          <Route path="/novasassinaturas" element={<PrivateRoute />}>
+            <Route path="/novasassinaturas" element={<NovasAssinaturas />} />
           </Route>
           <Route path="/files" element={<PrivateRoute />}>
             <Route path="/files" element={<Files />} />
