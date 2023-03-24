@@ -13,6 +13,7 @@ import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import LoginIcon from '@mui/icons-material/Login';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 // custom
 import emailTheme from '../../../constants/theme';
@@ -72,10 +73,20 @@ export default function FeedExample() {
 
   const [descricao, setDescricao] = React.useState('');
 
+  const [descricoes, setDescricoes] = React.useState([]);
+
   const [imagem, setImagem] = React.useState('');
 
+  const handlerDescricao = () => {
+    const copy = descricoes
+    copy.push(descricao)
+    setDescricoes(copy)
+    setDescricao('')
+
+  }
+
   const setProduto = () => {
-    if (!nome || !preco || !descricao || !imagem || !inscricao) {
+    if (!nome || !preco || !descricoes || !imagem || !inscricao) {
       alert('Preencha todos os campos')
       return
     }
@@ -85,7 +96,7 @@ export default function FeedExample() {
         nome: nome,
         preco: preco,
         inscricao: inscricao,
-        descricao: descricao,
+        descricoes: descricoes,
         imagem: imagem,
         user: localStorage.getItem('user'),
       });
@@ -394,10 +405,10 @@ export default function FeedExample() {
                   }}
                 />
 
-                <Textarea
+                <Input
                   sx={{
                     fontSize: "16px",
-                    height: "50%",
+                    height: "20%",
                     width: "90%",
                     wordWrap: "break-word",
                   }}
@@ -409,6 +420,27 @@ export default function FeedExample() {
                     setDescricao(e.target.value)
                   }}
                 />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    width: '90%',
+                    height: '20%',
+                  }}
+                >
+                  <IconButton
+                    sx={{
+                      width: { xs: '10vw', sm: '5vw', md: '50px' },
+                      height: { xs: '10vw', sm: '5vw', md: '50px' },
+                    }}
+                    onClick={() => {
+                      handlerDescricao()
+                    }}
+                  >
+                    <AddCircleOutlineIcon />
+                  </IconButton>
+                </Box>
                 <Input
                   sx={{
                     width: { xs: '60vw', sm: '30vw', md: '250px' },
@@ -490,19 +522,17 @@ export default function FeedExample() {
                     width: { xs: '90vw', sm: '50vw', md: '432px' },
                     height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    '&:active': {
-                      boxShadow: '20px 20px 10px 0px rgba(0,0,0,0.75)',
-                      transform: 'scale(1.6)',
-                      transition: 'all 0.3s ease-in-out',
-                      paddingTop: '0px',
-                      zIndex: 2,
-                    },
                     marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
                     paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
                     padding: '15px',
                     marginLeft: { xs: 0, sm: '8vw', md: '30px' },
                     marginRight: { xs: 0, sm: '8vw', md: '30px' },
                     justifyContent: 'space-between',
+                    '&:hover': {
+                      boxShadow: '16px 16px 10px 0px rgba(0,0,0,0.75)',
+                      transform: 'scale(1.05)',
+                      transition: 'all 0.5s ease-in-out',
+                    },
                   })
                 }}
               >
@@ -514,20 +544,24 @@ export default function FeedExample() {
                   {nome}
                 </Typography>
 
-
-                <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
-                  color: theme.palette.text.primary,
-                  fontSize: '15px',
-                  maxHeight: '50%',
-                  width: '90%',
-                  overflow: 'auto',
-                  '::-webkit-scrollbar': {
-                    width: '0.4em',
-                  },
-
-                })}>
-                  {descricao}
-                </Typography>
+                <Box
+                  sx={{
+                    maxHeight: '50%',
+                    maxWidth: { xs: '55vw', sm: '25vw', md: '225px' },
+                    overflow: 'auto',
+                    '::-webkit-scrollbar': {
+                      width: '0.4em',
+                    },
+                  }}
+                >
+                  {descricoes && descricoes.map((item) =>
+                    <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
+                      color: theme.palette.text.primary,
+                      fontSize: '15px',
+                    })}>
+                      {item}
+                    </Typography>)}
+                </Box>
 
                 <Box>
                   <Typography variant="h2" fontWeight="xl" sx={(theme) => ({
