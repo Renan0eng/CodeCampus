@@ -70,8 +70,8 @@ export default function FeedExample() {
 
   const deleteProduto = async (id) => {
     try {
-      await deleteDoc(doc(db, "produtos", id));
-      const data = await getDocs(collection(db, "/produtos"));
+      await deleteDoc(doc(db, "assinaturas", id));
+      const data = await getDocs(collection(db, "/assinaturas"));
       setProdutos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     catch (e) {
@@ -81,7 +81,7 @@ export default function FeedExample() {
 
   React.useEffect(() => {
     const getProdutos = async () => {
-      const data = await getDocs(collection(db, "/produtos"));
+      const data = await getDocs(collection(db, "/assinaturas"));
       setProdutos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getProdutos();
@@ -207,6 +207,7 @@ export default function FeedExample() {
           </Box>
         </Layout.Header>
         <Layout.Main>
+
           <Box
             sx={(theme) => ({
               display: 'flex',
@@ -243,7 +244,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Produtos
+              Assinaturas
             </Typography>
             <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
@@ -268,7 +269,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Produtos
+              Assinaturas
             </Typography>
             <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
@@ -289,7 +290,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Produtos
+              Assinaturas
             </Typography>
           </Box>
           <Box
@@ -344,7 +345,7 @@ export default function FeedExample() {
                       borderRadius: '20px 0px 20px 0px',
                       border: `5px solid ${theme.palette.background.surface}`,
                       backgroundColor: theme.palette.background.backdrop,
-                      width: { xs: '60vw', sm: '30vw', md: '250px' },
+                      width: { xs: '90vw', sm: '50vw', md: '432px' },
                       height: { xs: '80vw', sm: '40vw', md: '360px' },
                       boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                       '&:active': {
@@ -354,7 +355,7 @@ export default function FeedExample() {
                         paddingTop: '0px',
                         zIndex: 2,
                       },
-                      margin: { xs: '15vw', sm: '8vw', md: '30px' },
+                      margin: { sm: '8vw', md: '30px' },
                       marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
                       paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
                       padding: "15px",

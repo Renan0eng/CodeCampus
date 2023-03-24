@@ -79,14 +79,14 @@ export default function FeedExample() {
     }
 
     try {
-      const docRef = addDoc(collection(db, "produtos"), {
+      const docRef = addDoc(collection(db, "assinaturas"), {
         nome: nome,
         preco: preco,
         descricao: descricao,
         imagem: imagem,
         user: localStorage.getItem('user'),
       });
-      navegate('/produtos')
+      navegate('/assinaturas')
       return docRef.id;
     } catch (e) {
       console.log("Error adding document: ", e);
@@ -240,7 +240,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Novo Produto
+              Nova Assinatura
             </Typography>
             <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
@@ -265,7 +265,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Novo Produto
+              Nova Assinatura
             </Typography>
             <Typography variant="h1" fontWeight="xl" sx={{
               mt: 2,
@@ -286,7 +286,7 @@ export default function FeedExample() {
                 }
               }
             }}>
-              Novo Produto
+              Nova Assinatura
             </Typography>
           </Box>
           <Box
@@ -364,13 +364,14 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    width: { xs: '90vw', sm: '50vw', md: '432px' },
                     height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
                     marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
                     paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
+                    padding: '15px',
+                    marginLeft: { xs: 0, sm: '8vw', md: '30px' },
+                    marginRight: { xs: 0, sm: '8vw', md: '30px' },
                     justifyContent: 'space-between',
                   })
                 }}
@@ -467,7 +468,7 @@ export default function FeedExample() {
                     borderRadius: '20px 0px 20px 0px',
                     border: `5px solid ${theme.palette.background.surface}`,
                     backgroundColor: theme.palette.background.backdrop,
-                    width: { xs: '60vw', sm: '30vw', md: '250px' },
+                    width: { xs: '90vw', sm: '50vw', md: '432px' },
                     height: { xs: '80vw', sm: '40vw', md: '360px' },
                     boxShadow: '10px 10px 10px 0px rgba(0,0,0,0.75)',
                     '&:active': {
@@ -477,10 +478,11 @@ export default function FeedExample() {
                       paddingTop: '0px',
                       zIndex: 2,
                     },
-                    margin: { xs: '15vw', sm: '8vw', md: '30px' },
                     marginTop: { xs: '15vw', sm: '7vw', md: '63px' },
                     paddingTop: { xs: '16vw', sm: '8vw', md: '63px' },
-                    padding: "15px",
+                    padding: '15px',
+                    marginLeft: { xs: 0, sm: '8vw', md: '30px' },
+                    marginRight: { xs: 0, sm: '8vw', md: '30px' },
                     justifyContent: 'space-between',
                   })
                 }}

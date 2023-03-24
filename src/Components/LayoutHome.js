@@ -12,13 +12,14 @@ function Root(props) {
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
         gridTemplateRows: '64px 1fr',
-        minHeight: '100vh',
+
       }}
     >
       <Box
         {...props}
         sx={[
           {
+            display: 'grid',
             backdropFilter: 'blur(5px)',
           },
           ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
@@ -108,6 +109,7 @@ function Main(props) {
       {...props}
       sx={[{
         display: 'grid',
+        minHeight: '100vh',
       }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]}
     />
 

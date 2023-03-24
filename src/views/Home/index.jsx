@@ -16,6 +16,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 
 // custom
 import emailTheme from '../../constants/theme';
@@ -413,6 +414,57 @@ export default function FeedExample() {
                       color: theme.palette.text.primary,
                     })}>
                       Veja nossos produtos
+                    </Typography>
+                  </Box>
+                </Box><Box
+                  sx={(theme) => ({
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: '10px',
+                    mt: 2,
+                    '&:hover': {
+                      backgroundColor: theme.palette.background.backdrop,
+                    },
+                  })}
+                >
+                  <Box
+                    sx={(theme) => ({
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      p: 0.5,
+                      cursor: 'pointer',
+                      borderRadius: '10px',
+                      border: `2px solid ${theme.palette.background.backdrop}`,
+                      '&:hover': {
+                        backgroundImage: 'linear-gradient(to right,#00ffff,#ff00ff,#00ffff, #ff00ff)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundSize: '300%',
+                        animation: 'move-gradiente 2s linear infinite',
+                        '@keyframes move-gradiente': {
+                          '0%': {
+                            backgroundPosition: '0',
+                          },
+                          '100%': {
+                            backgroundPosition: '100%',
+                          }
+                        }
+                      },
+                    })}
+                    onClick={() => {
+                      navegate('/assinaturas')
+                    }}
+                  >
+                    <AssignmentIndOutlinedIcon color="primary" />
+                    <Typography variant="h3" fontWeight="xl" sx={(theme) => ({
+                      ml: 0.5,
+                      color: theme.palette.text.primary,
+                    })}>
+                      Assinaturas
                     </Typography>
                   </Box>
                 </Box>

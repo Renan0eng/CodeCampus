@@ -13,6 +13,8 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import ViewDayIcon from '@mui/icons-material/ViewDay';
 import HomeIcon from '@mui/icons-material/Home';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
+import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
 
 // Icons import
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
@@ -20,6 +22,14 @@ import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import theme from '../constants/theme';
+
+// firebase
+import {
+  getDocs,
+  collection,
+} from 'firebase/firestore';
+import { db } from '../constants/firebase';
+
 
 export default function FeedNav() {
 
@@ -108,43 +118,6 @@ export default function FeedNav() {
             href: '/produtos',
             icon: <AddShoppingCartOutlinedIcon fontSize="small" color="primary" />,
           },
-        ],
-        Tags: [
-          {
-            label: 'Personal',
-            href: '/personal',
-            bgcolor: 'primary.100',
-          },
-          {
-            label: 'Work',
-            href: '/work',
-            bgcolor: 'danger.300',
-          },
-          {
-            label: 'Family',
-            href: '/family',
-            bgcolor: 'success.300',
-          },
-          {
-            label: 'Friends',
-            href: '/friends',
-            bgcolor: 'warning.300',
-          },
-          {
-            label: 'Travel',
-            href: '/travel',
-            bgcolor: 'info.300',
-          },
-          {
-            label: 'Holidays',
-            href: '/holidays',
-            bgcolor: 'neutral.300',
-          },
-          {
-            label: 'Photos',
-            href: '/photos',
-            bgcolor: 'primary.300',
-          },
         ]
       })
     }
@@ -154,6 +127,8 @@ export default function FeedNav() {
   const [tagsMenu, setTagsMenu] = React.useState(true);
   const [browseMenu, setBrowseMenu] = React.useState(true);
   const [configMenu, setConfigMenu] = React.useState(false);
+
+  const [admin, setAdmin] = React.useState(false);
 
   const [listItemDecorator, setListItemDecorator] = React.useState({
     Feed: {
@@ -165,6 +140,93 @@ export default function FeedNav() {
   });
 
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+
+    const getAdmin = async () => {
+      const data = await getDocs(collection(db, "admin/"));
+      const admins = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const admin = admins[0]
+      const user = JSON.parse(localStorage.getItem('user'))
+      if (user.uid === admin.id) {
+        setAdmin(true)
+        setMenus({
+          Browse: [
+            {
+              label: 'Home',
+              href: '/',
+              icon: <HomeIcon fontSize="small" color="primary" />,
+            },
+            {
+              label: 'Feed',
+              href: '/feed',
+              icon: <ViewDayIcon fontSize="small" color="primary" />,
+            },
+            {
+              label: 'Produtos',
+              href: '/produtos',
+              icon: <AddShoppingCartOutlinedIcon fontSize="small" color="primary" />,
+            },
+            {
+              label: 'New',
+              active: true,
+              href: '/newpost',
+              icon: <OutboxRoundedIcon fontSize="small" color="primary" />,
+            },
+            {
+              label: 'New Product',
+              href: '/novoproduto',
+              icon: <ProductionQuantityLimitsOutlinedIcon fontSize="small" color="primary" />,
+            },
+            {
+              label: 'New signature',
+              href: '/novasassinaturas',
+              icon: <AssignmentIndOutlinedIcon fontSize="small" color="primary" />,
+            },
+          ],
+          Tags: [
+            {
+              label: 'Personal',
+              href: '/personal',
+              bgcolor: 'primary.100',
+            },
+            {
+              label: 'Work',
+              href: '/work',
+              bgcolor: 'danger.300',
+            },
+            {
+              label: 'Family',
+              href: '/family',
+              bgcolor: 'success.300',
+            },
+            {
+              label: 'Friends',
+              href: '/friends',
+              bgcolor: 'warning.300',
+            },
+            {
+              label: 'Travel',
+              href: '/travel',
+              bgcolor: 'info.300',
+            },
+            {
+              label: 'Holidays',
+              href: '/holidays',
+              bgcolor: 'neutral.300',
+            },
+            {
+              label: 'Photos',
+              href: '/photos',
+              bgcolor: 'primary.300',
+            },
+          ]
+        })
+      }
+    }
+    getAdmin()
+
+  }, []);
 
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px' }}>
