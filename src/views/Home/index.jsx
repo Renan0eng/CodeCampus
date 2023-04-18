@@ -100,7 +100,7 @@ export default function FeedExample() {
               <MenuIcon />
             </IconButton>
             <Typography component="h1" fontWeight="xl" minWidth={100}>
-              Home
+              Homeee
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
